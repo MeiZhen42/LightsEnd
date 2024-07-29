@@ -6,6 +6,8 @@ var player_node: Node = null
 var npc_node: Node = null
 var barkeep_node: Node = null
 var inventory = []
+var merge_item = null
+var merge_panel = null
 
 var player_in_range = false
 var npc_in_range = false

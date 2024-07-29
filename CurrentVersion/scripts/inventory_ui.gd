@@ -5,6 +5,7 @@ extends Control
 func _ready():
 	Global.inventory_updated.connect(_on_inventory_updated) # _ indicates connector signal
 	_on_inventory_updated()
+	Global.merge_panel = $merge_panel
 
 # Update inventory U
 func _on_inventory_updated():  
