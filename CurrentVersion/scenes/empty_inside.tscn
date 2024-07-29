@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6p85m1klq2xt"]
+
+[ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_i0wun"]
+[ext_resource type="Script" path="res://scripts/insideTavernDoor.gd" id="2_q2rum"]
+[ext_resource type="Texture2D" uid="uid://cghsntvqwxegp" path="res://objects/chest_01.png" id="3_4owjk"]
+[ext_resource type="PackedScene" uid="uid://n41rtabx74cu" path="res://scenes/inventory_item.tscn" id="5_pb7o7"]
+[ext_resource type="Texture2D" uid="uid://c18s1bi26hw5q" path="res://objects/icon1.png" id="6_h7jvm"]
+[ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="7_2y7hm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54mtf"]
+size = Vector2(53, 9)
+
+[node name="empty_inside" type="Node2D"]
+
+[node name="inside" type="Label" parent="."]
+offset_left = 129.0
+offset_top = 65.0
+offset_right = 176.0
+offset_bottom = 88.0
+text = "empty tavern"
+
+[node name="player" parent="." instance=ExtResource("1_i0wun")]
+position = Vector2(99, 38)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_q2rum")
+
+[node name="Chest01" type="Sprite2D" parent="Area2D"]
+position = Vector2(100, 117)
+texture = ExtResource("3_4owjk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(98.5, 118.5)
+shape = SubResource("RectangleShape2D_54mtf")
+
+[node name="inventory_item" parent="." instance=ExtResource("5_pb7o7")]
+position = Vector2(66, 88)
+item_type = "Consumable"
+item_name = "Potion of Joy"
+item_texture = ExtResource("6_h7jvm")
+item_effect = "Cure1"
+
+[node name="inventory_item2" parent="." instance=ExtResource("5_pb7o7")]
+position = Vector2(68, 19)
+item_type = "Consumable"
+item_name = "Potion of Sad"
+item_texture = ExtResource("6_h7jvm")
+item_effect = "Cure3"
+
+[node name="inventory_item3" parent="." instance=ExtResource("5_pb7o7")]
+position = Vector2(139, 50)
+item_type = "Consumable"
+item_name = "Potion of Joy"
+item_texture = ExtResource("6_h7jvm")
+item_effect = "Cure2"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("7_2y7hm")]
+position = Vector2(104, 9)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
