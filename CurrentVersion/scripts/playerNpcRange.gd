@@ -16,13 +16,21 @@ func _physics_process(_delta):
 		#text_npc.visible = true
 		#inventory_ui.visible = true
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(body): #CharacterBody2D
 	if body.is_in_group("player"):
 		area_active = true
 		Global.player_in_range = true
 		#tag.visible = true
 		#body.interact_ui.visible = true
 		$cutScene.visible = true
+		# Global.npc_node = body
+		print("body entered. self, body:")
+		print(self.name)
+		#print($fixedNPCs.name)
+		#print()
+		#print(get_tree_string_pretty())
+		print(body.name)
+		Global.npc_node = $fixedNPCs
 
 
 func _on_area_2d_body_exited(body):

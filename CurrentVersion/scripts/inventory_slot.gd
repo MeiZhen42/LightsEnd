@@ -70,7 +70,7 @@ func _on_use_button_pressed():
 			#print("test02")
 			#text = "Thanks"
 			if Global.player_in_range == true:
-				Global.npc_node.apply_item_effect(item)
+				Global.npc_node.apply_item_effect(item) #npc_node: Sprite2D
 				#print("test03")
 				Global.remove_item(item["type"], item["effect"])
 				print("Consumed potion")
