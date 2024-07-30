@@ -1,10 +1,11 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 const SPEED = 100.0
 var current_direction = "none"
 
 @onready var interact_ui = $'interactUI'
 @onready var inventory_ui = $'inventoryUI'
+# @onready var inventory_manager = InventoryManager.new()
 
 @onready var sanity_bar = $SanityBar
 var safe: bool = true
