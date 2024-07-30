@@ -7,11 +7,39 @@ var current_direction = "none"
 @onready var inventory_ui = $'inventoryUI'
 # @onready var inventory_manager = InventoryManager.new()
 
+@onready var sanity_bar = $SanityBar
+var safe: bool = true
+const sanity_decline: float = 1.5
+const sanity_regain: float = 1
+
+
 func _ready():
 	Global.set_player_reference(self)
+	sanity_bar.min_value = 0
+	sanity_bar.max_value = 100
+	sanity_bar.value = sanity_bar.max_value
 
 func _physics_process(_delta):
 	player_movement(_delta)
+
+func _process(_delta):
+	#Adjust sanity
+	if(safe):
+		sanity_bar.value += sanity_regain * _delta
+	else:
+		sanity_bar.value -= sanity_decline * _delta * 5
+		if(sanity_bar.value <= sanity_bar.min_value):
+			## ToDo: do something when sanity reaches 0
+			pass
+	#var shade: float = (sanity_bar.value / sanity_bar.max_value) * (0.8-0.2) + 0.2
+	#6, 158, 92 -> 69, 3, 3
+	var shade: float = (sanity_bar.value / sanity_bar.max_value)
+	sanity_bar.get_theme_stylebox("fill").bg_color = Color((69 - 63 * shade)/255, (3 + 155 * shade)/255, (3 + 89 * shade)/255)
+	if(sanity_bar.value < sanity_bar.max_value):
+		sanity_bar.show()
+	else:
+		sanity_bar.hide()
+	pass
 	
 func player_movement(_delta):
 	if Input.is_action_pressed("ui_right"):
