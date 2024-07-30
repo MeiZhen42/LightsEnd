@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnnl58n0arfub"]
+[gd_scene load_steps=11 format=3 uid="uid://dnnl58n0arfub"]
 
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_2kxnl"]
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_2lfv6"]
 [ext_resource type="Script" path="res://scripts/insideTavernDoor.gd" id="2_1jndm"]
+[ext_resource type="AudioStream" uid="uid://psa12l2wcngb" path="res://audio/footsteps/Wood_1.wav" id="3_upnk5"]
 [ext_resource type="PackedScene" uid="uid://c6e2iw1166lkf" path="res://scenes/randomizedNPCs.tscn" id="4_rk6yg"]
+[ext_resource type="AudioStream" uid="uid://b8d6dkrieo3ww" path="res://audio/Tavern (Light's End Official Score).mp3" id="7_t4ulr"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="7_uig8n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_abb11"]
@@ -30,6 +32,9 @@ layer_0/tile_data = PackedInt32Array(0, 3342336, 1, 1, 3342336, 1, 2, 3342336, 1
 
 [node name="player" parent="." instance=ExtResource("1_2lfv6")]
 position = Vector2(99, 38)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("3_upnk5")
 
 [node name="fixedNpc" parent="." instance=ExtResource("7_uig8n")]
 position = Vector2(96, -248)
@@ -69,6 +74,11 @@ offset_top = -502.0
 offset_right = 825.0
 offset_bottom = 498.0
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_t4ulr")
+volume_db = -7.495
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

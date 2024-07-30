@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dd8cmqi714duv"]
+[gd_scene load_steps=26 format=3 uid="uid://dd8cmqi714duv"]
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_ckvtk"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
@@ -15,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://du85h46y6o6e3" path="res://scenes/tree.tscn" id="8_shme5"]
 [ext_resource type="Texture2D" uid="uid://b8ghyh582xwhd" path="res://objects/Gemstones.png" id="10_cjddp"]
 [ext_resource type="Texture2D" uid="uid://dr6fqprm5m7ia" path="res://objects/Tavern2.png" id="10_gtwls"]
+[ext_resource type="AudioStream" uid="uid://rq6jthda5qi7" path="res://audio/footsteps/Grass_1.wav" id="12_dhaad"]
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="15_eouhm"]
+[ext_resource type="AudioStream" uid="uid://b151tv2g7l8qk" path="res://audio/Forest (Light's End Official Score).mp3" id="18_yguyn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]
 texture = ExtResource("1_tj65x")
@@ -118,7 +120,7 @@ layer_0/tile_data = PackedInt32Array(786439, 0, 1, 786433, 0, 1, 917506, 0, 1, 9
 position = Vector2(120, 215)
 
 [node name="safezone" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(10, 57)
+position = Vector2(9, 37)
 shape = SubResource("CircleShape2D_p4ui6")
 
 [node name="Node2D2" type="Node2D" parent="."]
@@ -173,6 +175,10 @@ item_effect = "None"
 
 [node name="player" parent="." instance=ExtResource("1_ckvtk")]
 position = Vector2(120, 215)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player"]
+position = Vector2(-120, -215)
+stream = ExtResource("12_dhaad")
 
 [node name="outsideTavernDoor" type="Area2D" parent="."]
 z_index = 1
@@ -279,6 +285,11 @@ texture = ExtResource("15_eouhm")
 [node name="tree21" parent="Node2D" instance=ExtResource("8_shme5")]
 position = Vector2(539, 401)
 texture = ExtResource("15_eouhm")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_yguyn")
+volume_db = -4.89
+autoplay = true
 
 [connection signal="body_entered" from="outsideTavernDoor" to="outsideTavernDoor" method="_on_body_entered"]
 [connection signal="body_exited" from="outsideTavernDoor" to="outsideTavernDoor" method="_on_body_exited"]
