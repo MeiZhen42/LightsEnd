@@ -41,13 +41,13 @@ position = Vector2(100, 117)
 texture = ExtResource("2_7dvtj")
 
 [node name="npcItem2" parent="." instance=ExtResource("4_rk6yg")]
-position = Vector2(611, 141)
+position = Vector2(-28, -57)
 
 [node name="npcItem" parent="." instance=ExtResource("4_rk6yg")]
-position = Vector2(611, 86)
+position = Vector2(-35, -184)
 
 [node name="npcItem3" parent="." instance=ExtResource("4_rk6yg")]
-position = Vector2(615, 33)
+position = Vector2(167, -56)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("7_uig8n")]
 position = Vector2(92, -263)

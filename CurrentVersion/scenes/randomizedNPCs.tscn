@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6e2iw1166lkf"]
 
-[ext_resource type="Texture2D" uid="uid://ci3ndyy0h0wn0" path="res://objects/rock_in_water-sheet.png" id="1_6yak4"]
 [ext_resource type="Script" path="res://scripts/playerNpcRange.gd" id="1_ebu0w"]
+[ext_resource type="Texture2D" uid="uid://cm46tp4rg36wo" path="res://characters/SpriteSheet.png" id="2_drq26"]
 [ext_resource type="Script" path="res://scripts/randomizedNPCs.gd" id="2_rmjtu"]
 [ext_resource type="Script" path="res://scripts/randomizedNpcText.gd" id="4_ap5d4"]
 [ext_resource type="Texture2D" uid="uid://dum7r6yxsxbrc" path="res://objects/Shadow.png" id="4_gi7pr"]
@@ -14,18 +14,20 @@ radius = 22.2057
 script = ExtResource("1_ebu0w")
 
 [node name="fixedNPCs" type="Sprite2D" parent="."]
-scale = Vector2(1, 0.994937)
-texture = ExtResource("1_6yak4")
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_drq26")
 region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+region_rect = Rect2(0, 0, 598.55, 782.105)
 script = ExtResource("2_rmjtu")
 
 [node name="Slime-icon" type="Sprite2D" parent="fixedNPCs"]
+visible = false
 position = Vector2(-1, -7.03562)
 scale = Vector2(0.1, 0.101)
 texture = ExtResource("4_gi7pr")
 
 [node name="Area2D" type="Area2D" parent="fixedNPCs"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fixedNPCs/Area2D"]
 shape = SubResource("CircleShape2D_drqwj")
