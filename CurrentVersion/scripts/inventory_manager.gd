@@ -27,13 +27,17 @@ static func get_recipes_for_ingredient(ingredient: String) -> Array[Dictionary]:
 
 # Returns merge result from ingredients
 static func get_merge_result(ingredients: Array[String]) -> String:
+	var ings = ingredients
+	for i in range(ings.size()):
+		ings[i] = translate_full_string_to_code(ings[i])
+		pass
 	var found: bool = false
 	var result = null
 	for recipe in mergeDictionary:
-		if(ingredients.size() == recipe["ingredients"].size()):
+		if(ings.size() == recipe["ingredients"].size()):
 			found = true
 			result = recipe["result"]
-			for ingredient in ingredients:
+			for ingredient in ings:
 				if(not recipe["ingredients"].has(ingredient)):
 					found = false
 					break
@@ -146,8 +150,8 @@ static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 			pass
 		else:
 			print(str("Merging ", to_merge[0]["item"].item_name, " and ", merge_item.item_name, ", resulting in ", merge_result))
-			Global.remove_item(to_merge[0]["item"].item_type, to_merge[0]["item"].item_effect)
-			Global.remove_item(merge_item.item_type, merge_item.item_effect)
+			Global.remove_item(to_merge[0]["item"].item_type, to_merge[0]["item"].item_name) #item_effect
+			Global.remove_item(merge_item.item_type, merge_item.item_name)
 			Global.add_item(translate_code_to_item(merge_result, 1))
 			pass
 		to_merge.clear()
