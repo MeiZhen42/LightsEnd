@@ -111,6 +111,7 @@ static func get_type_from_code(code: String) -> String:
 static func get_texture_for_code(code: String) -> Texture2D:
 	return Texture2D.new()
 
+# Handles merging (call when selecting an item to add to a merge)
 static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 	print("handle merge called")
 	print(str("size: ", to_merge.size()))
@@ -146,6 +147,7 @@ static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 		to_merge.clear()
 		merge_panel.hide()
 
+# Is there an active merge rn?
 static func is_merging() -> bool:
 	return to_merge.size() > 0
 
