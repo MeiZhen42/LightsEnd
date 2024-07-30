@@ -131,7 +131,6 @@ static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 		to_merge.clear()
 		merge_panel.hide()
 	else:
-		#ToDo: merge
 		print(str("megre ", to_merge[0]["item"].item_name, " with ", merge_item.item_name))
 		# print("Can't actually merge yet. Clear merge")
 		var merge_result = get_merge_result([to_merge[0]["item"].item_name, merge_item.item_name])
