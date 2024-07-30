@@ -47,7 +47,7 @@ static func translate_code_to_item(code: String, quantity: int) -> Dictionary:
 	var name: String = translate_code_to_full_string(code)
 	var texture: Texture2D = get_texture_for_code(code)
 	# return {"type": merge_result, "quantity": quantity, "effect": merge_result, "texture": merge_item.item_texture, "name": merge_result}
-	return {"type": name, "quantity": quantity, "effect": name, "texture": texture, "name": name}
+	return {"type": get_type_from_code(code), "quantity": quantity, "effect": get_effect_from_code(code), "texture": texture, "name": name, "scene_path": "res://scenes/inventory_item.tscn"}
 
 static func translate_full_string_to_code(full: String) -> String:
 	match full:
@@ -101,11 +101,15 @@ static func translate_code_to_full_string(code: String) -> String:
 
 #ToDo:
 static func get_effect_from_code(code: String) -> String:
-	return code
+	if(code.length() == 2 && "YBG".contains(code[0]) && "TSC".contains(code[1])):
+		return "Cure"
+	return "None"
 
 #ToDo:
 static func get_type_from_code(code: String) -> String:
-	return code
+	if(code.length() == 2 && "YBG".contains(code[0]) && "TSC".contains(code[1])):
+		return "Consumable"
+	return "Ingredient"
 
 #ToDo:
 static func get_texture_for_code(code: String) -> Texture2D:
@@ -135,6 +139,7 @@ static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 		print(str("megre ", to_merge[0]["item"].item_name, " with ", merge_item.item_name))
 		# print("Can't actually merge yet. Clear merge")
 		var merge_result = get_merge_result([to_merge[0]["item"].item_name, merge_item.item_name])
+		#merge_result = "YT"
 		if(merge_result == ""):
 			print("No such recipe exists")
 			pass
