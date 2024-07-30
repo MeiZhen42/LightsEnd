@@ -43,32 +43,7 @@ func _on_merge_button_pressed():
 	inv_item.set_item_data(item)
 	InventoryManager.handle_merge(inv_item, self)
 	usage_panel.hide()
-	#merge_panel = get_parent().get_parent().find_child("merge_panel", false) # get merge_panel
-	#print("merge button pressed")
-	#if(merge_panel != null):
-		#print(merge_panel.name)
-		#if item != null:
-			#print(item)
-			#print(item.name)
-			#usage_panel.hide()
-			#handle_merge(item)
-	#else:
-		#print("merge_panel is null")
-		
-	#item_type = data["type"]
-	#item_name = data["name"]
-	#item_effect = data["effect"]
-	#item_texture = data["texture"]
 	
-	#item = new_item
-	#icon.texture = new_item["texture"] 
-	#quantity_label.text = str(item["quantity"])
-	#item_name.text = str(item["name"])
-	#item_type.text = str(item["type"])
-	#if item["effect"] != "":
-		#item_effect.text = str("+ ", item["effect"])
-	#else: 
-		#item_effect.text = ""
 
 
 func handle_merge(merge_item): #inventory_item
@@ -110,6 +85,12 @@ func set_empty():
 func set_item(new_item):
 	item = new_item
 	icon.texture = new_item["texture"] 
+	
+	var scaleFrom: float = max(icon.texture.get_height(), icon.texture.get_width())
+	print(str("from ", scaleFrom))
+	if(scaleFrom > 40):
+		icon.scale = Vector2(40/scaleFrom, 40/scaleFrom)
+		print(str("from ", scaleFrom, " by ", icon.scale, "(", 40/scaleFrom, ")"))
 	quantity_label.text = str(item["quantity"])
 	item_name.text = str(item["name"])
 	item_type.text = str(item["type"])

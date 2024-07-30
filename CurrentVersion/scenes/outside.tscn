@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c6r3emp3xrmxs" path="res://objects/NoxLily.png" id="6_tmrdv"]
 [ext_resource type="Texture2D" uid="uid://hh6xtwo2lqmn" path="res://objects/WeepingDandelion.png" id="7_4jfri"]
 [ext_resource type="Script" path="res://scripts/forest_edge.gd" id="8_4dvod"]
-[ext_resource type="PackedScene" uid="uid://du85h46y6o6e3" path="res://scenes/tree.tscn" id="8_shme5"]
+[ext_resource type="PackedScene" path="res://scenes/tree.tscn" id="8_shme5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]
 texture = ExtResource("1_tj65x")
