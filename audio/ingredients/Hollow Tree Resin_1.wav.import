@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8xy5yt8t0xs1"
+path="res://.godot/imported/Hollow Tree Resin_1.wav-f76997b7ead5885205456d05a19a2943.sample"
+
+[deps]
+
+source_file="res://audio/ingredients/Hollow Tree Resin_1.wav"
+dest_files=["res://.godot/imported/Hollow Tree Resin_1.wav-f76997b7ead5885205456d05a19a2943.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
