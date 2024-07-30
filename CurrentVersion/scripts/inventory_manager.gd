@@ -43,6 +43,74 @@ static func get_merge_result(ingredients: Array[String]) -> String:
 		return result
 	return ""
 
+static func translate_code_to_item(code: String, quantity: int) -> Dictionary:
+	var name: String = translate_code_to_full_string(code)
+	var texture: Texture2D = get_texture_for_code(code)
+	# return {"type": merge_result, "quantity": quantity, "effect": merge_result, "texture": merge_item.item_texture, "name": merge_result}
+	return {"type": name, "quantity": quantity, "effect": name, "texture": texture, "name": name}
+
+static func translate_full_string_to_code(full: String) -> String:
+	match full:
+		"Nox Lily Thorns":
+			return "NLT"
+		"Hollow Tree Resin":
+			return "HTR"
+		"Weeping Dandelion Milk":
+			return "WDM"
+		"Silent Bog Dew":
+			return "SBD"
+	if(full.split(" ").size() == 2):
+		var str = ""
+		var words = full.split(" ")
+		match words[0]:
+			"Yellow":
+				str = str(str, "Y")
+			"Blue":
+				str = str(str, "B")
+			"Green":
+				str = str(str, "G")
+		match words[0]:
+			"Triangle":
+				str = str(str, "T")
+			"Square":
+				str = str(str, "S")
+			"Circle":
+				str = str(str, "C")
+		if(str.length() == 2):
+			return str
+		
+	return full
+
+static func translate_code_to_full_string(code: String) -> String:
+	match code:
+		"YT": return "Yellow Triangle"
+		"YS": return "Yellow Square"
+		"YC": return "Yellow Circle"
+		"BT": return "Blue Triangle"
+		"BS": return "Blue Square"
+		"BC": return "Blue Circle"
+		"GT": return "Green Triangle"
+		"GS": return "Green Square"
+		"GC": return "Green Circle"
+		#
+		"NLT": return "Nox Lily Thorns"
+		"HTR": return "Hollow Tree Resin"
+		"WDN": return "Weeping Dandelion Milk"
+		"SBD": return "Silent Bog Dew"
+	return code
+
+#ToDo:
+static func get_effect_from_code(code: String) -> String:
+	return code
+
+#ToDo:
+static func get_type_from_code(code: String) -> String:
+	return code
+
+#ToDo:
+static func get_texture_for_code(code: String) -> Texture2D:
+	return Texture2D.new()
+
 static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 	print("handle merge called")
 	print(str("size: ", to_merge.size()))
@@ -74,9 +142,11 @@ static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 			print(str("Merging ", to_merge[0]["item"].item_name, " and ", merge_item.item_name, ", resulting in ", merge_result))
 			Global.remove_item(to_merge[0]["item"].item_type, to_merge[0]["item"].item_effect)
 			Global.remove_item(merge_item.item_type, merge_item.item_effect)
-			Global.add_item({"type": merge_result, "quantity": 1, "effect": merge_result, "texture": merge_item.item_texture, "name": merge_result})
+			Global.add_item(translate_code_to_item(merge_result, 1))
 			pass
 		to_merge.clear()
 		merge_panel.hide()
 
+static func is_merging() -> bool:
+	return to_merge.size() > 0
 
