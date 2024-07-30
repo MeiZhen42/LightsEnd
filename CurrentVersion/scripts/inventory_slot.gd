@@ -8,7 +8,7 @@ class_name inventory_slot extends Control
 @onready var item_type = $details_panel/itemType
 @onready var item_effect = $details_panel/itemEffect
 @onready var usage_panel = $usage_panel
-var merge_panel: ColorRect = null
+var merge_panel: ColorRect = null 
 #@onready var text = $text_ui/fixedText
 
 #@onready var node_path = "res://scenes/randomizedNPCs.tscn"
@@ -37,21 +37,23 @@ func _on_item_button_mouse_entered():
 
 
 func _on_merge_button_pressed():
-	merge_panel = get_parent().get_parent().find_child("merge_panel", false) # Global.merge_panel
-	print("merge button pressed")
-	if(merge_panel != null):
-		print(merge_panel.name)
-		if item != null:
-			print(item)
-			print(item.name)
-			# var merge_from = item
-			usage_panel.hide()
-			handle_merge(item)
-			#populate_merge_panel(item)
-			#merge_panel.show()
-			# merge_panel.visible = true
-	else:
-		print("merge_panel is null")
+	#player = get_parent().get_parent().get_parent().get_parent()
+	# print(get_parent().get_parent().get_parent().get_parent().name)
+	var inv_item = inventory_item.new()
+	inv_item.set_item_data(item)
+	InventoryManager.handle_merge(inv_item, self)
+	usage_panel.hide()
+	#merge_panel = get_parent().get_parent().find_child("merge_panel", false) # get merge_panel
+	#print("merge button pressed")
+	#if(merge_panel != null):
+		#print(merge_panel.name)
+		#if item != null:
+			#print(item)
+			#print(item.name)
+			#usage_panel.hide()
+			#handle_merge(item)
+	#else:
+		#print("merge_panel is null")
 		
 	#item_type = data["type"]
 	#item_name = data["name"]
@@ -71,28 +73,24 @@ func _on_merge_button_pressed():
 
 func handle_merge(merge_item): #inventory_item
 	print("handle merge called")
-	if(Global.merge_item == null):
+	if(Global.merge_from == null):
 		print("first item")
-		Global.merge_item = merge_item
-		#$merge_panel/Item1/itemIcon.texture = item["texture"]
+		Global.merge_from = {"item": merge_item, "slot": self}
 		if(merge_panel != null):
 			var icon: Sprite2D = merge_panel.find_child("Item1", false).find_child("itemIcon")
 			icon.texture = merge_item["texture"]
 			print("show")
 			merge_panel.visible = true #show()
+	elif(Global.merge_from["slot"] == self):
+		print("chose to merge with self. cancel merging")
+		Global.merge_from = null;
+		merge_panel.hide()
 	else:
 		#ToDo: merge
-		print(str("megre ", Global.merge_item["name"], " with ", item["name"]))
+		print(str("megre ", Global.merge_from["item"]["name"], " with ", item["name"]))
 		print("Can't actually merge yet. Clear merge")
-		#$merge_panel/Item2/itemIcon.texture = item["texture"]
-		Global.merge_item = null;
+		Global.merge_from = null;
 		merge_panel.hide()
-
-#func populate_merge_panel(merge_item): #inventory_item
-	#print("populate merge called")
-	#var item_icon = Sprite2D.new()
-	#item_icon.texture = merge_item["texture"]
-	#merge_panel.add_child(item_icon)
 
 
 func _on_item_button_pressed():

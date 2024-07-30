@@ -6,8 +6,7 @@ var player_node: Node = null
 var npc_node: Node = null
 var barkeep_node: Node = null
 var inventory = []
-var merge_item = null
-var merge_panel = null
+var merge_from = null
 
 var player_in_range = false
 var npc_in_range = false
@@ -16,7 +15,8 @@ signal inventory_updated
 
 func _ready(): 
 	inventory.resize(9) 
-	
+
+
 func set_player_reference(player):
 	player_node = player
 	
