@@ -195,6 +195,7 @@ polygon = PackedVector2Array(30, 146, 26, 139, 33, 117, 219, 117, 226, 137, 221,
 position = Vector2(192, 135)
 
 [node name="Node2D" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("8_4dvod")
 
 [node name="tree2" parent="Node2D" instance=ExtResource("8_shme5")]
