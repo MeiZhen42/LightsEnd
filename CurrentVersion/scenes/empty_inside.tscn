@@ -25,9 +25,11 @@ layer_0/tile_data = PackedInt32Array(524285, 3670016, 6, 524286, 3670016, 6, 524
 position = Vector2(99, 38)
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = 1
 script = ExtResource("2_q2rum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 1
 position = Vector2(104, 118)
 shape = SubResource("RectangleShape2D_54mtf")
 
@@ -35,8 +37,6 @@ shape = SubResource("RectangleShape2D_54mtf")
 position = Vector2(163, 40)
 
 [node name="frontDoor" type="ColorRect" parent="."]
-z_index = 1
-y_sort_enabled = true
 custom_minimum_size = Vector2(50, 20)
 offset_left = 64.0
 offset_top = 108.0

@@ -42,6 +42,7 @@ func _on_area_2d_body_entered(body):
 		area_active = true
 		player_in_range = true
 		Global.npc_in_range = true
+		$fixedNpcText.type(" ")
 		$fixedNpcText.visible = true
 
 
@@ -52,3 +53,4 @@ func _on_area_2d_body_exited(body):
 		Global.npc_in_range = true
 		$fixedNpcText.visible = false
 		$fixedNpcText.type(" ")
+		$fixedNpcText/options.visible = false

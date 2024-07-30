@@ -48,11 +48,11 @@ func apply_item_effect(item):
 			
 		if rand_sprite == effectNum and $"Slime-icon".visible == true:
 			print(str("Positive effect for rock ", effectNum))
-			msgToType = "Thank you."
+			msgToType = "I feel much better. Thank you"
 			$"Slime-icon".hide()
 		else:
 			print("Wrong potion")
-			msgToType = "Wrong potion."
+			msgToType = "I don't feel any different"
 		
 		if(node != null):
 			node.type(msgToType)

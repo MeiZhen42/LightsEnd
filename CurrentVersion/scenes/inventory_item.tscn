@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://n41rtabx74cu"]
+[gd_scene load_steps=4 format=3 uid="uid://n41rtabx74cu"]
 
 [ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_dvlk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7fpi"]
-size = Vector2(333, 105.5)
+size = Vector2(410.5, 274.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tju6c"]
+size = Vector2(333.125, 104.125)
 
 [node name="inventory_item" type="Node2D" groups=["item"]]
 visibility_layer = 2
@@ -12,18 +15,30 @@ y_sort_enabled = true
 script = ExtResource("1_dvlk5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 z_index = 1
 y_sort_enabled = true
-collision_mask = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-visibility_layer = 3
+visibility_layer = 2
 z_index = 1
 y_sort_enabled = true
-position = Vector2(-2.5, 98.75)
+position = Vector2(-7.75, 114.625)
 shape = SubResource("RectangleShape2D_g7fpi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D/Area2D"]
+z_index = 1
+y_sort_enabled = true
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D/StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(-2, 141)
+shape = SubResource("RectangleShape2D_tju6c")
 
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnnl58n0arfub"]
+[gd_scene load_steps=9 format=3 uid="uid://dnnl58n0arfub"]
 
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_2kxnl"]
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_2lfv6"]
 [ext_resource type="Script" path="res://scripts/insideTavernDoor.gd" id="2_1jndm"]
-[ext_resource type="Texture2D" uid="uid://cghsntvqwxegp" path="res://objects/chest_01.png" id="2_7dvtj"]
 [ext_resource type="PackedScene" uid="uid://c6e2iw1166lkf" path="res://scenes/randomizedNPCs.tscn" id="4_rk6yg"]
-[ext_resource type="AudioStream" uid="uid://psa12l2wcngb" path="res://audio/footsteps/Wood_1.wav" id="7_8isqs"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="7_uig8n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_abb11"]
@@ -18,6 +16,9 @@ texture = ExtResource("1_2kxnl")
 
 [sub_resource type="TileSet" id="TileSet_0vw11"]
 sources/0 = SubResource("TileSetAtlasSource_abb11")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dpfj"]
+size = Vector2(80, 20)
 
 [node name="inside" type="TileMap"]
 y_sort_enabled = true
@@ -34,11 +35,13 @@ position = Vector2(99, 38)
 position = Vector2(96, -248)
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = 1
+collision_mask = 2
 script = ExtResource("2_1jndm")
 
-[node name="Chest01" type="Sprite2D" parent="Area2D"]
-position = Vector2(100, 117)
-texture = ExtResource("2_7dvtj")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(104, 118)
+shape = SubResource("RectangleShape2D_7dpfj")
 
 [node name="npcItem2" parent="." instance=ExtResource("4_rk6yg")]
 position = Vector2(-24, -54)
@@ -51,7 +54,6 @@ position = Vector2(167, -56)
 
 [node name="frontDoor" type="ColorRect" parent="."]
 z_index = 1
-y_sort_enabled = true
 custom_minimum_size = Vector2(50, 20)
 offset_left = 64.0
 offset_top = 108.0
@@ -62,11 +64,11 @@ color = Color(0.554656, 0.189245, 0, 1)
 [node name="background" type="ColorRect" parent="."]
 z_index = -1
 custom_minimum_size = Vector2(1000, 1000)
-offset_left = -635.0
-offset_top = -522.0
-offset_right = 804.0
-offset_bottom = 478.0
+offset_left = -614.0
+offset_top = -502.0
+offset_right = 825.0
+offset_bottom = 498.0
 color = Color(0, 0, 0, 1)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_8isqs")
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
