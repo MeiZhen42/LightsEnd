@@ -59,7 +59,7 @@ static func translate_full_string_to_code(full: String) -> String:
 			return "WDM"
 		"Silent Bog Dew":
 			return "SBD"
-	if(full.split(" ").size() == 2):
+	if(full.split(" ").size() == 3):
 		var str = ""
 		var words = full.split(" ")
 		match words[0]:
@@ -76,22 +76,22 @@ static func translate_full_string_to_code(full: String) -> String:
 				str = str(str, "S")
 			"Circle":
 				str = str(str, "C")
-		if(str.length() == 2):
+		if(str.length() == 2 && words[2] == "Potion"):
 			return str
 		
 	return full
 
 static func translate_code_to_full_string(code: String) -> String:
 	match code:
-		"YT": return "Yellow Triangle"
-		"YS": return "Yellow Square"
-		"YC": return "Yellow Circle"
-		"BT": return "Blue Triangle"
-		"BS": return "Blue Square"
-		"BC": return "Blue Circle"
-		"GT": return "Green Triangle"
-		"GS": return "Green Square"
-		"GC": return "Green Circle"
+		"YT": return "Yellow Triangle Potion"
+		"YS": return "Yellow Square Potion"
+		"YC": return "Yellow Circle Potion"
+		"BT": return "Blue Triangle Potion"
+		"BS": return "Blue Square Potion"
+		"BC": return "Blue Circle Potion"
+		"GT": return "Green Triangle Potion"
+		"GS": return "Green Square Potion"
+		"GC": return "Green Circle Potion"
 		#
 		"NLT": return "Nox Lily Thorns"
 		"HTR": return "Hollow Tree Resin"
