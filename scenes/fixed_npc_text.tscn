@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0mexgvswyv5p"]
+
+[ext_resource type="Script" path="res://scripts/fixed_npc_text.gd" id="1_n3w67"]
+[ext_resource type="Script" path="res://scripts/fixedNpcText.gd" id="3_jbe4k"]
+[ext_resource type="Texture2D" uid="uid://kap3ug6ux0lc" path="res://characters/Bar_Owner_Overworld.png" id="3_lsbev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11gqd"]
+size = Vector2(246.875, 262.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aho24"]
+size = Vector2(140, 109)
+
+[node name="fixedNpc" type="CharacterBody2D" groups=["barkeep"]]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_n3w67")
+
+[node name="BarOwnerOverworld" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_lsbev")
+
+[node name="Area2D" type="Area2D" parent="BarOwnerOverworld"]
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarOwnerOverworld/Area2D"]
+position = Vector2(0, 166.75)
+shape = SubResource("RectangleShape2D_11gqd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BarOwnerOverworld/Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarOwnerOverworld/Area2D/StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(-5.42101e-20, 148)
+shape = SubResource("RectangleShape2D_aho24")
+
+[node name="fixedNpcText" type="CanvasLayer" parent="."]
+script = ExtResource("3_jbe4k")
+
+[node name="fixedText" type="Label" parent="fixedNpcText"]
+offset_left = 20.0
+offset_top = 106.0
+offset_right = 109.0
+offset_bottom = 129.0
+
+[node name="options" type="Control" parent="fixedNpcText"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 136.0
+offset_bottom = 45.0
+
+[node name="yes" type="Button" parent="fixedNpcText/options"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 73.0
+offset_right = 151.0
+offset_bottom = 104.0
+text = "Yes"
+
+[node name="no" type="Button" parent="fixedNpcText/options"]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 73.0
+offset_right = 185.0
+offset_bottom = 104.0
+text = "No"
+
+[connection signal="body_entered" from="BarOwnerOverworld/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="BarOwnerOverworld/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="fixedNpcText/options/yes" to="fixedNpcText" method="_on_yes_pressed"]
+[connection signal="pressed" from="fixedNpcText/options/no" to="fixedNpcText" method="_on_no_pressed"]

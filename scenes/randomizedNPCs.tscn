@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6e2iw1166lkf"]
+
+[ext_resource type="Script" path="res://scripts/playerNpcRange.gd" id="1_ebu0w"]
+[ext_resource type="Texture2D" uid="uid://cm46tp4rg36wo" path="res://characters/SpriteSheet.png" id="2_drq26"]
+[ext_resource type="Script" path="res://scripts/randomizedNPCs.gd" id="2_rmjtu"]
+[ext_resource type="Script" path="res://scripts/randomizedNpcText.gd" id="4_ap5d4"]
+[ext_resource type="Texture2D" uid="uid://dum7r6yxsxbrc" path="res://objects/Shadow.png" id="4_gi7pr"]
+[ext_resource type="PackedScene" uid="uid://dc0dk2olfwm6s" path="res://scenes/inventory_ui.tscn" id="5_yhns3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_drqwj"]
+radius = 22.2057
+
+[node name="npcItem" type="Node2D" groups=["npc"]]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_ebu0w")
+
+[node name="fixedNPCs" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_drq26")
+region_enabled = true
+region_rect = Rect2(0, 0, 598.55, 782.105)
+script = ExtResource("2_rmjtu")
+
+[node name="Slime-icon" type="Sprite2D" parent="fixedNPCs"]
+visible = false
+position = Vector2(-1, -7.03562)
+scale = Vector2(0.1, 0.101)
+texture = ExtResource("4_gi7pr")
+
+[node name="Area2D" type="Area2D" parent="fixedNPCs"]
+visible = false
+collision_mask = 2
+
+[node name="Label" type="Label" parent="fixedNPCs/Area2D"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "cured"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fixedNPCs/Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fixedNPCs/Area2D/StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_drqwj")
+
+[node name="cutScene" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("4_ap5d4")
+
+[node name="fixedText" type="Label" parent="cutScene"]
+offset_left = 50.0
+offset_top = 105.0
+offset_right = 139.0
+offset_bottom = 128.0
+horizontal_alignment = 1
+
+[node name="options" type="Control" parent="cutScene"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="yes" type="Button" parent="cutScene/options"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 65.0
+offset_right = 160.0
+offset_bottom = 96.0
+text = "Yes"
+
+[node name="no" type="Button" parent="cutScene/options"]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 65.0
+offset_right = 205.0
+offset_bottom = 96.0
+text = "No"
+
+[node name="inventoryUI" type="CanvasLayer" parent="cutScene"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="cutScene/inventoryUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -46.0
+offset_right = 63.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.000818345
+
+[node name="inventory_ui" parent="cutScene/inventoryUI" instance=ExtResource("5_yhns3")]
+
+[connection signal="body_entered" from="fixedNPCs/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="fixedNPCs/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="cutScene/options/yes" to="cutScene" method="_on_yes_pressed"]
+[connection signal="pressed" from="cutScene/options/no" to="cutScene" method="_on_no_pressed"]

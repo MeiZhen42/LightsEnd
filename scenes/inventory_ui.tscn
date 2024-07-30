@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc0dk2olfwm6s"]
+
+[ext_resource type="Script" path="res://scripts/inventory_ui.gd" id="1_6xf4a"]
+
+[node name="inventory_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.5
+offset_top = -30.0
+offset_right = 51.5
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6xf4a")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="merge_panel" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -180.0
+offset_right = -50.0
+offset_bottom = 60.0
+
+[node name="Item1" type="ColorRect" parent="merge_panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -20.0
+offset_right = 45.0
+offset_bottom = 20.0
+grow_vertical = 2
+color = Color(0.363367, 0.363367, 0.363367, 1)
+
+[node name="itemQuantity" type="Label" parent="merge_panel/Item1"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+
+[node name="itemIcon" type="Sprite2D" parent="merge_panel/Item1"]
+position = Vector2(20, 20)
+
+[node name="Item2" type="ColorRect" parent="merge_panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -20.0
+offset_right = -5.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.363367, 0.363367, 0.363367, 1)
+
+[node name="itemQuantity" type="Label" parent="merge_panel/Item2"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+
+[node name="itemIcon" type="Sprite2D" parent="merge_panel/Item2"]
+position = Vector2(20, 20)
+
+[node name="Label" type="Label" parent="merge_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "+"
+horizontal_alignment = 1
+
+[node name="Cancel" type="Button" parent="merge_panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Cancel Merging"
+
+[connection signal="pressed" from="merge_panel/Cancel" to="." method="_on_cancel_merging_pressed"]
