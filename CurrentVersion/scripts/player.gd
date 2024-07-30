@@ -26,7 +26,7 @@ func _process(_delta):
 	if(safe):
 		sanity_bar.value += sanity_regain * _delta
 	else:
-		sanity_bar.value -= sanity_decline * _delta * 5
+		sanity_bar.value -= sanity_decline * _delta
 		if(sanity_bar.value <= sanity_bar.min_value):
 			## ToDo: do something when sanity reaches 0
 			pass
