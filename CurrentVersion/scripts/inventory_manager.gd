@@ -129,6 +129,7 @@ static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 		if(merge_panel != null):
 			var icon: Sprite2D = merge_panel.find_child("Item1", false).find_child("itemIcon")
 			icon.texture = merge_item.item_texture
+			adjust_texture_size(icon)
 			print("show")
 			merge_panel.show()
 	elif(to_merge[0]["slot"] == slot):
@@ -156,3 +157,9 @@ static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
 static func is_merging() -> bool:
 	return to_merge.size() > 0
 
+static func adjust_texture_size(icon: Sprite2D):
+	var scaleFrom: float = max(icon.texture.get_height(), icon.texture.get_width())
+	if(scaleFrom > 40):
+		icon.scale = Vector2(40/scaleFrom, 40/scaleFrom)
+		#print(str("from ", scaleFrom, " by ", icon.scale, "(", 40/scaleFrom, ")"))
+	pass
