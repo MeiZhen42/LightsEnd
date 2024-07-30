@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dd8cmqi714duv"]
+[gd_scene load_steps=25 format=3 uid="uid://dd8cmqi714duv"]
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_ckvtk"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://du85h46y6o6e3" path="res://scenes/tree.tscn" id="8_shme5"]
 [ext_resource type="Texture2D" uid="uid://b8ghyh582xwhd" path="res://objects/Gemstones.png" id="10_cjddp"]
 [ext_resource type="Texture2D" uid="uid://dr6fqprm5m7ia" path="res://objects/Tavern2.png" id="10_gtwls"]
+[ext_resource type="AudioStream" uid="uid://rq6jthda5qi7" path="res://audio/footsteps/Grass_1.wav" id="12_cgmk0"]
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="15_eouhm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]
@@ -173,6 +174,9 @@ item_effect = "None"
 
 [node name="player" parent="." instance=ExtResource("1_ckvtk")]
 position = Vector2(120, 215)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("12_cgmk0")
 
 [node name="outsideTavernDoor" type="Area2D" parent="."]
 z_index = 1
