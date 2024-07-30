@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsuoklhr8o6ux"]
+[gd_scene load_steps=3 format=3 uid="uid://b1duswln5731n"]
 
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="1_m5824"]
 
@@ -14,5 +14,4 @@ texture = ExtResource("1_m5824")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 light_mask = 3
 position = Vector2(-4.76837e-06, 115)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_pgd36")

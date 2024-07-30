@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dd8cmqi714duv"]
+[gd_scene load_steps=15 format=3 uid="uid://dd8cmqi714duv"]
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_ckvtk"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://n41rtabx74cu" path="res://scenes/inventory_item.tscn" id="4_0fmy7"]
 [ext_resource type="Texture2D" uid="uid://c18s1bi26hw5q" path="res://objects/icon1.png" id="5_akxlc"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="6_464o2"]
-[ext_resource type="PackedScene" uid="uid://du85h46y6o6e3" path="res://scenes/tree.tscn" id="8_shme5"]
-[ext_resource type="PackedScene" uid="uid://bsuoklhr8o6ux" path="res://scenes/dark_tree.tscn" id="8_u11bb"]
+[ext_resource type="Script" path="res://scripts/forest_edge.gd" id="8_4dvod"]
+[ext_resource type="PackedScene" path="res://scenes/tree.tscn" id="8_shme5"]
+[ext_resource type="PackedScene" uid="uid://b1duswln5731n" path="res://scenes/dark_tree.tscn" id="8_u11bb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]
 texture = ExtResource("1_tj65x")
@@ -71,6 +72,8 @@ sources/0 = SubResource("TileSetAtlasSource_cggdc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_td24q"]
 size = Vector2(56, 11.1206)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_biohd"]
+
 [node name="outside" type="TileMap"]
 tile_set = SubResource("TileSet_i4h4f")
 format = 2
@@ -115,6 +118,7 @@ item_effect = "Cure5"
 position = Vector2(192, 145)
 
 [node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("8_4dvod")
 
 [node name="darkTree" parent="Node2D" instance=ExtResource("8_u11bb")]
 position = Vector2(-478, 660)
@@ -172,6 +176,14 @@ position = Vector2(-428, 671)
 
 [node name="darkTree19" parent="Node2D" instance=ExtResource("8_u11bb")]
 position = Vector2(-453, 658)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Node2D"]
+visible = false
+position = Vector2(112, 224)
+scale = Vector2(70, 70)
+enabled = false
+shape = SubResource("CircleShape2D_biohd")
+target_position = Vector2(0, 0)
 
 [node name="tree" parent="." instance=ExtResource("8_shme5")]
 position = Vector2(-58, 410)
