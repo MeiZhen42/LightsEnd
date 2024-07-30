@@ -27,5 +27,5 @@ func clear_grid_container():
 
 
 func _on_cancel_merging_pressed():
-	Global.merge_from = null
+	InventoryManager.cancel_merge()
 	$merge_panel.hide()

@@ -46,28 +46,6 @@ func _on_merge_button_pressed():
 	
 
 
-func handle_merge(merge_item): #inventory_item
-	print("handle merge called")
-	if(Global.merge_from == null):
-		print("first item")
-		Global.merge_from = {"item": merge_item, "slot": self}
-		if(merge_panel != null):
-			var icon: Sprite2D = merge_panel.find_child("Item1", false).find_child("itemIcon")
-			icon.texture = merge_item["texture"]
-			print("show")
-			merge_panel.visible = true #show()
-	elif(Global.merge_from["slot"] == self):
-		print("chose to merge with self. cancel merging")
-		Global.merge_from = null;
-		merge_panel.hide()
-	else:
-		#ToDo: merge
-		print(str("megre ", Global.merge_from["item"]["name"], " with ", item["name"]))
-		print("Can't actually merge yet. Clear merge")
-		Global.merge_from = null;
-		merge_panel.hide()
-
-
 func _on_item_button_pressed():
 	if item != null:
 		usage_panel.visible = !usage_panel.visible

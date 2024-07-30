@@ -117,7 +117,25 @@ static func get_type_from_code(code: String) -> String:
 
 #ToDo:
 static func get_texture_for_code(code: String) -> Texture2D:
-	return Texture2D.new()
+	var path: String = ""
+	match code:
+		"YT", "YS", "YC", "BT", "BS", "BC", "GT", "GS", "GC":
+			#path = "res://objects/icon2.png"
+			pass
+		#
+		"NLT": path = "res://objects/NoxLily.png"
+		"HTR": path = "res://objects/HollowTree.png"
+		"WDN": path = "res://objects/WeepingDandelion.png"
+		"SBD": path = "res://objects/DewTree.png"
+		"Murkberries": path = "res://objects/MurkberryBush.png"
+		"Gloomstones": path = "res://objects/Gemstones.png"
+		_:
+			pass
+	if(path.length() > 0):
+		var img = Image.new()
+		img.load(path)
+		return ImageTexture.new().create_from_image(img)
+	return Texture2D.new() #return empty texture
 
 # Handles merging (call when selecting an item to add to a merge)
 static func handle_merge(merge_item: inventory_item, slot: inventory_slot):
@@ -165,5 +183,13 @@ static func adjust_texture_size(icon: Sprite2D):
 	var scaleFrom: float = max(icon.texture.get_height(), icon.texture.get_width())
 	if(scaleFrom > 40):
 		icon.scale = Vector2(40/scaleFrom, 40/scaleFrom)
-		#print(str("from ", scaleFrom, " by ", icon.scale, "(", 40/scaleFrom, ")"))
+		print(str("from ", scaleFrom, " by ", icon.scale, "(", 40/scaleFrom, ")"))
+	else:
+		icon.scale = Vector2(1, 1)
 	pass
+
+static func initialize_merge() -> void:
+	to_merge = []
+
+static func cancel_merge() -> void:
+	to_merge = []
