@@ -12,6 +12,7 @@ func _ready():
 		child = dtScene.instantiate()
 		child.y_sort_enabled = true
 		var loc = Vector2(cos(deg) * radius + center.x, sin(deg) * radius + center.y)
+		print(loc)
 		child.position = loc # Vector2(cos(deg) * radius + center.x, sin(deg) * radius + center.y)
 		add_child(child)
 		pass
