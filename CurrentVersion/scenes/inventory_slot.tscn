@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://scripts/fixedNpcText.gd" id="2_t5cdv"]
 
 [node name="inventory_slot" type="Control"]
+z_index = 1
+y_sort_enabled = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 15
@@ -51,6 +53,7 @@ grow_vertical = 0
 horizontal_alignment = 2
 
 [node name="itemButton" type="Button" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 1.0
@@ -59,12 +62,14 @@ offset_right = 51.0
 offset_bottom = 51.0
 
 [node name="details_panel" type="ColorRect" parent="."]
-visible = false
+z_index = 2
+y_sort_enabled = true
 layout_mode = 0
 offset_left = 49.0
 offset_top = -11.0
-offset_right = 120.0
+offset_right = 187.0
 offset_bottom = 54.0
+color = Color(0.894922, 0.894922, 0.894922, 1)
 
 [node name="itemName" type="Label" parent="details_panel"]
 layout_mode = 1
@@ -97,7 +102,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Effect"
 
 [node name="usage_panel" type="ColorRect" parent="."]
-visible = false
+z_index = 2
+y_sort_enabled = true
 layout_mode = 0
 offset_left = -43.0
 offset_top = -11.0

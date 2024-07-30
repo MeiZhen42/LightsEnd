@@ -6,12 +6,17 @@
 size = Vector2(180, 110)
 
 [node name="darkTree" type="Sprite2D"]
+z_index = 1
+y_sort_enabled = true
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_m5824")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-light_mask = 3
+visibility_layer = 2
+z_index = 1
+y_sort_enabled = true
 position = Vector2(-4.76837e-06, 115)
 shape = SubResource("RectangleShape2D_pgd36")

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TestCopyGameJam2024"
-run/main_scene="res://scenes/inside.tscn"
+run/main_scene="res://scenes/outside.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
@@ -84,6 +84,10 @@ q={
 
 2d_render/layer_1="object"
 2d_render/layer_2="player"
+2d_physics/layer_1="object"
+2d_physics/layer_2="player"
+2d_physics/layer_3="npc"
+2d_physics/layer_4="barkeep"
 
 [rendering]
 

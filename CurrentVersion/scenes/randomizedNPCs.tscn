@@ -11,6 +11,8 @@
 radius = 22.2057
 
 [node name="npcItem" type="Node2D" groups=["npc"]]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_ebu0w")
 
 [node name="fixedNPCs" type="Sprite2D" parent="."]
@@ -28,8 +30,11 @@ texture = ExtResource("4_gi7pr")
 
 [node name="Area2D" type="Area2D" parent="fixedNPCs"]
 visible = false
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fixedNPCs/Area2D"]
+z_index = 1
+y_sort_enabled = true
 shape = SubResource("CircleShape2D_drqwj")
 
 [node name="Label" type="Label" parent="fixedNPCs/Area2D"]

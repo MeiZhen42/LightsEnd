@@ -26,7 +26,7 @@ func _on_drop_button_pressed():
 		var drop_offset = Vector2(25, 0)
 		drop_offset = drop_offset.rotated(Global.player_node.rotation)
 		Global.drop_item(item, drop_position + drop_offset)
-		Global.remove_item(item["type"], item["effect"])
+		Global.remove_item(item["type"], item["name"])
 		usage_panel.visible = false
 
 
@@ -95,7 +95,7 @@ func set_item(new_item):
 	item_name.text = str(item["name"])
 	item_type.text = str(item["type"])
 	if item["effect"] != "":
-		item_effect.text = str("+ ", item["effect"])
+		item_effect.text = str(item["effect"])
 	else: 
 		item_effect.text = ""
 		

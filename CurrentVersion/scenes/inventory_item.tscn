@@ -2,18 +2,28 @@
 
 [ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_dvlk5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fwx5y"]
-radius = 173.968
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7fpi"]
+size = Vector2(333, 105.5)
 
 [node name="inventory_item" type="Node2D" groups=["item"]]
+visibility_layer = 2
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_dvlk5")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_fwx5y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+z_index = 1
+y_sort_enabled = true
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+visibility_layer = 3
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-2.5, 98.75)
+shape = SubResource("RectangleShape2D_g7fpi")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
