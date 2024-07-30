@@ -53,6 +53,7 @@ texture = ExtResource("3_lsbev")
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BarOwnerOverworld/Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_c44k2")
 
 [connection signal="pressed" from="fixedNpcText/options/yes" to="fixedNpcText" method="_on_yes_pressed"]

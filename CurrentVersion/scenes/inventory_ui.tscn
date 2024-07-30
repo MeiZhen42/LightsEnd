@@ -28,6 +28,7 @@ columns = 3
 
 [node name="merge_panel" type="ColorRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = -180.0
 offset_right = -50.0
 offset_bottom = 60.0

@@ -151,6 +151,8 @@ process_mode = 3
 script = ExtResource("1_klxhr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 shape = SubResource("CapsuleShape2D_6mw5d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -206,16 +208,3 @@ grow_vertical = 2
 rotation = -0.000818345
 
 [node name="inventory_ui" parent="inventoryUI" instance=ExtResource("3_f3n52")]
-
-[node name="SanityBar" type="ProgressBar" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -25.0
-offset_top = -20.0
-offset_right = 25.0
-offset_bottom = -16.0
-grow_horizontal = 2
-value = 100.0
-show_percentage = false

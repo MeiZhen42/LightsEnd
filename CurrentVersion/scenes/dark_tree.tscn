@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsuoklhr8o6ux"]
+
+[ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="1_m5824"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgd36"]
+size = Vector2(180, 110)
+
+[node name="darkTree" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_m5824")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 3
+position = Vector2(-4.76837e-06, 115)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_pgd36")

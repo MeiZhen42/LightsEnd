@@ -24,8 +24,8 @@ func _on_area_2d_body_entered(body): #CharacterBody2D
 		#body.interact_ui.visible = true
 		$cutScene.visible = true
 		# Global.npc_node = body
-		# print("body entered. self, body:")
-		# print(self.name)
+		print("body entered. self, body:")
+		print(self.name)
 		#print($fixedNPCs.name)
 		#print()
 		#print(get_tree_string_pretty())
