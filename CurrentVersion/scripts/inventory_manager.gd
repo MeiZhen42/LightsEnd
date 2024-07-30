@@ -119,16 +119,20 @@ static func get_type_from_code(code: String) -> String:
 static func get_texture_for_code(code: String) -> Texture2D:
 	var path: String = ""
 	match code:
-		"YT", "YS", "YC", "BT", "BS", "BC", "GT", "GS", "GC":
-			#path = "res://objects/icon2.png"
+		"YT", "YS", "YC":
+			path = GlobalStrings.texture_potion_yellow_circle
+		"BT", "BS", "BC":
+			path = GlobalStrings.texture_potion_blue_circle
 			pass
+		"GT", "GS", "GC":
+			path = GlobalStrings.texture_potion_green_circle
 		#
-		"NLT": path = "res://objects/NoxLily.png"
-		"HTR": path = "res://objects/HollowTree.png"
-		"WDN": path = "res://objects/WeepingDandelion.png"
-		"SBD": path = "res://objects/DewTree.png"
-		"Murkberries": path = "res://objects/MurkberryBush.png"
-		"Gloomstones": path = "res://objects/Gemstones.png"
+		"NLT": path = GlobalStrings.texture_ingredient_noxLily
+		"HTR": path = GlobalStrings.texture_ingredient_hollowTree
+		"WDN": path = GlobalStrings.texture_ingredient_weepingDandelion
+		"SBD": path = GlobalStrings.texture_ingredient_dewTree
+		"Murkberries": path = GlobalStrings.texture_ingredient_murkberryBush
+		"Gloomstones": path = GlobalStrings.texture_ingredient_gloomstones
 		_:
 			pass
 	if(path.length() > 0):
