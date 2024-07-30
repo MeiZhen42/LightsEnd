@@ -32,16 +32,18 @@ texture = ExtResource("4_gi7pr")
 visible = false
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fixedNPCs/Area2D"]
-z_index = 1
-y_sort_enabled = true
-shape = SubResource("CircleShape2D_drqwj")
-
 [node name="Label" type="Label" parent="fixedNPCs/Area2D"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "cured"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="fixedNPCs/Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fixedNPCs/Area2D/StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_drqwj")
 
 [node name="cutScene" type="CanvasLayer" parent="."]
 visible = false

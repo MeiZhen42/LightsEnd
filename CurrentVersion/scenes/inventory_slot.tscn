@@ -62,6 +62,7 @@ offset_right = 51.0
 offset_bottom = 51.0
 
 [node name="details_panel" type="ColorRect" parent="."]
+visible = false
 z_index = 2
 y_sort_enabled = true
 layout_mode = 0
@@ -102,6 +103,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Effect"
 
 [node name="usage_panel" type="ColorRect" parent="."]
+visible = false
 z_index = 2
 y_sort_enabled = true
 layout_mode = 0

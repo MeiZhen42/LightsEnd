@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 var area_active = false
 var outside = "res://scenes/outside.tscn"

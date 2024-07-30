@@ -20,3 +20,13 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(-4.76837e-06, 115)
 shape = SubResource("RectangleShape2D_pgd36")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visibility_layer = 2
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-4.76837e-06, 115)
+shape = SubResource("RectangleShape2D_pgd36")

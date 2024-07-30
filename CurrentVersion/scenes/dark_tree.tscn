@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="1_m5824"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgd36"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b62sb"]
 size = Vector2(180, 110)
 
 [node name="darkTree" type="Sprite2D"]
@@ -19,4 +19,14 @@ visibility_layer = 2
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-4.76837e-06, 115)
-shape = SubResource("RectangleShape2D_pgd36")
+shape = SubResource("RectangleShape2D_b62sb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visibility_layer = 2
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-4.76837e-06, 115)
+shape = SubResource("RectangleShape2D_b62sb")
