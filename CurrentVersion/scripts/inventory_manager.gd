@@ -12,7 +12,7 @@ static var mergeDictionary = [
 	{"ingredients": ["Murkberries", "SBD"], "result": "GC"}
 ]
 
-static var failed_potion = {"result": "F", "code": "F", "full": "Failed", "texture": GlobalStrings.texture_potion_failed}
+static var failed_potion = {"result": "F", "code": "F", "full": "Mysterious Potion", "texture": GlobalStrings.texture_potion_failed}
 
 static var inventory: Array[inventory_item] = []
 static var inventoryUi: inventory_ui = null
