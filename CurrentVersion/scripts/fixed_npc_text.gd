@@ -16,9 +16,9 @@ func _physics_process(_delta):
 		if get_tree().current_scene.name == "outside":
 			$fixedNpcText.type("Hello, welcome to my tavern.
 				Mind helping me out and 
-				gathering ingredients?
+				gather ingredients?
 				It will help stave off
-				the darkness")
+				the darkness. I'm meetcha inside.")
 		if get_tree().current_scene.name == "empty_inside":
 			$fixedNpcText.type("Are you ready to start?")
 		if get_tree().current_scene.name == "inside":

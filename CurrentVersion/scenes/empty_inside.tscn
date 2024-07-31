@@ -63,6 +63,12 @@ color = Color(0, 0, 0, 1)
 stream = ExtResource("6_wu24l")
 volume_db = -10.0
 script = ExtResource("7_p1elx")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-49, 128, -49, 112, -64, 112, -65, 97, -80, 96, -80, -240, -64, -240, -64, -272, -48, -272, -48, -288, 240, -288, 240, -272, 255, -272, 255, -257, 273, -257, 272, 96, 256, 96, 256, 112, 240, 112, 240, 128, -46, 128, 17, 196, 381, 183, 351, -335, -120, -346, -136, 162)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
