@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dr6fqprm5m7ia" path="res://objects/Tavern2.png" id="10_gtwls"]
 [ext_resource type="AudioStream" uid="uid://rq6jthda5qi7" path="res://audio/footsteps/Grass_1.wav" id="12_dhaad"]
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="15_eouhm"]
-[ext_resource type="Script" path="res://scenes/loop.gd" id="18_mc8ml"]
+[ext_resource type="Script" path="res://scripts/audio/loop.gd" id="18_mc8ml"]
 [ext_resource type="AudioStream" uid="uid://b151tv2g7l8qk" path="res://audio/Forest (Light's End Official Score).mp3" id="18_yguyn"]
 [ext_resource type="PackedScene" uid="uid://dwi36con8k2mh" path="res://scenes/Enemy.tscn" id="21_aqr7g"]
 [ext_resource type="Script" path="res://scripts/RoamArea.gd" id="22_hot4k"]
