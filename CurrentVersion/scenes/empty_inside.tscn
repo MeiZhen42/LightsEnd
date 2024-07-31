@@ -63,6 +63,7 @@ color = Color(0, 0, 0, 1)
 stream = ExtResource("6_wu24l")
 volume_db = -10.0
 script = ExtResource("7_p1elx")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 z_index = 1
 y_sort_enabled = true

@@ -9,7 +9,7 @@ var current_direction = "none"
 
 @onready var sanity_bar = $SanityBar
 var safe: bool = true
-const sanity_decline: float = 1.5
+const sanity_decline: float = 4.5
 const sanity_regain: float = 1
 
 
