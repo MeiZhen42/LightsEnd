@@ -81,7 +81,7 @@ func set_item(new_item):
 
 func _on_use_button_pressed():
 	usage_panel.visible = false
-	if item != null and item["effect"] != "":
+	if item != null and item["effect"] != "" and item["effect"] != "None":
 		InventoryManager.cancel_merge()
 		#print("test01")
 		# change all lines with Global to pulling from playerNpcRange.gd
@@ -91,7 +91,7 @@ func _on_use_button_pressed():
 			if Global.player_in_range == true:
 				Global.npc_node.apply_item_effect(item) #npc_node: Sprite2D
 				#print("test03")
-				Global.remove_item(item["type"], item["effect"])
+				Global.remove_item(item["type"], item["name"])
 				print("Consumed potion")
 				# close inventory and type message
 				#text.visible = true
