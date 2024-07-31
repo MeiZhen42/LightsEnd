@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dd8cmqi714duv"]
+[gd_scene load_steps=28 format=3 uid="uid://dd8cmqi714duv"]
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_ckvtk"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dr6fqprm5m7ia" path="res://objects/Tavern2.png" id="10_gtwls"]
 [ext_resource type="AudioStream" uid="uid://rq6jthda5qi7" path="res://audio/footsteps/Grass_1.wav" id="12_dhaad"]
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="15_eouhm"]
+[ext_resource type="Script" path="res://scenes/loop.gd" id="18_mc8ml"]
 [ext_resource type="AudioStream" uid="uid://b151tv2g7l8qk" path="res://audio/Forest (Light's End Official Score).mp3" id="18_yguyn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]
@@ -107,6 +108,9 @@ sources/4 = SubResource("TileSetAtlasSource_k2mif")
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4ui6"]
 radius = 298.429
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djyoe"]
+size = Vector2(338.462, 92.3078)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_td24q"]
 size = Vector2(41, 13.5603)
 
@@ -136,7 +140,7 @@ item_effect = "None"
 [node name="inventory_item2" parent="Node2D2" instance=ExtResource("4_0fmy7")]
 position = Vector2(367, 412)
 scale = Vector2(0.1, 0.1)
-item_type = "Ingredient"
+item_type = "Resource"
 item_name = "Hollow Tree Resin"
 item_texture = ExtResource("4_wjcso")
 item_effect = "None"
@@ -145,7 +149,7 @@ item_effect = "None"
 position = Vector2(618, 98)
 scale = Vector2(0.1, 0.1)
 item_type = "Ingredient"
-item_name = "Murkberries"
+item_name = "Murkberry"
 item_texture = ExtResource("5_1xbe2")
 item_effect = "None"
 
@@ -191,7 +195,14 @@ position = Vector2(127, 100)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("10_gtwls")
 
+[node name="Area2D" type="Area2D" parent="outsideTavernDoor/Chest01"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outsideTavernDoor/Chest01/Area2D"]
+position = Vector2(-7.69232, 369.231)
+shape = SubResource("RectangleShape2D_djyoe")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="outsideTavernDoor"]
+visible = false
 position = Vector2(126, 148)
 shape = SubResource("RectangleShape2D_td24q")
 
@@ -290,6 +301,8 @@ texture = ExtResource("15_eouhm")
 stream = ExtResource("18_yguyn")
 volume_db = -4.89
 autoplay = true
+script = ExtResource("18_mc8ml")
 
 [connection signal="body_entered" from="outsideTavernDoor" to="outsideTavernDoor" method="_on_body_entered"]
 [connection signal="body_exited" from="outsideTavernDoor" to="outsideTavernDoor" method="_on_body_exited"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

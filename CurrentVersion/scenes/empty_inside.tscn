@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6p85m1klq2xt"]
+[gd_scene load_steps=11 format=3 uid="uid://b6p85m1klq2xt"]
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_i0wun"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_skepn"]
 [ext_resource type="Script" path="res://scripts/insideTavernDoor.gd" id="2_q2rum"]
+[ext_resource type="AudioStream" uid="uid://psa12l2wcngb" path="res://audio/footsteps/Wood_1.wav" id="3_mnlj4"]
+[ext_resource type="AudioStream" uid="uid://b8d6dkrieo3ww" path="res://audio/Tavern (Light's End Official Score).mp3" id="6_wu24l"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="7_2y7hm"]
+[ext_resource type="Script" path="res://scenes/loop.gd" id="7_p1elx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6ue3"]
 texture = ExtResource("1_skepn")
@@ -23,6 +26,9 @@ layer_0/tile_data = PackedInt32Array(524285, 3670016, 6, 524286, 3670016, 6, 524
 
 [node name="player" parent="." instance=ExtResource("1_i0wun")]
 position = Vector2(99, 38)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("3_mnlj4")
 
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 1
@@ -52,6 +58,10 @@ offset_top = -522.0
 offset_right = 804.0
 offset_bottom = 478.0
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wu24l")
+script = ExtResource("7_p1elx")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
