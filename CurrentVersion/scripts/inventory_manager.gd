@@ -79,7 +79,7 @@ static func translate_full_string_to_code(full: String) -> String:
 				str = str(str, "B")
 			"Green":
 				str = str(str, "G")
-		match words[1]:
+		match words[0]:
 			"Triangle":
 				str = str(str, "T")
 			"Square":

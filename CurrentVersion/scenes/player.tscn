@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b5yyaqd5fo0q0"]
+[gd_scene load_steps=22 format=3 uid="uid://b5yyaqd5fo0q0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_klxhr"]
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
@@ -145,6 +145,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r12a2"]
+size = Vector2(12, 14)
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 process_mode = 3
 z_index = 1
@@ -232,3 +235,11 @@ offset_bottom = -16.0
 grow_horizontal = 2
 value = 100.0
 show_percentage = false
+
+[node name="attackarea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackarea"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_r12a2")
+
+[connection signal="body_entered" from="attackarea" to="." method="_on_attack_area_body_entered"]

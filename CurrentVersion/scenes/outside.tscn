@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dd8cmqi714duv"]
+[gd_scene load_steps=31 format=3 uid="uid://dd8cmqi714duv"]
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_ckvtk"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="15_eouhm"]
 [ext_resource type="Script" path="res://scenes/loop.gd" id="18_mc8ml"]
 [ext_resource type="AudioStream" uid="uid://b151tv2g7l8qk" path="res://audio/Forest (Light's End Official Score).mp3" id="18_yguyn"]
+[ext_resource type="PackedScene" uid="uid://dlqucysrgw23y" path="res://scenes/Enemy.tscn" id="21_aqr7g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]
 texture = ExtResource("1_tj65x")
@@ -218,7 +219,6 @@ shape = SubResource("RectangleShape2D_td24q")
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="outsideTavernDoor/StaticBody2D"]
-visible = false
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1.7875, -3.00002)
@@ -316,6 +316,8 @@ stream = ExtResource("18_yguyn")
 volume_db = -10.0
 autoplay = true
 script = ExtResource("18_mc8ml")
+
+[node name="Enemy" parent="." instance=ExtResource("21_aqr7g")]
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

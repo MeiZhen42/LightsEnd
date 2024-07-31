@@ -32,7 +32,6 @@ stream = ExtResource("3_mnlj4")
 
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 1
-collision_mask = 2
 script = ExtResource("2_q2rum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -64,7 +63,6 @@ color = Color(0, 0, 0, 1)
 stream = ExtResource("6_wu24l")
 volume_db = -10.0
 script = ExtResource("7_p1elx")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 z_index = 1
 y_sort_enabled = true

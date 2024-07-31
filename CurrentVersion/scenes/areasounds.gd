@@ -1,8 +1,5 @@
 extends Area2D
 
-# You don't need to redefine signals here
-# signal body_entered(body)
-# signal body_exited(body)
 
 func _on_area_entered(area):
 	# Emit the built-in body_entered signal
