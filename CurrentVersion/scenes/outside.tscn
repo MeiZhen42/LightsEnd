@@ -136,7 +136,7 @@ item_effect = "None"
 [node name="inventory_item2" parent="Node2D2" instance=ExtResource("4_0fmy7")]
 position = Vector2(367, 412)
 scale = Vector2(0.1, 0.1)
-item_type = "Resource"
+item_type = "Ingredient"
 item_name = "Hollow Tree Resin"
 item_texture = ExtResource("4_wjcso")
 item_effect = "None"
