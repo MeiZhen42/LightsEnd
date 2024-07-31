@@ -3,14 +3,12 @@ class_name in_tavern extends Area2D
 
 var entered = false
 
-func _on_body_entered(body: PhysicsBody2D):
-	if body.is_in_group("player"):
-		entered = true
+func _on_body_entered(_body: PhysicsBody2D):
+	entered = true
 
 
-func _on_body_exited(body: PhysicsBody2D):
-	if body.is_in_group("player"):
-		entered = false
+func _on_body_exited(_body: PhysicsBody2D):
+	entered = false
 	
 
 func _process(_delta):

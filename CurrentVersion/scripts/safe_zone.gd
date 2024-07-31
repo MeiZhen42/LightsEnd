@@ -24,3 +24,7 @@ func _on_body_exited(body: Node2D): #PhysicsBody2D
 		body.safe = false
 	# print(str("boop", body.name))
 	pass # Replace with function body.
+
+
+func _on_attack_area_entered(area):
+	pass # Replace with function body.
