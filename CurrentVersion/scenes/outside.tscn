@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://n41rtabx74cu" path="res://scenes/inventory_item.tscn" id="4_0fmy7"]
 [ext_resource type="Texture2D" uid="uid://dqgxfgi50g2c7" path="res://objects/HollowTree.png" id="4_wjcso"]
 [ext_resource type="Texture2D" uid="uid://twfv52xxnj4c" path="res://objects/MurkberryBush.png" id="5_1xbe2"]
+[ext_resource type="Script" path="res://scripts/safe_zone.gd" id="5_1y3bp"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="6_464o2"]
 [ext_resource type="Texture2D" uid="uid://c6r3emp3xrmxs" path="res://objects/NoxLily.png" id="6_tmrdv"]
 [ext_resource type="Texture2D" uid="uid://hh6xtwo2lqmn" path="res://objects/WeepingDandelion.png" id="7_4jfri"]
@@ -122,6 +123,7 @@ layer_0/tile_data = PackedInt32Array(786439, 0, 1, 786433, 0, 1, 917506, 0, 1, 9
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(120, 215)
+script = ExtResource("5_1y3bp")
 
 [node name="safezone" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(9, 37)
@@ -140,7 +142,7 @@ item_effect = "None"
 [node name="inventory_item2" parent="Node2D2" instance=ExtResource("4_0fmy7")]
 position = Vector2(367, 412)
 scale = Vector2(0.1, 0.1)
-item_type = "Resource"
+item_type = "Ingredient"
 item_name = "Hollow Tree Resin"
 item_texture = ExtResource("4_wjcso")
 item_effect = "None"
@@ -149,7 +151,7 @@ item_effect = "None"
 position = Vector2(618, 98)
 scale = Vector2(0.1, 0.1)
 item_type = "Ingredient"
-item_name = "Murkberry"
+item_name = "Murkberries"
 item_texture = ExtResource("5_1xbe2")
 item_effect = "None"
 
