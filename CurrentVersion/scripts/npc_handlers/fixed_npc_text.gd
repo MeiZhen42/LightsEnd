@@ -14,15 +14,11 @@ func _physics_process(_delta):
 	#npc_movement(_delta)
 	if Input.is_action_pressed("ui_accept") and area_active == true: 
 		if get_tree().current_scene.name == "outside":
-			$fixedNpcText.type("Hello, welcome to my tavern.
-				Mind helping me out and 
-				gather ingredients?
-				It will help stave off
-				the darkness. I'm meetcha inside.")
+			$fixedNpcText.type(GlobalStrings.dialogue.npc.bar_owner.welcome) #
 		if get_tree().current_scene.name == "empty_inside":
-			$fixedNpcText.type("Are you ready to start?")
+			$fixedNpcText.type(GlobalStrings.dialogue.npc.bar_owner.start_serving_question)
 		if get_tree().current_scene.name == "inside":
-			$fixedNpcText.type("Have you finished for the day?")
+			$fixedNpcText.type(GlobalStrings.dialogue.npc.bar_owner.finish_serving_question)
 
 #func npc_movement(_delta):
 	#npc_animation(_delta)
@@ -42,7 +38,7 @@ func _on_area_2d_body_entered(body):
 		area_active = true
 		player_in_range = true
 		Global.npc_in_range = true
-		$fixedNpcText.type(" ")
+		$fixedNpcText.type(GlobalStrings.dialogue.empty)
 		$fixedNpcText.visible = true
 
 
@@ -52,5 +48,5 @@ func _on_area_2d_body_exited(body):
 		player_in_range = false
 		Global.npc_in_range = true
 		$fixedNpcText.visible = false
-		$fixedNpcText.type(" ")
+		$fixedNpcText.type(GlobalStrings.dialogue.empty)
 		$fixedNpcText/options.visible = false

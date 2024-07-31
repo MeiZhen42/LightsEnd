@@ -1,6 +1,6 @@
 class_name GlobalStrings
 
-#texture paths
+# texture paths
 const texture_path = {
 	potion = {
 		blue_circle = texture_potion_blue_circle,
@@ -94,7 +94,7 @@ const texture_environment_object_outside_darkTree: String = "res://objects/DarkT
 
 const texture_tileset_ground: String = "res://objects/Ground_Tileset.png"
 
-#audio
+# audio
 const audio_paths = {
 	background_music = {
 		forest = {
@@ -113,6 +113,22 @@ const audio_paths = {
 			actions = {
 				bag_open = "res://audio/Bag Open_1.wav"
 			}
+		}
+	}
+}
+
+# dialogue
+const dialogue = {
+    empty = "",
+	npc = {
+		bar_owner = {
+			welcome = "Hello, welcome to my tavern.
+				Mind helping me out and 
+				gather ingredients?
+				It will help stave off
+				the darkness. I'll meetcha inside.",
+			start_serving_question = "Are you ready to start?",
+			finish_serving_question = "Have you finished for the day?"
 		}
 	}
 }
