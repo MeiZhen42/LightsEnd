@@ -1,33 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlqucysrgw23y"]
+[gd_scene load_steps=4 format=3 uid="uid://dwi36con8k2mh"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_fd6w5"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_n7xbu"]
 [ext_resource type="Texture2D" uid="uid://dpexlej0rc4ye" path="res://characters/MinionGoober.png" id="2_s72h6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkp1a"]
-radius = 7.18866
-height = 14.3773
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7w87"]
+size = Vector2(35, 46)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cjbo"]
-size = Vector2(25, 23)
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_n7xbu")
 
-[node name="Enemy" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_fd6w5")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.1, 0.1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.121482, 0.122991)
 texture = ExtResource("2_s72h6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-2, 2)
-scale = Vector2(-1.6693, -3.05064)
-shape = SubResource("CapsuleShape2D_qkp1a")
-
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-10.5, 6.5)
-shape = SubResource("RectangleShape2D_3cjbo")
-
-[connection signal="body_entered" from="AttackArea" to="CharacterBody2D" method="_on_attack_area_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_e7w87")
