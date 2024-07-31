@@ -61,6 +61,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wu24l")
+volume_db = -10.0
 script = ExtResource("7_p1elx")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
