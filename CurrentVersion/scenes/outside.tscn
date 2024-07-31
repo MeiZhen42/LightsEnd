@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dd8cmqi714duv"]
+[gd_scene load_steps=30 format=3 uid="uid://dd8cmqi714duv"]
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_ckvtk"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
@@ -115,6 +115,9 @@ size = Vector2(338.462, 92.3078)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_td24q"]
 size = Vector2(41, 13.5603)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbj3a"]
+size = Vector2(182, 30.5)
+
 [node name="outside" type="TileMap"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_i4h4f")
@@ -215,10 +218,16 @@ shape = SubResource("RectangleShape2D_td24q")
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="outsideTavernDoor/StaticBody2D"]
+visible = false
 z_index = 1
 y_sort_enabled = true
-position = Vector2(0, -3)
+position = Vector2(1.7875, -3.00002)
+scale = Vector2(0.99375, 1)
 polygon = PackedVector2Array(30, 146, 26, 139, 33, 117, 219, 117, 226, 137, 221, 146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outsideTavernDoor/StaticBody2D"]
+position = Vector2(127, 90.25)
+shape = SubResource("RectangleShape2D_kbj3a")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_464o2")]
 position = Vector2(192, 135)
