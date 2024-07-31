@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://n41rtabx74cu"]
 
-[ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_dvlk5"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_item.gd" id="1_dvlk5"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7fpi"]
 size = Vector2(410.5, 274.75)

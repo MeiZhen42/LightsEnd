@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_i0wun"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_skepn"]
-[ext_resource type="Script" path="res://scripts/insideTavernDoor.gd" id="2_q2rum"]
+[ext_resource type="Script" path="res://scripts/environment/insideTavernDoor.gd" id="2_q2rum"]
 [ext_resource type="AudioStream" uid="uid://psa12l2wcngb" path="res://audio/footsteps/Wood_1.wav" id="3_mnlj4"]
 [ext_resource type="AudioStream" uid="uid://b8d6dkrieo3ww" path="res://audio/Tavern (Light's End Official Score).mp3" id="6_wu24l"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="7_2y7hm"]
