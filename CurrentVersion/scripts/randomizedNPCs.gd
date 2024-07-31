@@ -42,7 +42,14 @@ func apply_item_effect(item):
 	print("applying item")
 	print("effect: " + item["effect"])
 	if item["effect"].begins_with("Cure"):
-		var effectNum = item["effect"].substr(4,-1).to_int()
+		#print(item["name"])
+		#print(rand_sprite)
+		var cureArr: Array[String] = ["YT", "YS", "YC", "GT", "GS", "GC", "BT", "BS", "BC"]
+		#var effectNum = item["effect"].substr(4,-1).to_int()
+		#print(item["name"].trim_suffix(" Potion"))
+		#print(InventoryManager.translate_full_string_to_code(item["name"]))
+		var effectNum = cureArr.find(InventoryManager.translate_full_string_to_code(item["name"]))
+		#print(effectNum)
 		var msgToType = ""
 		var node = get_node("../cutScene")
 			
