@@ -94,3 +94,25 @@ const texture_environment_object_outside_darkTree: String = "res://objects/DarkT
 
 const texture_tileset_ground: String = "res://objects/Ground_Tileset.png"
 
+#audio
+const audio_paths = {
+	background_music = {
+		forest = {
+			default = "res://audio/Forest (Light's End Official Score).mp3"
+		},
+		tavern = {
+			default = "res://audio/Tavern (Light's End Official Score).mp3"
+		}
+	},
+	sound_effects = {
+		player = {
+			footsteps = {
+				forest_default = "res://audio/footsteps/Grass_1.wav",
+				tavern_default = "res://audio/footsteps/Wood_1.wav"
+			},
+			actions = {
+				bag_open = "res://audio/Bag Open_1.wav"
+			}
+		}
+	}
+}
