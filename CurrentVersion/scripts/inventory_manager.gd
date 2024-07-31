@@ -12,6 +12,8 @@ static var mergeDictionary = [
 	{"ingredients": ["Murkberries", "SBD"], "result": "GC"}
 ]
 
+static var failed_potion = {"result": "F", "code": "F", "full": "Failed", "texture": GlobalStrings.texture_potion_failed}
+
 static var inventory: Array[inventory_item] = []
 static var inventoryUi: inventory_ui = null
 
@@ -45,7 +47,7 @@ static func get_merge_result(ingredients: Array[String]) -> String:
 				break
 	if(found):
 		return result
-	return ""
+	return failed_potion["code"]
 
 static func translate_code_to_item(code: String, quantity: int) -> Dictionary:
 	var name: String = translate_code_to_full_string(code)
@@ -54,6 +56,7 @@ static func translate_code_to_item(code: String, quantity: int) -> Dictionary:
 	return {"type": get_type_from_code(code), "quantity": quantity, "effect": get_effect_from_code(code), "texture": texture, "name": name, "scene_path": "res://scenes/inventory_item.tscn"}
 
 static func translate_full_string_to_code(full: String) -> String:
+	var failed_full = failed_potion["full"]
 	match full:
 		"Nox Lily Thorns":
 			return "NLT"
@@ -63,6 +66,9 @@ static func translate_full_string_to_code(full: String) -> String:
 			return "WDM"
 		"Silent Bog Dew":
 			return "SBD"
+		failed_full:
+			return failed_potion["code"]
+	
 	if(full.split(" ").size() == 3):
 		var str = ""
 		var words = full.split(" ")
@@ -86,6 +92,7 @@ static func translate_full_string_to_code(full: String) -> String:
 	return full
 
 static func translate_code_to_full_string(code: String) -> String:
+	if(code == failed_potion["code"]): return failed_potion["full"]
 	match code:
 		"YT": return "Yellow Triangle Potion"
 		"YS": return "Yellow Square Potion"
@@ -107,17 +114,20 @@ static func translate_code_to_full_string(code: String) -> String:
 static func get_effect_from_code(code: String) -> String:
 	if(code.length() == 2 && "YBG".contains(code[0]) && "TSC".contains(code[1])):
 		return "Cure"
+	if(code == failed_potion["code"]): return "Curse"
 	return "None"
 
 #ToDo:
 static func get_type_from_code(code: String) -> String:
 	if(code.length() == 2 && "YBG".contains(code[0]) && "TSC".contains(code[1])):
 		return "Consumable"
+	if(code == failed_potion["code"]): return "Consumable"
 	return "Ingredient"
 
 #ToDo:
 static func get_texture_for_code(code: String) -> Texture2D:
 	var path: String = ""
+	if(code == failed_potion["code"]): path = failed_potion["texture"]
 	match code:
 		"YT":
 			path = GlobalStrings.texture_potion_yellow_triangle
