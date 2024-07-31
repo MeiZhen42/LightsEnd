@@ -28,6 +28,7 @@ func _on_drop_button_pressed():
 		Global.drop_item(item, drop_position + drop_offset)
 		Global.remove_item(item["type"], item["name"])
 		usage_panel.visible = false
+		InventoryManager.cancel_merge()
 
 
 func _on_item_button_mouse_entered():
@@ -81,6 +82,7 @@ func set_item(new_item):
 func _on_use_button_pressed():
 	usage_panel.visible = false
 	if item != null and item["effect"] != "":
+		InventoryManager.cancel_merge()
 		#print("test01")
 		# change all lines with Global to pulling from playerNpcRange.gd
 		if Global.player_node:
