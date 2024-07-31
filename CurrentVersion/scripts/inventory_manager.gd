@@ -12,7 +12,7 @@ static var mergeDictionary = [
 	{"ingredients": ["Murkberries", "SBD"], "result": "GC"}
 ]
 
-static var failed_potion = {"result": "F", "code": "F", "full": "Mysterious Potion", "texture": GlobalStrings.texture_potion_failed}
+static var failed_potion = {"result": "F", "code": "F", "full": "Mysterious Potion", "effect": "???", "texture": GlobalStrings.texture_potion_failed}
 
 static var inventory: Array[inventory_item] = []
 static var inventoryUi: inventory_ui = null
@@ -114,7 +114,7 @@ static func translate_code_to_full_string(code: String) -> String:
 static func get_effect_from_code(code: String) -> String:
 	if(code.length() == 2 && "YBG".contains(code[0]) && "TSC".contains(code[1])):
 		return "Cure"
-	if(code == failed_potion["code"]): return "Curse"
+	if(code == failed_potion["code"]): return failed_potion["effect"]
 	return "None"
 
 #ToDo:

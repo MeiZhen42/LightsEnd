@@ -61,6 +61,8 @@ func apply_item_effect(item):
 			print(get_tree_string())
 	elif item["effect"].begins_with("Curse"):
 		print("Negative effect")
+	elif item["effect"] == "???":
+		print("random effect")
 	else:
 		print("Nothing happened")
 	#print(effectNum)
