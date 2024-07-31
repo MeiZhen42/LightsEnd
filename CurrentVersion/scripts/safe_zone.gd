@@ -9,3 +9,18 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_body_entered(body: PhysicsBody2D):
+	if(body.is_in_group("player")):
+		print("you entered the safe zone")
+		body.safe = true
+	pass # Replace with function body.
+
+
+func _on_body_exited(body: Node2D): #PhysicsBody2D
+	if(body.is_in_group("player")):
+		print("you left the safe zone")
+		body.safe = false
+	# print(str("boop", body.name))
+	pass # Replace with function body.
