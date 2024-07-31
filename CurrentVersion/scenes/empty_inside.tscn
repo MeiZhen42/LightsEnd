@@ -32,6 +32,7 @@ stream = ExtResource("3_mnlj4")
 
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 1
+collision_mask = 2
 script = ExtResource("2_q2rum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
