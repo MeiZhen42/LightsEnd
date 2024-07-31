@@ -119,12 +119,23 @@ static func get_type_from_code(code: String) -> String:
 static func get_texture_for_code(code: String) -> Texture2D:
 	var path: String = ""
 	match code:
-		"YT", "YS", "YC":
+		"YT":
+			path = GlobalStrings.texture_potion_yellow_triangle
+		"YS":
+			path = GlobalStrings.texture_potion_yellow_square
+		"YC":
 			path = GlobalStrings.texture_potion_yellow_circle
-		"BT", "BS", "BC":
+		"BT":
+			path = GlobalStrings.texture_potion_blue_triangle
+		"BS":
+			path = GlobalStrings.texture_potion_blue_square
+		"BC":
 			path = GlobalStrings.texture_potion_blue_circle
-			pass
-		"GT", "GS", "GC":
+		"GT":
+			path = GlobalStrings.texture_potion_green_triangle
+		"GS":
+			path = GlobalStrings.texture_potion_green_square
+		"GC":
 			path = GlobalStrings.texture_potion_green_circle
 		#
 		"NLT": path = GlobalStrings.texture_ingredient_noxLily
@@ -197,3 +208,8 @@ static func initialize_merge() -> void:
 
 static func cancel_merge() -> void:
 	to_merge = []
+	if(inventoryUi != null and inventoryUi.merge_panel != null):
+		var panel = inventoryUi.merge_panel
+		panel.hide()
+		for child in panel.find_children("Item[0-9]"):
+			child.find_child("itemIcon").texture = Texture2D.new()

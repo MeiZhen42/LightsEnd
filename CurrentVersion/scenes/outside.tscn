@@ -145,7 +145,7 @@ item_effect = "None"
 position = Vector2(618, 98)
 scale = Vector2(0.1, 0.1)
 item_type = "Ingredient"
-item_name = "Murkberry"
+item_name = "Murkberries"
 item_texture = ExtResource("5_1xbe2")
 item_effect = "None"
 
