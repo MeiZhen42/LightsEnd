@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/combat/Enemy.gd" id="1_n7xbu"]
 [ext_resource type="Texture2D" uid="uid://ug86jlvkhv6y" path="res://characters/MinionGoober.png" id="2_s72h6"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7w87"]
 size = Vector2(35, 46)
 
