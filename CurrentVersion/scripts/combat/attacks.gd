@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 const HEALTH = 50
 var health = HEALTH

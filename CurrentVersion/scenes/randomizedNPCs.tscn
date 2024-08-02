@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/playerNpcRange.gd" id="1_ebu0w"]
 [ext_resource type="Texture2D" uid="uid://cm46tp4rg36wo" path="res://characters/SpriteSheet.png" id="2_drq26"]
-[ext_resource type="Script" path="res://scripts/npc_handlers/randomizedNPCs.gd" id="2_rmjtu"]
-[ext_resource type="Script" path="res://scripts/npc_handlers/randomizedNpcText.gd" id="4_ap5d4"]
+[ext_resource type="Script" path="res://scripts/randomizedNPCs.gd" id="2_rmjtu"]
+[ext_resource type="Script" path="res://scripts/randomizedNpcText.gd" id="4_ap5d4"]
 [ext_resource type="Texture2D" uid="uid://dum7r6yxsxbrc" path="res://objects/Shadow.png" id="4_gi7pr"]
 [ext_resource type="PackedScene" uid="uid://dc0dk2olfwm6s" path="res://scenes/inventory_ui.tscn" id="5_yhns3"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tfk7v"]
 size = Vector2(376.25, 186.25)

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
 [ext_resource type="PackedScene" uid="uid://dc0dk2olfwm6s" path="res://scenes/inventory_ui.tscn" id="3_f3n52"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cctgm"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5lb7"]
+size = Vector2(12, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ta46"]
 atlas = ExtResource("2_c8qqv")
@@ -146,7 +146,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r12a2"]
-size = Vector2(12, 14)
+size = Vector2(12, 33)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 process_mode = 3
@@ -159,15 +159,8 @@ script = ExtResource("1_klxhr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 3
 visibility_layer = 3
-position = Vector2(0, 9)
-shape = SubResource("CircleShape2D_cctgm")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-top_level = true
-light_mask = 3
-visibility_layer = 3
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_cctgm")
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_c5lb7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
@@ -177,6 +170,14 @@ animation = &"front_walk"
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["player"]]
 scale = Vector2(1, 1.00616)
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0, 17.5)
+shape = SubResource("RectangleShape2D_r12a2")
 
 [node name="interactUI" type="CanvasLayer" parent="."]
 visible = false
@@ -236,10 +237,4 @@ grow_horizontal = 2
 value = 100.0
 show_percentage = false
 
-[node name="attackarea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attackarea"]
-position = Vector2(0, 14)
-shape = SubResource("RectangleShape2D_r12a2")
-
-[connection signal="body_entered" from="attackarea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
