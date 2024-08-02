@@ -10,6 +10,7 @@ const texture_potion_yellow_triangle: String = "res://objects/consumables/Yellow
 const texture_potion_blue_square: String = "res://objects/consumables/BlueSquarePotion.png"
 const texture_potion_green_square: String = "res://objects/consumables/GreenSquarePotion.png"
 const texture_potion_yellow_square: String = "res://objects/consumables/YellowSquarePotion.png"
+const texture_potion_failed: String = "res://objects/consumables/DarkPotion.png"
 
 const texture_ingredient_noxLily: String = "res://objects/NoxLily.png"
 const texture_ingredient_hollowTree: String = "res://objects/HollowTree.png"

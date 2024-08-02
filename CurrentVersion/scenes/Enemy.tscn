@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dwi36con8k2mh"]
 
 [ext_resource type="Script" path="res://scripts/Roam_and_Agro.gd" id="1_t3ai5"]
-[ext_resource type="Texture2D" uid="uid://dpexlej0rc4ye" path="res://characters/MinionGoober.png" id="2_s72h6"]
+[ext_resource type="Texture2D" uid="uid://ug86jlvkhv6y" path="res://characters/MinionGoober.png" id="2_s72h6"]
 [ext_resource type="Script" path="res://scripts/agro.gd" id="3_c58pl"]
 [ext_resource type="PackedScene" uid="uid://vs42xtjn3by8" path="res://scenes/RoamArea.tscn" id="4_ha8xt"]
 

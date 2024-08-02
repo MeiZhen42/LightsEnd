@@ -1,4 +1,4 @@
-class_name inventory_ui extends Control
+class_name inventoryui extends Control
 
 @onready var grid_container = $GridContainer
 @onready var merge_panel = $merge_panel
