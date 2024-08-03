@@ -71,14 +71,14 @@ func _physics_process(_delta):
 		
 		# Update attack_area rotation based on player direction
 		match current_direction:
-			"right":
-				attack_area.rotation = -PI / 2  # 90 degrees
-			"left":
-				attack_area.rotation = PI / 2  # -90 degrees
 			"down":
-				attack_area.rotation = 0
+				attack_area.rotation = 0 #-PI / 2  # right
 			"up":
-				attack_area.rotation = PI  # 180 degrees 
+				attack_area.rotation = PI #PI / 2  # left
+			"right":
+				attack_area.rotation = -PI / 2 #0 # down
+			"left":
+				attack_area.rotation = PI / 2  # up
 		
 	# Check for attack input
 	if Input.is_action_just_pressed("attack"):
@@ -228,13 +228,13 @@ func deal_damage(damage_amount: int):
 func get_sword_rotation() -> float:
 	match current_direction:
 		"right":
-			return -PI / 2  # 90 degrees DOWN
+			return PI  #-PI / 2  # 90 degrees DOWN
 		"left":
-			return PI / 2  # -90 degrees UP
+			return 0 #PI / 2  # -90 degrees UP
 		"down":
-			return 0  # 0 degrees LEFT
+			return -PI / 2  # 0 degrees LEFT
 		"up":
-			return PI  # 180 degrees RIGHT
+			return PI / 2  # 180 degrees RIGHT
 	return 0
 
 func _on_attack_area_body_entered(body):

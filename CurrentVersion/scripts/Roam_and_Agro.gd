@@ -42,7 +42,6 @@ func _ready():
 		health_bar.value = health  # Set the initial value to current health
 	else:
 		print("Error: HealthBar node not found or incorrect path.")
-	
 
 func _on_AttackBox_enemy_collided(other_body):
 	if other_body.is_in_group("player"):
@@ -58,13 +57,13 @@ func _flip_sprite():
 			sprite.flip_h = false  # Facing left
 
 func _process(_delta):
-  # Update health bar color based on health value
+	# Update health bar color based on health value
 	if health_bar:
 		var shade: float = (health_bar.value / health_bar.max_value)
 		health_bar.get_theme_stylebox("fill").bg_color = Color((69 - 63 * shade)/255, (3 + 155 * shade)/255, (3 + 89 * shade)/255)
 
 	# Only show the health bar if the enemy is alive (health > 0) and the sprite is visible
-		health_bar.visible = health > 0 and (sprite and sprite.visible)
+	health_bar.visible = health > 0 and (sprite and sprite.visible)
 
 func _physics_process(_delta):
 	if roam_area_shape:
@@ -209,3 +208,4 @@ func hide_sprite():
 func show_sprite():
 	if sprite:
 		sprite.visible = true
+
