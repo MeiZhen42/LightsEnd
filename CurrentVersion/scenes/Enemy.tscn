@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwi36con8k2mh"]
+[gd_scene load_steps=9 format=3 uid="uid://dwi36con8k2mh"]
 
 [ext_resource type="Script" path="res://scripts/Roam_and_Agro.gd" id="1_t3ai5"]
 [ext_resource type="Texture2D" uid="uid://ug86jlvkhv6y" path="res://characters/MinionGoober.png" id="2_s72h6"]
 [ext_resource type="Script" path="res://scripts/agro.gd" id="3_c58pl"]
 [ext_resource type="PackedScene" uid="uid://vs42xtjn3by8" path="res://scenes/RoamArea.tscn" id="4_ha8xt"]
+[ext_resource type="Script" path="res://scripts/AttackBox.gd" id="5_75jhx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7w87"]
 size = Vector2(35, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r8xn"]
 size = Vector2(195, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3opb"]
+size = Vector2(51, 46)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 512
@@ -20,7 +24,7 @@ script = ExtResource("1_t3ai5")
 scale = Vector2(0.121482, 0.122991)
 texture = ExtResource("2_s72h6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_e7w87")
 
@@ -52,7 +56,21 @@ grow_horizontal = 2
 value = 100.0
 show_percentage = false
 
+[node name="AttackBox" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 3
+script = ExtResource("5_75jhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_p3opb")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="vision" to="vision" method="_on_body_entered"]
 [connection signal="body_exited" from="vision" to="vision" method="_on_body_exited"]
 [connection signal="player_entered" from="vision" to="." method="_on_agro_area_entered"]
 [connection signal="player_exited" from="vision" to="." method="_on_agro_area_exited"]
+[connection signal="body_entered" from="AttackBox" to="AttackBox" method="_on_body_entered"]
+[connection signal="body_exited" from="AttackBox" to="AttackBox" method="_on_body_exited"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

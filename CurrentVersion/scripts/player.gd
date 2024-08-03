@@ -5,9 +5,13 @@ const ATTACK_RADIUS = 1.0
 const ATTACK_DAMAGE = 10
 
 var health = 100  # Initialize health
+var max_health = 100  # Maximum health
 var current_direction = "none"
 var safe: bool = true
 var is_attacking: bool = false  # Track whether the player is currently attacking
+var starting_position: Vector2  # Store the player's starting position
+var x_offset: float = 125.0  # X offset for respawn
+var y_offset: float = 180.0  # Y offset for respawn
 
 @onready var interact_ui = $'interactUI'
 @onready var inventory_ui = $'inventoryUI'
@@ -15,6 +19,7 @@ var is_attacking: bool = false  # Track whether the player is currently attackin
 @onready var sanity_bar = $SanityBar
 @onready var attack_area = $AttackArea  # Reference to AttackArea node
 @onready var attack_collision_shape = $AttackArea/CollisionShape2D  # Reference to the CollisionShape2D
+@onready var health_bar = $HealthBar  # Reference to HealthBar node
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -25,9 +30,13 @@ func _ready():
 	sanity_bar.max_value = 100
 	sanity_bar.value = sanity_bar.max_value
 	
-	print("Enemy initialized:", self.name)
+	if health_bar:
+		health_bar.min_value = 0
+		health_bar.max_value = max_health
+		health_bar.value = health  # Set initial health value
+	else:
+		print("Error: HealthBar node not found or incorrect path.")
 	
-	# Debug: Check if footstep_player and attack_area are correctly initialized
 	if footstep_player:
 		print("Footstep player initialized successfully")
 	else:
@@ -43,20 +52,16 @@ func _ready():
 func _physics_process(_delta):
 	player_movement(_delta)
 	
-	 # Update attack_area position to follow player
 	if attack_area:
 		# Set the attack area position relative to the player
 		attack_area.position = Vector2(0, -ATTACK_RADIUS)
-		attack_area.position.y -= 0  # Adjust this value based on your needs
 		
-		 # Update attack_area rotation based on player direction
+		# Update attack_area rotation based on player direction
 		match current_direction:
 			"right":
 				attack_area.rotation = -PI / 2  # 90 degrees
-				attack_area.position.y -= -10
 			"left":
 				attack_area.rotation = PI / 2  # -90 degrees
-				attack_area.position.y -= -10
 			"down":
 				attack_area.rotation = 0
 			"up":
@@ -157,8 +162,6 @@ func attack():
 	if attack_area:
 		print("Attack initiated")
 		is_attacking = true  # Set the attacking flag to true
-		#attack_area.position = position + Vector2(-120, -ATTACK_RADIUS)  # Adjust offset if needed
-		#attack_area.position.y -= 250  # Adjust this value based on your needs
 		attack_area.scale = Vector2(ATTACK_RADIUS, ATTACK_RADIUS)
 		attack_collision_shape.disabled = false  # Enable the attack area collision
 		attack_area.show()
@@ -188,11 +191,25 @@ func _on_attack_area_body_entered(body):
 		print("Body entered attack area, but player is not attacking")
 
 func take_damage(amount):
-	# Implement health reduction logic
+  # Implement health reduction logic
 	health -= amount
 	if health <= 0:
 		die()  # Handle death
 
-# Additional functions
+  # Update health bar value (if it exists)
+	if health_bar:
+		health_bar.value = health
+
+  # Optional: Visual feedback on taking damage
+  # (Replace with your desired effect)
+  # self.modulate = Color.RED  # Change color for a brief moment
+  # play_sound("damage.wav")  # Play a sound effect
+
 func die():
-	queue_free()  # Example: remove the player from the scene
+	# Handle death (e.g., animation, game over, respawn)
+	print("Player died!")
+	position = starting_position + Vector2(x_offset, y_offset)  # Respawn at the adjusted starting position
+	health = max_health  # Reset health
+	if health_bar:
+		health_bar.value = health  # Reset health bar value
+	# Optionally, you could also reset other player state here, if needed
