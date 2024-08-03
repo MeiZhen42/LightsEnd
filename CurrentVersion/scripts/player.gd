@@ -1,18 +1,11 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
-const ATTACK_RADIUS = 1.0
-const ATTACK_DAMAGE = 9
-const sword_offsets = {
-	"right": Vector2(20, 0),
-	"left": Vector2(-20, 0),
-	"down": Vector2(0, 20),
-	"up": Vector2(0, -20)
-}
-const CRIT_CHANCE = 0.1  # 10% chance for a critical hit
-const CRIT_MULTIPLIER = 2.0  # Critical hits deal 2x damage
-const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
+var SPEED = 100.0
+var ATTACK_RADIUS = 1.0
+var ATTACK_DAMAGE = 9
 
+var CRIT_CHANCE = 0.1  # 10% chance for a critical hit
+var CRIT_MULTIPLIER = 2.0  # Critical hits deal 2x damage
 var health = 100  # Initialize health
 var max_health = 100  # Maximum health
 var current_direction = "none"
@@ -21,6 +14,18 @@ var is_attacking: bool = false  # Track whether the player is currently attackin
 var starting_position: Vector2  # Store the player's starting position
 var x_offset: float = 125.0  # X offset for respawn
 var y_offset: float = 180.0  # Y offset for respawn
+var experience = 0
+var level = 1
+var experience_needed = 100
+
+const LEVEL_UP_TEXT_SCENE_PATH = "res://scenes/LevelUpText.tscn"
+const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
+const sword_offsets = {
+	"right": Vector2(20, 0),
+	"left": Vector2(-20, 0),
+	"down": Vector2(0, 20),
+	"up": Vector2(0, -20)
+}
 
 @onready var interact_ui = $'interactUI'
 @onready var inventory_ui = $'inventoryUI'
@@ -30,6 +35,8 @@ var y_offset: float = 180.0  # Y offset for respawn
 @onready var attack_collision_shape = $AttackArea/CollisionShape2D  # Reference to the CollisionShape2D
 @onready var health_bar = $HealthBar  # Reference to HealthBar node
 @onready var sword_swing_effect := $SwordSwing  # Adjust path to your sword swing effect node
+@onready var level_up_text = $LevelUpText/LevelUpLabel  # Reference to the LevelUpLabel
+@onready var level_up_animation_player = $LevelUpText/LevelUpAnimation  # Reference to the LevelUpAnimation
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -222,8 +229,35 @@ func deal_damage(damage_amount: int):
 			if body.has_method("take_damage"):
 				body.take_damage(damage_amount)
 				display_damage_text(body.global_position, damage_amount)
+				gain_experience(10)  # Example XP gain
 			else:
 				print("Error: Enemy does not have take_damage method!")
+
+func gain_experience(amount: int):
+	experience += amount
+	print("Gained ", amount, " experience. Total: ", experience)
+	while experience >= experience_needed:
+		level_up()
+
+func level_up():
+	level += 1
+	experience -= experience_needed  # Subtract the required exp for current level
+	experience_needed = int(experience_needed * 1.1)  # Increase exp needed for next level by 10%
+	max_health += 20  # Increase max health
+	health = max_health  # Restore health to new max health
+	CRIT_CHANCE += 0.01  # Increase critical chance by 1%
+	CRIT_MULTIPLIER += 0.1  # Increase critical multiplier by 0.1
+	ATTACK_DAMAGE += 1  # Increase attack damage by 1
+	show_level_up_text()
+	print("Leveled up! Level ", level, ", Health ", health, ", Next Level XP Needed: ", experience_needed, ", Crit Chance: ", CRIT_CHANCE, ", Crit Multiplier: ", CRIT_MULTIPLIER, ", Attack Damage: ", ATTACK_DAMAGE)
+
+func show_level_up_text():
+	level_up_text.visible = true
+	level_up_animation_player.play("Show_Level_Up")
+
+func _on_LevelUpAnimation_animation_finished(anim_name):
+	if anim_name == "Show_Level_Up":
+		level_up_text.visible = false  # Hide the level-up text after animation
 
 func get_sword_rotation() -> float:
 	match current_direction:
@@ -305,3 +339,4 @@ func display_damage_text(position: Vector2, damage_amount: int):
 			print("Error: Could not instantiate DamageText scene")
 	else:
 		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)
+
