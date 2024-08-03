@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://b5yyaqd5fo0q0"]
+[gd_scene load_steps=24 format=3 uid="uid://b5yyaqd5fo0q0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_klxhr"]
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
 [ext_resource type="PackedScene" uid="uid://dc0dk2olfwm6s" path="res://scenes/inventory_ui.tscn" id="3_f3n52"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_ui.gd" id="4_8274g"]
+[ext_resource type="PackedScene" uid="uid://bosy4sdkjyh5v" path="res://scenes/sword_swing.tscn" id="5_dpsg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5lb7"]
 size = Vector2(12, 22)
@@ -240,12 +241,18 @@ value = 100.0
 show_percentage = false
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 13.0
-offset_top = 32.0
-offset_right = 53.0
-offset_bottom = 36.0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 51.0
+offset_bottom = 17.0
 rotation = -1.5708
+scale = Vector2(0.55039, 1.22835)
 value = 100.0
 show_percentage = false
+
+[node name="SwordSwing" parent="." instance=ExtResource("5_dpsg2")]
+position = Vector2(-0.5, 20)
+rotation = -1.5708
+scale = Vector2(3, 3)
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

@@ -2,7 +2,16 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const ATTACK_RADIUS = 1.0
-const ATTACK_DAMAGE = 10
+const ATTACK_DAMAGE = 9
+const sword_offsets = {
+	"right": Vector2(20, 0),
+	"left": Vector2(-20, 0),
+	"down": Vector2(0, 20),
+	"up": Vector2(0, -20)
+}
+const CRIT_CHANCE = 0.1  # 10% chance for a critical hit
+const CRIT_MULTIPLIER = 2.0  # Critical hits deal 2x damage
+const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
 
 var health = 100  # Initialize health
 var max_health = 100  # Maximum health
@@ -20,6 +29,7 @@ var y_offset: float = 180.0  # Y offset for respawn
 @onready var attack_area = $AttackArea  # Reference to AttackArea node
 @onready var attack_collision_shape = $AttackArea/CollisionShape2D  # Reference to the CollisionShape2D
 @onready var health_bar = $HealthBar  # Reference to HealthBar node
+@onready var sword_swing_effect := $SwordSwing  # Adjust path to your sword swing effect node
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -48,7 +58,10 @@ func _ready():
 		attack_collision_shape.disabled = true  # Disable the attack area collision
 	else:
 		print("Attack area is null")
-
+	
+	if sword_swing_effect:
+		sword_swing_effect.visible = false  # Ensure the effect is hidden initially
+		
 func _physics_process(_delta):
 	player_movement(_delta)
 	
@@ -165,16 +178,64 @@ func attack():
 		attack_area.scale = Vector2(ATTACK_RADIUS, ATTACK_RADIUS)
 		attack_collision_shape.disabled = false  # Enable the attack area collision
 		attack_area.show()
-		print("Attack area shown at position: ", attack_area.position)
 
-		# Hide it after a short delay to simulate the attack duration
-		await get_tree().create_timer(0.1).timeout
+		# Update sword swing effect rotation and position
+		if sword_swing_effect:
+			sword_swing_effect.visible = true
+			sword_swing_effect.rotation = get_sword_rotation()
+
+			# Check if current_direction is a valid key in sword_offsets
+			if sword_offsets.has(current_direction):
+				sword_swing_effect.position = sword_offsets[current_direction]
+			else:
+				print("Error: current_direction is not a valid key in sword_offsets. Current direction:", current_direction)
+			
+			# Uncomment if you use an AnimationPlayer for the sword swing effect
+			# sword_swing_effect.play("swing")
+		
+		# Hide the attack area and sword swing effect after a longer delay
+		await get_tree().create_timer(0.5).timeout  # Increase this value as needed
 		attack_area.hide()
 		attack_collision_shape.disabled = true  # Disable the attack area collision
+		
+		if sword_swing_effect:
+			sword_swing_effect.visible = false  # Hide the sword swing effect
 		is_attacking = false  # Reset the attacking flag
 		print("Attack area hidden")
+
+		# Critical hit logic
+		if randf() < CRIT_CHANCE:  # Random float between 0 and 1
+			print("Critical hit!")
+			deal_damage(ATTACK_DAMAGE * CRIT_MULTIPLIER)
+		else:
+			deal_damage(ATTACK_DAMAGE)
 	else:
 		print("Error: AttackArea node is not initialized")
+		
+func deal_damage(damage_amount: int):
+	# Optionally, you can add visual or sound effects for damage here
+	print("Dealing", damage_amount, "damage")
+	# Logic to deal damage to enemies
+	for body in attack_area.get_overlapping_bodies():
+		if body.is_in_group("enemies"):
+			print("Enemy detected in attack area, applying damage")
+			if body.has_method("take_damage"):
+				body.take_damage(damage_amount)
+				display_damage_text(body.global_position, damage_amount)
+			else:
+				print("Error: Enemy does not have take_damage method!")
+
+func get_sword_rotation() -> float:
+	match current_direction:
+		"right":
+			return -PI / 2  # 90 degrees DOWN
+		"left":
+			return PI / 2  # -90 degrees UP
+		"down":
+			return 0  # 0 degrees LEFT
+		"up":
+			return PI  # 180 degrees RIGHT
+	return 0
 
 func _on_attack_area_body_entered(body):
 	if is_attacking:  # Only apply damage if the player is attacking
@@ -183,6 +244,7 @@ func _on_attack_area_body_entered(body):
 			if body.has_method("take_damage"):
 				print("Enemy has take_damage method, applying", ATTACK_DAMAGE, "damage")
 				body.take_damage(ATTACK_DAMAGE)
+				display_damage_text(body.global_position, ATTACK_DAMAGE)
 			else:
 				print("Error: Enemy does not have take_damage method!")
 		else:
@@ -191,19 +253,19 @@ func _on_attack_area_body_entered(body):
 		print("Body entered attack area, but player is not attacking")
 
 func take_damage(amount):
-  # Implement health reduction logic
+	# Implement health reduction logic
 	health -= amount
 	if health <= 0:
 		die()  # Handle death
 
-  # Update health bar value (if it exists)
+	# Update health bar value (if it exists)
 	if health_bar:
 		health_bar.value = health
 
-  # Optional: Visual feedback on taking damage
-  # (Replace with your desired effect)
-  # self.modulate = Color.RED  # Change color for a brief moment
-  # play_sound("damage.wav")  # Play a sound effect
+	# Optional: Visual feedback on taking damage
+	# (Replace with your desired effect)
+	# self.modulate = Color.RED  # Change color for a brief moment
+	# play_sound("damage.wav")  # Play a sound effect
 
 func die():
 	# Handle death (e.g., animation, game over, respawn)
@@ -213,3 +275,33 @@ func die():
 	if health_bar:
 		health_bar.value = health  # Reset health bar value
 	# Optionally, you could also reset other player state here, if needed
+
+func display_damage_text(position: Vector2, damage_amount: int):
+	# Load the DamageText scene
+	var damage_text_scene = load(DAMAGE_TEXT_SCENE_PATH)
+	if damage_text_scene:
+		var damage_text_instance = damage_text_scene.instantiate()
+		if damage_text_instance:
+			var label = damage_text_instance.get_node("Label")  # Ensure your Label is named "Label"
+			if label:
+				label.text = str(damage_amount)
+				damage_text_instance.position = position
+				damage_text_instance.z_index = 1  # Ensure the damage text is rendered above other elements
+				get_tree().current_scene.add_child(damage_text_instance)
+				
+				# Access AnimationPlayer node
+				var anim_player = damage_text_instance.get_node("AnimationPlayer")
+				if anim_player:
+					anim_player.play("damage_text_animation")  # Play the animation
+					
+					# Optionally, remove the damage text after animation
+					await anim_player.animation_finished  # Wait until animation is finished
+					damage_text_instance.queue_free()  # Remove the text after animation
+				else:
+					print("Error: AnimationPlayer node not found in DamageText scene")
+			else:
+				print("Error: Label node not found in DamageText scene")
+		else:
+			print("Error: Could not instantiate DamageText scene")
+	else:
+		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)

@@ -159,7 +159,8 @@ static func get_texture_for_code(code: String) -> Texture2D:
 	if(path.length() > 0):
 		var img = Image.new()
 		img.load(path)
-		return ImageTexture.new().create_from_image(img)
+		return ImageTexture.create_from_image(img)
+		#return ImageTexture.new().create_from_image(img)
 	return Texture2D.new() #return empty texture
 
 # Handles merging (call when selecting an item to add to a merge)

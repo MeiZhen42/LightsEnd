@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwi36con8k2mh"]
+[gd_scene load_steps=10 format=3 uid="uid://dwi36con8k2mh"]
 
 [ext_resource type="Script" path="res://scripts/Roam_and_Agro.gd" id="1_t3ai5"]
 [ext_resource type="Texture2D" uid="uid://ug86jlvkhv6y" path="res://characters/MinionGoober.png" id="2_s72h6"]
 [ext_resource type="Script" path="res://scripts/agro.gd" id="3_c58pl"]
 [ext_resource type="PackedScene" uid="uid://vs42xtjn3by8" path="res://scenes/RoamArea.tscn" id="4_ha8xt"]
 [ext_resource type="Script" path="res://scripts/AttackBox.gd" id="5_75jhx"]
+[ext_resource type="PackedScene" uid="uid://cn84nfyv5huew" path="res://scenes/DamageText.tscn" id="6_4lx6o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7w87"]
 size = Vector2(35, 46)
@@ -66,6 +67,9 @@ position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_p3opb")
 
 [node name="RespawnTimer" type="Timer" parent="."]
+
+[node name="DamageText" parent="." instance=ExtResource("6_4lx6o")]
+position = Vector2(0, -36)
 
 [connection signal="body_entered" from="vision" to="vision" method="_on_body_entered"]
 [connection signal="body_exited" from="vision" to="vision" method="_on_body_exited"]
