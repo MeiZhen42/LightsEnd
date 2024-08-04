@@ -123,6 +123,7 @@ func toggle_stats_ui():
 
 func _physics_process(_delta):
 	player_movement(_delta)
+	set_facing_direction()  # Adjust player's facing direction based on mouse position
 	
 	if attack_area:
 		# Set the attack area position relative to the player
@@ -193,36 +194,59 @@ func player_movement(_delta):
 	self.velocity = velocity
 	move_and_slide()
 
+func set_facing_direction():
+	# Get mouse position in the world
+	var mouse_position = get_global_mouse_position()
+	
+	# Calculate direction vector from player to mouse
+	var direction_vector = mouse_position - global_position
+	
+	# Determine facing direction based on angle
+	var angle = direction_vector.angle()
+	
+	# Update current direction based on the angle
+	if angle > -PI/4 and angle <= PI/4:
+		current_direction = "right"
+	elif angle > PI/4 and angle <= 3*PI/4:
+		current_direction = "down"
+	elif angle > -3*PI/4 and angle <= -PI/4:
+		current_direction = "up"
+	else:
+		current_direction = "left"
+
+	# Play the animation corresponding to the current direction
+	play_animation(velocity != Vector2.ZERO)
+
 func play_animation(movement):
 	var direction = current_direction
 	var animation = $AnimatedSprite2D
 	
 	if direction == "right":
 		animation.flip_h = false
-		if movement == 1:
+		if movement:
 			animation.play("side_walk")
-		elif movement == 0:
+		else:
 			animation.play("side_idle")
 			
 	elif direction == "left":
 		animation.flip_h = true
-		if movement == 1:
+		if movement:
 			animation.play("side_walk")
-		elif movement == 0:
+		else:
 			animation.play("side_idle")    
 			
 	elif direction == "down":
 		animation.flip_h = false
-		if movement == 1:
+		if movement:
 			animation.play("front_walk")
-		elif movement == 0:
+		else:
 			animation.play("front_idle")
 			
 	elif direction == "up":
 		animation.flip_h = false
-		if movement == 1:
+		if movement:
 			animation.play("back_walk")
-		elif movement == 0:
+		else:
 			animation.play("back_idle")
 
 func _input(event):
@@ -379,8 +403,8 @@ func display_damage_text(position: Vector2, damage_amount: int, is_player: bool 
 				label.text = str(damage_amount)
 				
 				# Adjust the Y position offset based on whether it's the player or an enemy
-				var player_offset = 60  # Adjust this value for the player
-				var enemy_offset = 50   # Adjust this value for the enemy
+				var player_offset = -40  # Adjust this value for the player
+				var enemy_offset = -30   # Adjust this value for the enemy
 				
 				var position_offset = Vector2(0, enemy_offset)  # Default for enemy
 				if is_player:
@@ -406,6 +430,7 @@ func display_damage_text(position: Vector2, damage_amount: int, is_player: bool 
 			print("Error: Could not instantiate DamageText scene")
 	else:
 		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)
+
 
 
 
