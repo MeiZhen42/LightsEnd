@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://b5yyaqd5fo0q0"]
+[gd_scene load_steps=32 format=3 uid="uid://b5yyaqd5fo0q0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_klxhr"]
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
+[ext_resource type="PackedScene" uid="uid://cn84nfyv5huew" path="res://scenes/DamageText.tscn" id="3_bwj7r"]
 [ext_resource type="PackedScene" uid="uid://dc0dk2olfwm6s" path="res://scenes/inventory_ui.tscn" id="3_f3n52"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_ui.gd" id="4_8274g"]
 [ext_resource type="PackedScene" uid="uid://bosy4sdkjyh5v" path="res://scenes/sword_swing.tscn" id="5_dpsg2"]
@@ -227,6 +228,9 @@ collision_mask = 512
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(0, 17.5)
 shape = SubResource("RectangleShape2D_r12a2")
+
+[node name="DamageText" parent="." instance=ExtResource("3_bwj7r")]
+position = Vector2(0, -17)
 
 [node name="interactUI" type="CanvasLayer" parent="."]
 visible = false

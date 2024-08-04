@@ -344,6 +344,10 @@ func _on_attack_area_body_entered(body):
 func take_damage(amount):
 	# Implement health reduction logic
 	health -= amount
+	
+	# Display damage text above the player
+	display_damage_text(global_position, amount)
+
 	if health <= 0:
 		die()  # Handle death
 
@@ -352,7 +356,6 @@ func take_damage(amount):
 		health_bar.value = health
 
 	# Optional: Visual feedback on taking damage
-	# (Replace with your desired effect)
 	# self.modulate = Color.RED  # Change color for a brief moment
 	# play_sound("damage.wav")  # Play a sound effect
 
@@ -374,7 +377,7 @@ func display_damage_text(position: Vector2, damage_amount: int):
 			var label = damage_text_instance.get_node("Label")  # Ensure your Label is named "Label"
 			if label:
 				label.text = str(damage_amount)
-				damage_text_instance.position = position
+				damage_text_instance.position = position - Vector2(0, 20)  # Offset position slightly above the player
 				damage_text_instance.z_index = 1  # Ensure the damage text is rendered above other elements
 				get_tree().current_scene.add_child(damage_text_instance)
 				
@@ -394,5 +397,6 @@ func display_damage_text(position: Vector2, damage_amount: int):
 			print("Error: Could not instantiate DamageText scene")
 	else:
 		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)
+
 
 
