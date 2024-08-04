@@ -37,6 +37,18 @@ const sword_offsets = {
 @onready var sword_swing_effect := $SwordSwing  # Adjust path to your sword swing effect node
 @onready var level_up_text = $LevelUpText/LevelUpLabel  # Reference to the LevelUpLabel
 @onready var level_up_animation_player = $LevelUpText/LevelUpAnimation  # Reference to the LevelUpAnimation
+#@onready var level_label = $VBoxContainer/Label  # Adjust the path as necessary
+#@onready var hp_label = $VBoxContainer/Label2  # Assuming Label2 is for HP
+#@onready var crit_chance_label = $VBoxContainer/Label3  # Assuming Label3 is for Crit Chance
+#@onready var damage_label = $VBoxContainer/Label4  # Assuming Label4 is for Damage
+@onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
+
+
+
+@onready var level_label = $PlayerStatsUI/VBoxContainer/Level  # Adjust the path as necessary
+@onready var hp_label = $PlayerStatsUI/VBoxContainer/HP  # Assuming Label2 is for HP
+@onready var crit_chance_label = $PlayerStatsUI/VBoxContainer/Crit  # Assuming Label3 is for Crit Chance
+@onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -68,7 +80,38 @@ func _ready():
 	
 	if sword_swing_effect:
 		sword_swing_effect.visible = false  # Ensure the effect is hidden initially
+
+		update_ui()
 		
+#func update_stats(level, health, max_health, crit_chance, attack_damage):
+	#level_label.text = "Level: " + str(level)
+	#hp_label.text = "HP: " + str(health) + "/" + str(max_health)
+	#crit_chance_label.text = "Crit Chance: %.2f%%" % (crit_chance * 100)  # Format with two decimal places
+	#damage_label.text = "Damage: " + str(attack_damage)
+	
+
+func update_ui():
+	# Check each label to ensure it's not null before setting text
+	if level_label:
+		level_label.text = "Level: " + str(level)
+	else:
+		print("Error: level_label is null")
+
+	if hp_label:
+		hp_label.text = "HP: " + str(health) + "/" + str(max_health)
+	else:
+		print("Error: hp_label is null")
+
+	if crit_chance_label:
+		crit_chance_label.text = "Crit Chance: %.2f%%" % (CRIT_CHANCE * 100)  # Format with two decimal places
+	else:
+		print("Error: crit_chance_label is null")
+
+	if damage_label:
+		damage_label.text = "Damage: " + str(ATTACK_DAMAGE)
+	else:
+		print("Error: damage_label is null")
+
 func _physics_process(_delta):
 	player_movement(_delta)
 	
@@ -249,6 +292,7 @@ func level_up():
 	CRIT_MULTIPLIER += 0.1  # Increase critical multiplier by 0.1
 	ATTACK_DAMAGE += 1  # Increase attack damage by 1
 	show_level_up_text()
+	update_ui()
 	print("Leveled up! Level ", level, ", Health ", health, ", Next Level XP Needed: ", experience_needed, ", Crit Chance: ", CRIT_CHANCE, ", Crit Multiplier: ", CRIT_MULTIPLIER, ", Attack Damage: ", ATTACK_DAMAGE)
 
 func show_level_up_text():

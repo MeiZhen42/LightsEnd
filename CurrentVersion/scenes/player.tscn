@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://b5yyaqd5fo0q0"]
+[gd_scene load_steps=27 format=3 uid="uid://b5yyaqd5fo0q0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_klxhr"]
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
 [ext_resource type="PackedScene" uid="uid://dc0dk2olfwm6s" path="res://scenes/inventory_ui.tscn" id="3_f3n52"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_ui.gd" id="4_8274g"]
 [ext_resource type="PackedScene" uid="uid://bosy4sdkjyh5v" path="res://scenes/sword_swing.tscn" id="5_dpsg2"]
+[ext_resource type="Script" path="res://scripts/PlayerStatsUI.gd" id="6_5mij3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5lb7"]
 size = Vector2(12, 22)
@@ -279,7 +280,7 @@ scale = Vector2(3, 3)
 
 [node name="LevelUpLabel" type="Label" parent="LevelUpText"]
 visible = false
-anchors_preset = -1
+anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -19.0
@@ -295,6 +296,36 @@ horizontal_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_n1jw5")
 }
+
+[node name="PlayerStatsUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_5mij3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerStatsUI"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = -68.0
+offset_right = 96.0
+offset_bottom = 36.0
+
+[node name="Level" type="Label" parent="PlayerStatsUI/VBoxContainer"]
+layout_mode = 2
+text = "Level:"
+
+[node name="HP" type="Label" parent="PlayerStatsUI/VBoxContainer"]
+layout_mode = 2
+text = "HP:"
+
+[node name="Crit" type="Label" parent="PlayerStatsUI/VBoxContainer"]
+layout_mode = 2
+text = "Crit:"
+
+[node name="Damage" type="Label" parent="PlayerStatsUI/VBoxContainer"]
+layout_mode = 2
+text = "Damage:"
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="animation_finished" from="LevelUpText/LevelUpAnimation" to="." method="_on_LevelUpAnimation_animation_finished"]
