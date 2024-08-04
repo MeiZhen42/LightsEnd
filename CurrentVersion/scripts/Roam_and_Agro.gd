@@ -5,19 +5,20 @@ const AGRO_SPEED = 95.0
 const TARGET_REACH_THRESHOLD = 1800.0
 const TARGET_CHANGE_INTERVAL = 4.0  # Time in seconds to wait before changing the target
 const MAX_HEALTH = 150.0
-const RESPAWN_DELAY = 15.0  # Time in seconds before respawning
-const RESPAWN_RADIUS = 200
+const RESPAWN_DELAY = 5.0  # Time in seconds before respawning
+const RESPAWN_RADIUS = 600
+const MAX_RESPAWN_ATTEMPTS = 10  # Maximum attempts to find a valid spawn point
 
-var roam_area_shape : RectangleShape2D = null
-var roam_area : Area2D = null
-var target_position : Vector2 = Vector2.ZERO
-var time_since_last_target_change : float = 0.0
-var is_agro : bool = false
-var agro_target : Node2D = null
-var start_position : Vector2 = Vector2.ZERO
-var health : float = MAX_HEALTH
+var roam_area_shape: RectangleShape2D = null
+var roam_area: Area2D = null
+var target_position: Vector2 = Vector2.ZERO
+var time_since_last_target_change: float = 0.0
+var is_agro: bool = false
+var agro_target: Node2D = null
+var start_position: Vector2 = Vector2.ZERO
+var health: float = MAX_HEALTH
 var enemy_damage_amount = 10
-var respawn_timer : float = 0.0  # Timer for respawn delay
+var respawn_timer: float = 0.0  # Timer for respawn delay
 
 @onready var health_bar := $HealthBar  # Adjust path to your ProgressBar node
 @onready var sprite := $Sprite2D  # Reference to the Sprite node
@@ -158,21 +159,64 @@ func take_damage(amount: int) -> void:
 
 func die():
 	print("NPC died")
-	
+
 	# Disable collisions and hide the sprite
 	disable_collisions()
 	hide_sprite()
-	
+
 	# Wait for respawn delay
 	await get_tree().create_timer(RESPAWN_DELAY).timeout
-	
-	# Enable collisions, show the sprite, and reset the enemy's state
+
+	# Find a valid spawn position
+	var new_position = get_valid_spawn_position(start_position, RESPAWN_RADIUS)
+
+	# Set new position and reset enemy state
+	global_position = new_position
 	enable_collisions()
 	show_sprite()
 	health = MAX_HEALTH
 	health_bar.value = health
-	global_position = get_random_position_in_radius(start_position, RESPAWN_RADIUS)
-	#global_position = start_position
+
+# Function to find a valid spawn position within the specified radius
+func find_valid_spawn_position() -> Vector2:
+	var attempt = 0
+	while attempt < MAX_RESPAWN_ATTEMPTS:
+		var potential_position = get_random_position_in_radius(start_position, RESPAWN_RADIUS)
+		if is_position_valid(potential_position):
+			return potential_position
+		attempt += 1
+	return start_position  # Fallback to start position if no valid position is found
+
+func is_position_valid(position: Vector2) -> bool:
+	# Create a small circle shape for collision checking
+	var circle_shape = CircleShape2D.new()
+	circle_shape.radius = 10  # Adjust the radius as needed
+
+	# Set up the parameters for the shape query
+	var shape_params = PhysicsShapeQueryParameters2D.new()
+	shape_params.shape = circle_shape
+	shape_params.transform.origin = position
+	shape_params.exclude = [self]  # Exclude self from collision check
+	shape_params.collision_mask = 0xFFFFFFFF  # Check against all layers
+
+	# Get the direct space state for collision detection
+	var space_state = get_world_2d().direct_space_state
+
+	# Use intersect_shape to check for collisions
+	var result = space_state.intersect_shape(shape_params)
+
+	# Return true if no collisions are detected
+	return result.size() == 0
+
+func get_valid_spawn_position(center: Vector2, radius: float) -> Vector2:
+	for attempt in range(10):  # Try up to 10 times
+		var new_position = get_random_position_in_radius(center, radius)
+		if is_position_valid(new_position):
+			return new_position
+	
+	# If no valid position found, return the start position as a fallback
+	print("Could not find valid position after 10 attempts. Using start position.")
+	return center
 
 # Function to get a random position within a specified radius
 func get_random_position_in_radius(center: Vector2, radius: float) -> Vector2:
@@ -208,4 +252,5 @@ func hide_sprite():
 func show_sprite():
 	if sprite:
 		sprite.visible = true
+
 

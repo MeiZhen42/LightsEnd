@@ -324,6 +324,9 @@ text = "HP:"
 layout_mode = 2
 text = "Crit:"
 
+[node name="Crit_dmg" type="Label" parent="PlayerStatsUI/VBoxContainer"]
+layout_mode = 2
+
 [node name="Damage" type="Label" parent="PlayerStatsUI/VBoxContainer"]
 layout_mode = 2
 text = "Damage:"

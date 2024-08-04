@@ -40,6 +40,7 @@ const sword_offsets = {
 @onready var level_label = $PlayerStatsUI/VBoxContainer/Level  # Adjust the path as necessary
 @onready var hp_label = $PlayerStatsUI/VBoxContainer/HP  # Assuming Label2 is for HP
 @onready var crit_chance_label = $PlayerStatsUI/VBoxContainer/Crit  # Assuming Label3 is for Crit Chance
+@onready var crit_dmg_label = $PlayerStatsUI/VBoxContainer/Crit_dmg  # Assuming Label3 is for Crit Chance
 @onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
 @onready var player_stats_ui = $PlayerStatsUI # Adjust path if needed$PlayerStatsUI/VBoxContainer
 
@@ -92,6 +93,9 @@ func update_ui():
 		hp_label.text = "HP: " + str(health) + "/" + str(max_health)
 	else:
 		print("Error: hp_label is null")
+
+	if crit_dmg_label:
+		crit_dmg_label.text = "Crit-Multi: " + str(CRIT_MULTIPLIER) + "X"
 
 	if crit_chance_label:
 		crit_chance_label.text = "Crit Chance: %.2f%%" % (CRIT_CHANCE * 100)  # Format with two decimal places
@@ -288,7 +292,7 @@ func level_up():
 	experience_needed = int(experience_needed * 1.1)  # Increase exp needed for next level by 10%
 	max_health += 20  # Increase max health
 	health = max_health  # Restore health to new max health
-	CRIT_CHANCE += 0.01  # Increase critical chance by 1%
+	CRIT_CHANCE += 0.001  # Increase critical chance by 1%
 	CRIT_MULTIPLIER += 0.1  # Increase critical multiplier by 0.1
 	ATTACK_DAMAGE += 1  # Increase attack damage by 1
 	show_level_up_text()
