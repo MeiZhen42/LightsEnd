@@ -374,6 +374,7 @@ region_rect = Rect2(805.092, 83.7021, 399.406, 157.83)
 libraries = {
 "": SubResource("AnimationLibrary_mhgoo")
 }
+speed_scale = 1.5
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="animation_finished" from="LevelUpText/LevelUpAnimation" to="." method="_on_LevelUpAnimation_animation_finished"]
