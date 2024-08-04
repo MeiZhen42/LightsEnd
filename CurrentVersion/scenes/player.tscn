@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b5yyaqd5fo0q0"]
+[gd_scene load_steps=31 format=3 uid="uid://b5yyaqd5fo0q0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_klxhr"]
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/inventory/inventory_ui.gd" id="4_8274g"]
 [ext_resource type="PackedScene" uid="uid://bosy4sdkjyh5v" path="res://scenes/sword_swing.tscn" id="5_dpsg2"]
 [ext_resource type="Script" path="res://scripts/PlayerStatsUI.gd" id="6_5mij3"]
+[ext_resource type="Texture2D" uid="uid://bjx68i3maak62" path="res://objects/sword.png" id="7_vgnlo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5lb7"]
 size = Vector2(12, 22)
@@ -171,6 +172,31 @@ _data = {
 "Show_Level_Up": SubResource("Animation_5wsx2")
 }
 
+[sub_resource type="Animation" id="Animation_e0x1p"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_c5jk2"]
+resource_name = "sword_swing"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.9667, -4.47222]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhgoo"]
+_data = {
+"RESET": SubResource("Animation_e0x1p"),
+"sword_swing": SubResource("Animation_c5jk2")
+}
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 process_mode = 3
 z_index = 1
@@ -272,6 +298,7 @@ value = 100.0
 show_percentage = false
 
 [node name="SwordSwing" parent="." instance=ExtResource("5_dpsg2")]
+visible = false
 position = Vector2(-0.5, 20)
 rotation = -1.5708
 scale = Vector2(3, 3)
@@ -331,5 +358,23 @@ layout_mode = 2
 layout_mode = 2
 text = "Damage:"
 
+[node name="SwordSwing2" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SwordSwing2"]
+z_index = 1
+position = Vector2(0, 7)
+rotation = -5.9667
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("7_vgnlo")
+centered = false
+flip_v = true
+region_rect = Rect2(805.092, 83.7021, 399.406, 157.83)
+
+[node name="SwordAnimation" type="AnimationPlayer" parent="SwordSwing2"]
+libraries = {
+"": SubResource("AnimationLibrary_mhgoo")
+}
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="animation_finished" from="LevelUpText/LevelUpAnimation" to="." method="_on_LevelUpAnimation_animation_finished"]
+[connection signal="animation_finished" from="SwordSwing2/SwordAnimation" to="." method="_on_sword_swing_animation_finished"]

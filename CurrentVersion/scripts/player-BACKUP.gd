@@ -20,21 +20,11 @@ var experience_needed = 100
 
 const LEVEL_UP_TEXT_SCENE_PATH = "res://scenes/LevelUpText.tscn"
 const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
-
-# Offsets for the sword relative to the player
 const sword_offsets = {
-	"right": Vector2(0, 0),
-	"left": Vector2(0, 0),
-	"down": Vector2(0, 0),
-	"up": Vector2(0, 0)
-}
-
-# Rotations for the sword relative to the player direction
-const sword_rotations = {
-	"right": -PI / 2, #0, #down
-	"left": PI / 2, #0, #PI, #up
-	"down": 0, # PI / 2, #left
-	"up": PI, #-PI / 2 #right
+	"right": Vector2(20, 0),
+	"left": Vector2(-20, 0),
+	"down": Vector2(0, 20),
+	"up": Vector2(0, -20)
 }
 
 @onready var interact_ui = $'interactUI'
@@ -44,9 +34,7 @@ const sword_rotations = {
 @onready var attack_area = $AttackArea  # Reference to AttackArea node
 @onready var attack_collision_shape = $AttackArea/CollisionShape2D  # Reference to the CollisionShape2D
 @onready var health_bar = $HealthBar  # Reference to HealthBar node
-@onready var sword_swing2 = $SwordSwing2  # Reference to the SwordSwing2 node
-@onready var sword_swing_sprite := $SwordSwing2/Sprite2D  # Reference to the Sprite2D in SwordSwing2
-@onready var sword_animation_player := $SwordSwing2/SwordAnimation  # Reference to the AnimationPlayer in SwordSwing2
+@onready var sword_swing_effect := $SwordSwing  # Adjust path to your sword swing effect node
 @onready var level_up_text = $LevelUpText/LevelUpLabel  # Reference to the LevelUpLabel
 @onready var level_up_animation_player = $LevelUpText/LevelUpAnimation  # Reference to the LevelUpAnimation
 @onready var level_label = $PlayerStatsUI/VBoxContainer/Level  # Adjust the path as necessary
@@ -54,7 +42,11 @@ const sword_rotations = {
 @onready var crit_chance_label = $PlayerStatsUI/VBoxContainer/Crit  # Assuming Label3 is for Crit Chance
 @onready var crit_dmg_label = $PlayerStatsUI/VBoxContainer/Crit_dmg  # Assuming Label3 is for Crit Chance
 @onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
-@onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
+@onready var player_stats_ui = $PlayerStatsUI # Adjust path if needed$PlayerStatsUI/VBoxContainer
+
+
+
+
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -84,12 +76,11 @@ func _ready():
 	else:
 		print("Attack area is null")
 	
-	if sword_swing2:
-		sword_swing2.visible = false  # Ensure the sword swing is hidden initially
-		if sword_animation_player:
-			sword_animation_player.stop()  # Ensure the animation is stopped initially
+	if sword_swing_effect:
+		sword_swing_effect.visible = false  # Ensure the effect is hidden initially
 
-	update_ui()
+		update_ui()
+		
 
 func update_ui():
 	# Check each label to ensure it's not null before setting text
@@ -230,7 +221,7 @@ func _input(event):
 		inventory_ui.visible = !inventory_ui.visible
 		get_tree().paused = !get_tree().paused
 
-	# Check for "ui_toggle_stats" action to toggle stats UI
+# Check for "ui_toggle_stats" action to toggle stats UI
 	if event.is_action_pressed("ui_toggle_stats"):
 		toggle_stats_ui()
 		
@@ -243,25 +234,26 @@ func attack():
 		attack_area.show()
 
 		# Update sword swing effect rotation and position
-		if sword_swing2:
-			sword_swing2.visible = true
-			sword_swing2.rotation = get_sword_rotation()
+		if sword_swing_effect:
+			sword_swing_effect.visible = true
+			sword_swing_effect.rotation = get_sword_rotation()
 
 			# Check if current_direction is a valid key in sword_offsets
 			if sword_offsets.has(current_direction):
-				sword_swing2.position = sword_offsets[current_direction]
+				sword_swing_effect.position = sword_offsets[current_direction]
 			else:
 				print("Error: current_direction is not a valid key in sword_offsets. Current direction:", current_direction)
 			
-			# Play sword swing animation
-			if sword_animation_player:
-				sword_animation_player.play("sword_swing")
+			# Uncomment if you use an AnimationPlayer for the sword swing effect
+			# sword_swing_effect.play("swing")
 		
-		# Hide the attack area after a delay
-		await get_tree().create_timer(0.5).timeout  # Adjust this value as needed
+		# Hide the attack area and sword swing effect after a longer delay
+		await get_tree().create_timer(0.5).timeout  # Increase this value as needed
 		attack_area.hide()
 		attack_collision_shape.disabled = true  # Disable the attack area collision
 		
+		if sword_swing_effect:
+			sword_swing_effect.visible = false  # Hide the sword swing effect
 		is_attacking = false  # Reset the attacking flag
 		print("Attack area hidden")
 
@@ -273,12 +265,7 @@ func attack():
 			deal_damage(ATTACK_DAMAGE)
 	else:
 		print("Error: AttackArea node is not initialized")
-
-func _on_sword_swing_animation_finished(anim_name):
-	if anim_name == "sword_swing":
-		if sword_swing2:
-			sword_swing2.visible = false  # Hide the sword swing after animation
-
+		
 func deal_damage(damage_amount: int):
 	# Optionally, you can add visual or sound effects for damage here
 	print("Dealing", damage_amount, "damage")
@@ -321,9 +308,15 @@ func _on_LevelUpAnimation_animation_finished(anim_name):
 		level_up_text.visible = false  # Hide the level-up text after animation
 
 func get_sword_rotation() -> float:
-	# Use predefined sword_rotations to get rotation based on direction
-	if sword_rotations.has(current_direction):
-		return sword_rotations[current_direction]
+	match current_direction:
+		"right":
+			return PI  #-PI / 2  # 90 degrees DOWN
+		"left":
+			return 0 #PI / 2  # -90 degrees UP
+		"down":
+			return -PI / 2  # 0 degrees LEFT
+		"up":
+			return PI / 2  # 180 degrees RIGHT
 	return 0
 
 func _on_attack_area_body_entered(body):
@@ -394,5 +387,4 @@ func display_damage_text(position: Vector2, damage_amount: int):
 			print("Error: Could not instantiate DamageText scene")
 	else:
 		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)
-
 
