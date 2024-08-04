@@ -37,18 +37,15 @@ const sword_offsets = {
 @onready var sword_swing_effect := $SwordSwing  # Adjust path to your sword swing effect node
 @onready var level_up_text = $LevelUpText/LevelUpLabel  # Reference to the LevelUpLabel
 @onready var level_up_animation_player = $LevelUpText/LevelUpAnimation  # Reference to the LevelUpAnimation
-#@onready var level_label = $VBoxContainer/Label  # Adjust the path as necessary
-#@onready var hp_label = $VBoxContainer/Label2  # Assuming Label2 is for HP
-#@onready var crit_chance_label = $VBoxContainer/Label3  # Assuming Label3 is for Crit Chance
-#@onready var damage_label = $VBoxContainer/Label4  # Assuming Label4 is for Damage
-@onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
-
-
-
 @onready var level_label = $PlayerStatsUI/VBoxContainer/Level  # Adjust the path as necessary
 @onready var hp_label = $PlayerStatsUI/VBoxContainer/HP  # Assuming Label2 is for HP
 @onready var crit_chance_label = $PlayerStatsUI/VBoxContainer/Crit  # Assuming Label3 is for Crit Chance
 @onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
+@onready var player_stats_ui = $PlayerStatsUI # Adjust path if needed$PlayerStatsUI/VBoxContainer
+
+
+
+
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -83,12 +80,6 @@ func _ready():
 
 		update_ui()
 		
-#func update_stats(level, health, max_health, crit_chance, attack_damage):
-	#level_label.text = "Level: " + str(level)
-	#hp_label.text = "HP: " + str(health) + "/" + str(max_health)
-	#crit_chance_label.text = "Crit Chance: %.2f%%" % (crit_chance * 100)  # Format with two decimal places
-	#damage_label.text = "Damage: " + str(attack_damage)
-	
 
 func update_ui():
 	# Check each label to ensure it's not null before setting text
@@ -111,6 +102,11 @@ func update_ui():
 		damage_label.text = "Damage: " + str(ATTACK_DAMAGE)
 	else:
 		print("Error: damage_label is null")
+
+func toggle_stats_ui():
+	# Toggle the visibility of the player stats UI
+	if player_stats_ui:
+		player_stats_ui.visible = not player_stats_ui.visible
 
 func _physics_process(_delta):
 	player_movement(_delta)
@@ -221,6 +217,10 @@ func _input(event):
 		inventory_ui.visible = !inventory_ui.visible
 		get_tree().paused = !get_tree().paused
 
+# Check for "ui_toggle_stats" action to toggle stats UI
+	if event.is_action_pressed("ui_toggle_stats"):
+		toggle_stats_ui()
+		
 func attack():
 	if attack_area:
 		print("Attack initiated")
