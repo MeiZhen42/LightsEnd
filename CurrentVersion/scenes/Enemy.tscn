@@ -69,7 +69,7 @@ shape = SubResource("RectangleShape2D_p3opb")
 [node name="RespawnTimer" type="Timer" parent="."]
 
 [node name="DamageText" parent="." instance=ExtResource("6_4lx6o")]
-position = Vector2(0, -36)
+position = Vector2(-1, 0)
 
 [connection signal="body_entered" from="vision" to="vision" method="_on_body_entered"]
 [connection signal="body_exited" from="vision" to="vision" method="_on_body_exited"]

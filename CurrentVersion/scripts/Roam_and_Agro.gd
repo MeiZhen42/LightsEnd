@@ -156,6 +156,7 @@ func take_damage(amount: int) -> void:
 
 	if health <= 0:
 		die()
+		
 
 func die():
 	print("NPC died")

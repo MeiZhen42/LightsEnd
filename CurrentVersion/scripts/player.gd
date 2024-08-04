@@ -288,7 +288,7 @@ func deal_damage(damage_amount: int):
 			print("Enemy detected in attack area, applying damage")
 			if body.has_method("take_damage"):
 				body.take_damage(damage_amount)
-				display_damage_text(body.global_position, damage_amount)
+				display_damage_text(body.global_position, damage_amount)  # Enemy damage text
 				gain_experience(10)  # Example XP gain
 			else:
 				print("Error: Enemy does not have take_damage method!")
@@ -345,9 +345,9 @@ func take_damage(amount):
 	# Implement health reduction logic
 	health -= amount
 	
-	# Display damage text above the player
-	display_damage_text(global_position, amount)
-
+	# Display damage text above the player with player-specific positioning
+	display_damage_text(global_position, amount, true)  # Pass true for the player
+	
 	if health <= 0:
 		die()  # Handle death
 
@@ -368,7 +368,7 @@ func die():
 		health_bar.value = health  # Reset health bar value
 	# Optionally, you could also reset other player state here, if needed
 
-func display_damage_text(position: Vector2, damage_amount: int):
+func display_damage_text(position: Vector2, damage_amount: int, is_player: bool = false):
 	# Load the DamageText scene
 	var damage_text_scene = load(DAMAGE_TEXT_SCENE_PATH)
 	if damage_text_scene:
@@ -377,7 +377,16 @@ func display_damage_text(position: Vector2, damage_amount: int):
 			var label = damage_text_instance.get_node("Label")  # Ensure your Label is named "Label"
 			if label:
 				label.text = str(damage_amount)
-				damage_text_instance.position = position - Vector2(0, 20)  # Offset position slightly above the player
+				
+				# Adjust the Y position offset based on whether it's the player or an enemy
+				var player_offset = 60  # Adjust this value for the player
+				var enemy_offset = 50   # Adjust this value for the enemy
+				
+				var position_offset = Vector2(0, enemy_offset)  # Default for enemy
+				if is_player:
+					position_offset = Vector2(0, player_offset)  # Offset for player
+				
+				damage_text_instance.position = position + position_offset
 				damage_text_instance.z_index = 1  # Ensure the damage text is rendered above other elements
 				get_tree().current_scene.add_child(damage_text_instance)
 				
@@ -397,6 +406,7 @@ func display_damage_text(position: Vector2, damage_amount: int):
 			print("Error: Could not instantiate DamageText scene")
 	else:
 		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)
+
 
 
 
