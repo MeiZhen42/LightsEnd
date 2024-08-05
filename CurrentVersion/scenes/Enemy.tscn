@@ -22,6 +22,8 @@ collision_mask = 271
 script = ExtResource("1_t3ai5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 scale = Vector2(0.121482, 0.122991)
 texture = ExtResource("2_s72h6")
 
@@ -66,8 +68,6 @@ script = ExtResource("5_75jhx")
 position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_p3opb")
 
-[node name="RespawnTimer" type="Timer" parent="."]
-
 [node name="DamageText" parent="." instance=ExtResource("6_4lx6o")]
 position = Vector2(-1, 0)
 
@@ -77,4 +77,3 @@ position = Vector2(-1, 0)
 [connection signal="player_exited" from="vision" to="." method="_on_agro_area_exited"]
 [connection signal="body_entered" from="AttackBox" to="AttackBox" method="_on_body_entered"]
 [connection signal="body_exited" from="AttackBox" to="AttackBox" method="_on_body_exited"]
-[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

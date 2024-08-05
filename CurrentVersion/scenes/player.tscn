@@ -1,11 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://b5yyaqd5fo0q0"]
+[gd_scene load_steps=31 format=3 uid="uid://b5yyaqd5fo0q0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_klxhr"]
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
 [ext_resource type="PackedScene" uid="uid://cn84nfyv5huew" path="res://scenes/DamageText.tscn" id="3_bwj7r"]
 [ext_resource type="PackedScene" uid="uid://dc0dk2olfwm6s" path="res://scenes/inventory_ui.tscn" id="3_f3n52"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_ui.gd" id="4_8274g"]
-[ext_resource type="PackedScene" uid="uid://bosy4sdkjyh5v" path="res://scenes/sword_swing.tscn" id="5_dpsg2"]
 [ext_resource type="Script" path="res://scripts/PlayerStatsUI.gd" id="6_5mij3"]
 [ext_resource type="Texture2D" uid="uid://bjx68i3maak62" path="res://objects/sword.png" id="7_vgnlo"]
 
@@ -300,12 +299,6 @@ rotation = -1.5708
 scale = Vector2(0.55039, 1.22835)
 value = 100.0
 show_percentage = false
-
-[node name="SwordSwing" parent="." instance=ExtResource("5_dpsg2")]
-visible = false
-position = Vector2(-0.5, 20)
-rotation = -1.5708
-scale = Vector2(3, 3)
 
 [node name="LevelUpText" type="Node2D" parent="."]
 

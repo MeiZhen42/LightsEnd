@@ -1,6 +1,5 @@
 [gd_scene load_steps=31 format=3 uid="uid://dd8cmqi714duv"]
 
-[ext_resource type="PackedScene" uid="uid://b5yyaqd5fo0q0" path="res://scenes/player.tscn" id="1_ckvtk"]
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
 [ext_resource type="Texture2D" uid="uid://bys54xyjil068" path="res://objects/Tree.png" id="2_rukh1"]
 [ext_resource type="Texture2D" uid="uid://buwms8ldiq7kh" path="res://objects/DewTree.png" id="3_38nko"]
@@ -17,10 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://b8ghyh582xwhd" path="res://objects/Gemstones.png" id="10_cjddp"]
 [ext_resource type="Texture2D" uid="uid://dr6fqprm5m7ia" path="res://objects/Tavern2.png" id="10_gtwls"]
 [ext_resource type="AudioStream" uid="uid://rq6jthda5qi7" path="res://audio/footsteps/Grass_1.wav" id="12_dhaad"]
+[ext_resource type="PackedScene" uid="uid://c7xbsw6vai2sa" path="res://scenes/Player_Spawn.tscn" id="13_ikg8m"]
 [ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="15_eouhm"]
 [ext_resource type="Script" path="res://scenes/loop.gd" id="18_mc8ml"]
 [ext_resource type="AudioStream" uid="uid://b151tv2g7l8qk" path="res://audio/Forest (Light's End Official Score).mp3" id="18_yguyn"]
-[ext_resource type="PackedScene" uid="uid://dwi36con8k2mh" path="res://scenes/Enemy.tscn" id="21_aqr7g"]
+[ext_resource type="PackedScene" uid="uid://bkvk1te2cqqra" path="res://scenes/Enemy_spawn.tscn" id="21_vlggq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]
 texture = ExtResource("1_tj65x")
@@ -186,13 +186,6 @@ item_name = "Gloomstones"
 item_texture = ExtResource("10_cjddp")
 item_effect = "None"
 
-[node name="player" parent="." instance=ExtResource("1_ckvtk")]
-position = Vector2(120, 215)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player"]
-position = Vector2(-120, -215)
-stream = ExtResource("12_dhaad")
-
 [node name="outsideTavernDoor" type="Area2D" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -228,6 +221,13 @@ polygon = PackedVector2Array(30, 146, 26, 139, 33, 117, 219, 117, 226, 137, 221,
 [node name="CollisionShape2D" type="CollisionShape2D" parent="outsideTavernDoor/StaticBody2D"]
 position = Vector2(127, 90.25)
 shape = SubResource("RectangleShape2D_kbj3a")
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("13_ikg8m")]
+position = Vector2(128, 174)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PlayerSpawn"]
+position = Vector2(-128, -174)
+stream = ExtResource("12_dhaad")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_464o2")]
 position = Vector2(192, 135)
@@ -317,23 +317,23 @@ volume_db = -10.0
 autoplay = true
 script = ExtResource("18_mc8ml")
 
-[node name="Enemy2" parent="." instance=ExtResource("21_aqr7g")]
-position = Vector2(-310, 220)
+[node name="EnemySpawn" parent="." instance=ExtResource("21_vlggq")]
+position = Vector2(-198, 213)
 
-[node name="Enemy3" parent="." instance=ExtResource("21_aqr7g")]
-position = Vector2(-315, 411)
+[node name="EnemySpawn2" parent="." instance=ExtResource("21_vlggq")]
+position = Vector2(-200, 48)
 
-[node name="Enemy4" parent="." instance=ExtResource("21_aqr7g")]
-position = Vector2(554, 446)
+[node name="EnemySpawn3" parent="." instance=ExtResource("21_vlggq")]
+position = Vector2(360, 2)
 
-[node name="Enemy5" parent="." instance=ExtResource("21_aqr7g")]
-position = Vector2(552, 238)
+[node name="EnemySpawn4" parent="." instance=ExtResource("21_vlggq")]
+position = Vector2(-190, 385)
 
-[node name="Enemy6" parent="." instance=ExtResource("21_aqr7g")]
-position = Vector2(552, 20)
+[node name="EnemySpawn5" parent="." instance=ExtResource("21_vlggq")]
+position = Vector2(376, 198)
 
-[node name="Enemy7" parent="." instance=ExtResource("21_aqr7g")]
-position = Vector2(-313, 20)
+[node name="EnemySpawn6" parent="." instance=ExtResource("21_vlggq")]
+position = Vector2(377, 356)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
