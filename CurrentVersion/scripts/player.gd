@@ -17,6 +17,8 @@ var is_attacking: bool = false  # Track whether the player is currently attackin
 var experience = 0
 var level = 1
 var experience_needed = 100
+var is_playing_footstep = false
+var should_play_footstep = false
 
 const LEVEL_UP_TEXT_SCENE_PATH = "res://scenes/LevelUpText.tscn"
 const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
@@ -55,6 +57,7 @@ const sword_rotations = {
 @onready var crit_dmg_label = $PlayerStatsUI/VBoxContainer/Crit_dmg  # Assuming Label3 is for Crit Chance
 @onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
 @onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
+#@onready var Footstep_Sounds = preload("res://scenes/Footstep_Sounds.tscn")
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -161,6 +164,10 @@ func _process(_delta):
 	else:
 		sanity_bar.hide()
 
+func _on_scene_changed():
+	get_tree().emit_signal("scene_changed", get_tree().current_scene.name)
+
+
 func player_movement(_delta):
 	var velocity = Vector2.ZERO
 	
@@ -183,12 +190,14 @@ func player_movement(_delta):
 	else:
 		play_animation(0)
 	
-	if velocity != Vector2.ZERO:
-		if footstep_player and not footstep_player.is_playing():
-			footstep_player.play()
-	else:
-		if footstep_player:
-			footstep_player.stop()
+	should_play_footstep = velocity != Vector2.ZERO
+	
+	if should_play_footstep and not is_playing_footstep:
+		FootstepSounds.footstep_grass()
+		is_playing_footstep = true
+	elif not should_play_footstep and is_playing_footstep:
+		FootstepSounds.stop_footstep_grass()
+		is_playing_footstep = false
 	
 	self.velocity = velocity
 	move_and_slide()

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dme6bh5btvqvi"]
+
+[ext_resource type="Script" path="res://scripts/Footstep_Sounds.gd" id="1_dhprq"]
+[ext_resource type="AudioStream" uid="uid://rq6jthda5qi7" path="res://audio/footsteps/Grass_1.wav" id="2_0e2rv"]
+[ext_resource type="AudioStream" uid="uid://psa12l2wcngb" path="res://audio/footsteps/Wood_1.wav" id="3_7xjjv"]
+
+[node name="FootstepSounds" type="Node2D"]
+script = ExtResource("1_dhprq")
+
+[node name="footsteps_grass" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_0e2rv")
+
+[node name="footsteps_wood" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7xjjv")

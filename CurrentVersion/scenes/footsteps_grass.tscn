@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpuhltjf0k04i"]
+
+[ext_resource type="AudioStream" uid="uid://rq6jthda5qi7" path="res://audio/footsteps/Grass_1.wav" id="1_mevb4"]
+
+[node name="FootstepsGrass" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_mevb4")

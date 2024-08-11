@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 [autoload]
 
 Global="*res://scripts/global.gd"
+FootstepSounds="*res://scenes/Footstep_Sounds.tscn"
 
 [display]
 
