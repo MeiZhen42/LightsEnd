@@ -11,9 +11,6 @@ var max_health = 100  # Maximum health
 var current_direction = "none"
 var safe: bool = true
 var is_attacking: bool = false  # Track whether the player is currently attacking
-#var starting_position: Vector2  # Store the player's starting position
-#var x_offset: float = 125.0  # X offset for respawn
-#var y_offset: float = 180.0  # Y offset for respawn
 var experience = 0
 var level = 1
 var experience_needed = 100
@@ -41,7 +38,6 @@ const sword_rotations = {
 
 @onready var interact_ui = $'interactUI'
 @onready var inventory_ui = $'inventoryUI'
-@onready var footstep_player := $AudioStreamPlayer2D
 @onready var sanity_bar = $SanityBar
 @onready var attack_area = $AttackArea  # Reference to AttackArea node
 @onready var attack_collision_shape = $AttackArea/CollisionShape2D  # Reference to the CollisionShape2D
@@ -57,7 +53,7 @@ const sword_rotations = {
 @onready var crit_dmg_label = $PlayerStatsUI/VBoxContainer/Crit_dmg  # Assuming Label3 is for Crit Chance
 @onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
 @onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
-#@onready var Footstep_Sounds = preload("res://scenes/Footstep_Sounds.tscn")
+
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -75,10 +71,6 @@ func _ready():
 	else:
 		print("Error: HealthBar node not found or incorrect path.")
 	
-	if footstep_player:
-		print("Footstep player initialized successfully")
-	else:
-		print("Footstep player is null")
 	
 	if attack_area:
 		print("Attack area initialized successfully")
@@ -165,6 +157,8 @@ func _process(_delta):
 		sanity_bar.hide()
 
 func _on_scene_changed():
+	var current_scene_name = get_tree().current_scene.name
+	print("Current scene:", current_scene_name)
 	get_tree().emit_signal("scene_changed", get_tree().current_scene.name)
 
 
@@ -193,10 +187,10 @@ func player_movement(_delta):
 	should_play_footstep = velocity != Vector2.ZERO
 	
 	if should_play_footstep and not is_playing_footstep:
-		FootstepSounds.footstep_grass()
+		FootstepSounds.footstep()
 		is_playing_footstep = true
 	elif not should_play_footstep and is_playing_footstep:
-		FootstepSounds.stop_footstep_grass()
+		FootstepSounds.stop_footstep()
 		is_playing_footstep = false
 	
 	self.velocity = velocity
@@ -372,11 +366,6 @@ func die():
 	# Handle death (e.g., animation, game over, respawn)
 	print("Player died!")
 	queue_free()
-	#position = starting_position + Vector2(x_offset, y_offset)  # Respawn at the adjusted starting position
-	#health = max_health  # Reset health
-	#if health_bar:
-	#	health_bar.value = health  # Reset health bar value
-	# Optionally, you could also reset other player state here, if needed
 
 func display_damage_text(position: Vector2, damage_amount: int, is_player: bool = false):
 	# Load the DamageText scene
