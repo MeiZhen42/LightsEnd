@@ -11,8 +11,9 @@ var is_playing_footstep = false
 func _ready():
 	current_scene = get_tree().current_scene.name 
 	print("Initial scene:", current_scene) 
-
+	
 func _on_scene_changed(new_scene_name):
+	#print("Received scene_changed signal in FootstepSounds") 
 	current_scene = new_scene_name
 	print("Current scene changed to:", current_scene) 
 
