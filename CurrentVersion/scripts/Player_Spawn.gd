@@ -11,3 +11,5 @@ func _process(_delta):
 		get_parent().add_child(new_obj)
 		player = new_obj
 
+		# Manually emit the scene_changed signal after instantiating the player
+		get_tree().emit_signal("scene_changed", get_tree().current_scene.name)

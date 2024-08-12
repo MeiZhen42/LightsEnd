@@ -17,4 +17,4 @@ func _process(_delta):
 			if get_tree().current_scene.name == "outside":
 				get_tree().change_scene_to_file("res://scenes/empty_inside.tscn")
 			#if get_tree().current_scene.name == "inside":
-				#get_tree().change_scene_to_file("res://scenes/outside.tscn")
+			#	get_tree().change_scene_to_file("res://scenes/outside.tscn")

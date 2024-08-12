@@ -23,7 +23,7 @@ var respawn_timer: float = 0.0  # Timer for respawn delay
 @onready var health_bar := $HealthBar  # Adjust path to your ProgressBar node
 @onready var sprite := $Sprite2D  # Reference to the Sprite node
 @onready var attack_box := $AttackBox
-@onready var collision_shape := $Body  # Reference to the CollisionShape2D
+#@onready var collision_shape := $Body  # Reference to the CollisionShape2D
 @onready var Attack_Box := $AttackBox/CollisionShape2D  # Reference to the CollisionShape2D
 
 func _ready():

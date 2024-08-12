@@ -159,9 +159,14 @@ func _process(_delta):
 func _on_scene_changed():
 	var current_scene_name = get_tree().current_scene.name
 	print("Current scene:", current_scene_name)
-	get_tree().emit_signal("scene_changed", get_tree().current_scene.name)
+	FootstepSounds.emit_signal("scene_changed", current_scene_name) 
 
+func change_scene(new_scene_path):
+	print("Got Scene Signal")
+	get_tree().change_scene(new_scene_path)
+	_on_scene_changed()  # Call _on_scene_changed directly after the scene change
 
+	
 func player_movement(_delta):
 	var velocity = Vector2.ZERO
 	
@@ -195,6 +200,8 @@ func player_movement(_delta):
 	
 	self.velocity = velocity
 	move_and_slide()
+
+
 
 func play_animation(movement):
 	var direction = current_direction
