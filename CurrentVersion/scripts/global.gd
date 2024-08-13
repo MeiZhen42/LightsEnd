@@ -1,4 +1,4 @@
-extends Node
+class_name global extends Node
 
 @onready var inventory_slot_scene = preload("res://scenes/inventory_slot.tscn")
 

@@ -4,24 +4,24 @@
 
 [node name="inventory_ui" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -51.5
-offset_top = -30.0
-offset_right = 51.5
-offset_bottom = 30.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6xf4a")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.189
+anchor_top = 0.218
+anchor_right = 0.78
+anchor_bottom = 0.684
+offset_left = 0.271988
+offset_top = -0.264008
+offset_right = 0.439941
+offset_bottom = -0.231995
 grow_horizontal = 2
 grow_vertical = 2
 columns = 3

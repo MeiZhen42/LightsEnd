@@ -8,7 +8,7 @@ class_name inventory_slot extends Control
 @onready var item_type = $details_panel/itemType
 @onready var item_effect = $details_panel/itemEffect
 @onready var usage_panel = $usage_panel
-var merge_panel: ColorRect = null 
+#var merge_panel: ColorRect = null 
 #@onready var text = $text_ui/fixedText
 
 #@onready var node_path = "res://scenes/randomizedNPCs.tscn"
@@ -65,11 +65,11 @@ func set_item(new_item):
 	item = new_item
 	icon.texture = new_item["texture"] 
 	
-	var scaleFrom: float = max(icon.texture.get_height(), icon.texture.get_width())
-	print(str("from ", scaleFrom))
-	if(scaleFrom > 40):
-		icon.scale = Vector2(40/scaleFrom, 40/scaleFrom)
-		print(str("from ", scaleFrom, " by ", icon.scale, "(", 40/scaleFrom, ")"))
+	#var scaleFrom: float = max(icon.texture.get_height(), icon.texture.get_width())
+	#print(str("from ", scaleFrom))
+	#if(scaleFrom > 40):
+		#icon.scale = Vector2(40/scaleFrom, 40/scaleFrom)
+		#print(str("from ", scaleFrom, " by ", icon.scale, "(", 40/scaleFrom, ")"))
 	quantity_label.text = str(item["quantity"])
 	item_name.text = str(item["name"])
 	item_type.text = str(item["type"])

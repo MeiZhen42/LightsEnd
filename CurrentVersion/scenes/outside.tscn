@@ -1,22 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://dd8cmqi714duv"]
+[gd_scene load_steps=19 format=3 uid="uid://dd8cmqi714duv"]
 
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_tj65x"]
 [ext_resource type="Texture2D" uid="uid://bys54xyjil068" path="res://objects/Tree.png" id="2_rukh1"]
 [ext_resource type="Texture2D" uid="uid://buwms8ldiq7kh" path="res://objects/DewTree.png" id="3_38nko"]
 [ext_resource type="Script" path="res://scripts/outsideTavernDoor.gd" id="3_sinxf"]
-[ext_resource type="PackedScene" uid="uid://n41rtabx74cu" path="res://scenes/inventory_item.tscn" id="4_0fmy7"]
-[ext_resource type="Texture2D" uid="uid://dqgxfgi50g2c7" path="res://objects/HollowTree.png" id="4_wjcso"]
-[ext_resource type="Texture2D" uid="uid://twfv52xxnj4c" path="res://objects/MurkberryBush.png" id="5_1xbe2"]
 [ext_resource type="Script" path="res://scripts/safe_zone.gd" id="5_1y3bp"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="6_464o2"]
-[ext_resource type="Texture2D" uid="uid://c6r3emp3xrmxs" path="res://objects/NoxLily.png" id="6_tmrdv"]
-[ext_resource type="Texture2D" uid="uid://hh6xtwo2lqmn" path="res://objects/WeepingDandelion.png" id="7_4jfri"]
-[ext_resource type="Script" path="res://scripts/forest_edge.gd" id="8_4dvod"]
-[ext_resource type="PackedScene" uid="uid://du85h46y6o6e3" path="res://scenes/tree.tscn" id="8_shme5"]
-[ext_resource type="Texture2D" uid="uid://b8ghyh582xwhd" path="res://objects/Gemstones.png" id="10_cjddp"]
 [ext_resource type="Texture2D" uid="uid://dr6fqprm5m7ia" path="res://objects/Tavern2.png" id="10_gtwls"]
 [ext_resource type="PackedScene" uid="uid://c7xbsw6vai2sa" path="res://scenes/Player_Spawn.tscn" id="13_ikg8m"]
-[ext_resource type="Texture2D" uid="uid://gw88ixbun1xd" path="res://objects/DarkTree.png" id="15_eouhm"]
 [ext_resource type="Script" path="res://scenes/loop.gd" id="18_mc8ml"]
 [ext_resource type="AudioStream" uid="uid://b151tv2g7l8qk" path="res://audio/Forest (Light's End Official Score).mp3" id="18_yguyn"]
 [ext_resource type="PackedScene" uid="uid://bkvk1te2cqqra" path="res://scenes/Enemy_spawn.tscn" id="21_vlggq"]
@@ -107,16 +98,10 @@ sources/3 = SubResource("TileSetAtlasSource_o8fto")
 sources/4 = SubResource("TileSetAtlasSource_k2mif")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4ui6"]
-radius = 298.429
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_djyoe"]
-size = Vector2(338.462, 92.3078)
+radius = 3705.58
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_td24q"]
-size = Vector2(41, 13.5603)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbj3a"]
-size = Vector2(182, 30.5)
+size = Vector2(334.5, 113.78)
 
 [node name="outside" type="TileMap"]
 y_sort_enabled = true
@@ -135,176 +120,34 @@ script = ExtResource("5_1y3bp")
 position = Vector2(9, 37)
 shape = SubResource("CircleShape2D_p4ui6")
 
-[node name="Node2D2" type="Node2D" parent="."]
-
-[node name="inventory_item" parent="Node2D2" instance=ExtResource("4_0fmy7")]
-position = Vector2(582, 560)
-scale = Vector2(0.100102, 0.0999034)
-item_type = "Ingredient"
-item_name = "Silent Bog Dew"
-item_texture = ExtResource("3_38nko")
-item_effect = "None"
-
-[node name="inventory_item2" parent="Node2D2" instance=ExtResource("4_0fmy7")]
-position = Vector2(367, 412)
-scale = Vector2(0.1, 0.1)
-item_type = "Ingredient"
-item_name = "Hollow Tree Resin"
-item_texture = ExtResource("4_wjcso")
-item_effect = "None"
-
-[node name="inventory_item3" parent="Node2D2" instance=ExtResource("4_0fmy7")]
-position = Vector2(618, 98)
-scale = Vector2(0.1, 0.1)
-item_type = "Ingredient"
-item_name = "Murkberries"
-item_texture = ExtResource("5_1xbe2")
-item_effect = "None"
-
-[node name="inventory_item4" parent="Node2D2" instance=ExtResource("4_0fmy7")]
-position = Vector2(-105, 168)
-scale = Vector2(0.1, 0.1)
-item_type = "Ingredient"
-item_name = "Nox Lily Thorns"
-item_texture = ExtResource("6_tmrdv")
-item_effect = "None"
-
-[node name="inventory_item5" parent="Node2D2" instance=ExtResource("4_0fmy7")]
-position = Vector2(-213, 738)
-scale = Vector2(0.1, 0.1)
-item_type = "Ingredient"
-item_name = "Weeping Dandelion Milk"
-item_texture = ExtResource("7_4jfri")
-item_effect = "None"
-
-[node name="inventory_item6" parent="Node2D2" instance=ExtResource("4_0fmy7")]
-position = Vector2(-92, 433)
-scale = Vector2(0.100102, 0.0999034)
-item_type = "Ingredient"
-item_name = "Gloomstones"
-item_texture = ExtResource("10_cjddp")
-item_effect = "None"
-
 [node name="outsideTavernDoor" type="Area2D" parent="."]
 z_index = 1
-y_sort_enabled = true
 collision_mask = 2
 script = ExtResource("3_sinxf")
 
-[node name="Chest01" type="Sprite2D" parent="outsideTavernDoor"]
-position = Vector2(127, 100)
-scale = Vector2(0.13, 0.13)
+[node name="tavern" type="Sprite2D" parent="outsideTavernDoor"]
+position = Vector2(8, -174)
 texture = ExtResource("10_gtwls")
 
-[node name="Area2D" type="Area2D" parent="outsideTavernDoor/Chest01"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="outsideTavernDoor/Chest01/Area2D"]
-position = Vector2(-7.69232, 369.231)
-shape = SubResource("RectangleShape2D_djyoe")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="outsideTavernDoor"]
-visible = false
-position = Vector2(126, 148)
+position = Vector2(10, 180)
 shape = SubResource("RectangleShape2D_td24q")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="outsideTavernDoor"]
+position = Vector2(662, 254)
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="outsideTavernDoor/StaticBody2D"]
-z_index = 1
 y_sort_enabled = true
-position = Vector2(1.7875, -3.00002)
+position = Vector2(-1436, -270)
 scale = Vector2(0.99375, 1)
-polygon = PackedVector2Array(30, 146, 26, 139, 33, 117, 219, 117, 226, 137, 221, 146)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="outsideTavernDoor/StaticBody2D"]
-position = Vector2(127, 90.25)
-shape = SubResource("RectangleShape2D_kbj3a")
+polygon = PackedVector2Array(30, 146, 12.0755, -112, 1.00629, -212, 1559.75, -238, 1561.76, -134, 1553.71, 134)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("13_ikg8m")]
-position = Vector2(128, 174)
+position = Vector2(2, 585)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_464o2")]
-position = Vector2(192, 135)
-
-[node name="Node2D" type="Node2D" parent="."]
-y_sort_enabled = true
-script = ExtResource("8_4dvod")
-
-[node name="tree2" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-153, 267)
-
-[node name="tree3" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(325, 290)
-
-[node name="tree4" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(264, 495)
-
-[node name="tree5" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-224, 503)
-
-[node name="tree6" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-96, 62)
-
-[node name="tree7" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(160, 380)
-
-[node name="tree8" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(271, 82)
-
-[node name="tree9" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(152, 211)
-
-[node name="tree10" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-73, 364)
-
-[node name="tree1" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-414, 56)
-texture = ExtResource("15_eouhm")
-
-[node name="tree11" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-397, 46)
-texture = ExtResource("15_eouhm")
-
-[node name="tree12" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-143, -145)
-texture = ExtResource("15_eouhm")
-
-[node name="tree13" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-439, 212)
-texture = ExtResource("15_eouhm")
-
-[node name="tree14" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-374, 349)
-texture = ExtResource("15_eouhm")
-
-[node name="tree15" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(447, 576)
-texture = ExtResource("15_eouhm")
-
-[node name="tree16" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(602, 286)
-texture = ExtResource("15_eouhm")
-
-[node name="tree17" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(231, -134)
-texture = ExtResource("15_eouhm")
-
-[node name="tree18" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-343, -77)
-texture = ExtResource("15_eouhm")
-
-[node name="tree19" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(-189, -13)
-texture = ExtResource("15_eouhm")
-
-[node name="tree20" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(80.9999, 527)
-texture = ExtResource("15_eouhm")
-
-[node name="tree21" parent="Node2D" instance=ExtResource("8_shme5")]
-position = Vector2(539, 401)
-texture = ExtResource("15_eouhm")
+position = Vector2(499, 24)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_yguyn")
