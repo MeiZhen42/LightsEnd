@@ -7,5 +7,3 @@ res://scenes/inventory_item.tscn
 res://scenes/inventory_slot.tscn
 res://scenes/inventory_ui.tscn
 res://scenes/fixed_npc_text.tscn
-res://scripts/player.gd
-res://scripts/outsideTavernDoor.gd
