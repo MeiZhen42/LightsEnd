@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var SPEED = 100.0
+var SPEED = 800.0
 var ATTACK_RADIUS = 1.0
 var ATTACK_DAMAGE = 9
 

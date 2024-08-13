@@ -26,7 +26,7 @@ layer_0/tile_data = PackedInt32Array(524285, 3670016, 6, 524286, 3670016, 6, 524
 [node name="PlayerSpawn" parent="." instance=ExtResource("2_o3046")]
 
 [node name="Area2D" type="Area2D" parent="."]
-z_index = 1
+collision_mask = 2
 script = ExtResource("2_q2rum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -35,7 +35,7 @@ position = Vector2(104, 118)
 shape = SubResource("RectangleShape2D_54mtf")
 
 [node name="fixedNpc" parent="." instance=ExtResource("7_2y7hm")]
-position = Vector2(163, 40)
+position = Vector2(215, -310)
 
 [node name="frontDoor" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(50, 20)

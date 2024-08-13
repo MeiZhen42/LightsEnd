@@ -1,0 +1,9 @@
+res://scenes/outside.tscn
+res://scenes/empty_inside.tscn
+res://scenes/inside.tscn
+res://scenes/Player_Spawn.tscn
+res://scenes/player.tscn
+res://scenes/inventory_item.tscn
+res://scenes/inventory_slot.tscn
+res://scenes/inventory_ui.tscn
+res://scenes/fixed_npc_text.tscn

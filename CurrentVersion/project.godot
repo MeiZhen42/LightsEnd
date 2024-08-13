@@ -21,7 +21,7 @@ FootstepSounds="*res://scenes/Footstep_Sounds.tscn"
 
 [display]
 
-window/stretch/scale=2.0
+window/stretch/scale=0.5
 
 [dotnet]
 

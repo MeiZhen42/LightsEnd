@@ -12,14 +12,13 @@ size = Vector2(140, 109)
 
 [node name="fixedNpc" type="CharacterBody2D" groups=["barkeep"]]
 z_index = 1
-y_sort_enabled = true
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_n3w67")
 
 [node name="BarOwnerOverworld" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -2)
-scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_lsbev")
 
 [node name="Area2D" type="Area2D" parent="BarOwnerOverworld"]
@@ -35,8 +34,7 @@ shape = SubResource("RectangleShape2D_11gqd")
 [node name="StaticBody2D" type="StaticBody2D" parent="BarOwnerOverworld/Area2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BarOwnerOverworld/Area2D/StaticBody2D"]
-y_sort_enabled = true
-position = Vector2(-5.42101e-20, 148)
+position = Vector2(-5.42101e-20, 48)
 shape = SubResource("RectangleShape2D_aho24")
 
 [node name="fixedNpcText" type="CanvasLayer" parent="."]

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bjx68i3maak62" path="res://objects/sword.png" id="7_vgnlo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5lb7"]
-size = Vector2(12, 22)
+size = Vector2(106, 92)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ta46"]
 atlas = ExtResource("2_c8qqv")
@@ -208,14 +208,13 @@ script = ExtResource("1_klxhr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 3
 visibility_layer = 3
-position = Vector2(0, 3)
+position = Vector2(2, 48)
 shape = SubResource("RectangleShape2D_c5lb7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
-scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_g2kw6")
-animation = &"front_walk"
+animation = &"back_idle"
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["player"]]
 scale = Vector2(1, 1.00616)

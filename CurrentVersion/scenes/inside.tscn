@@ -69,10 +69,10 @@ color = Color(0.554656, 0.189245, 0, 1)
 [node name="background" type="ColorRect" parent="."]
 z_index = -1
 custom_minimum_size = Vector2(1000, 1000)
-offset_left = -614.0
-offset_top = -502.0
-offset_right = 825.0
-offset_bottom = 498.0
+offset_left = -2147.0
+offset_top = -1499.0
+offset_right = 2171.0
+offset_bottom = 1478.0
 color = Color(0, 0, 0, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

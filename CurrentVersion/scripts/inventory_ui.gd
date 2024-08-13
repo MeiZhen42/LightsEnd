@@ -1,7 +1,7 @@
 class_name inventory_ui extends Control
 
 @onready var grid_container = $GridContainer
-@onready var merge_panel = $merge_panel
+#@onready var merge_panel = $merge_panel
 
 func _ready():
 	Global.inventory_updated.connect(_on_inventory_updated) # _ indicates connector signal
@@ -26,6 +26,6 @@ func clear_grid_container():
 		child.queue_free()
 
 
-func _on_cancel_merging_pressed():
-	InventoryManager.cancel_merge()
-	$merge_panel.hide()
+#func _on_cancel_merging_pressed():
+	#InventoryManager.cancel_merge()
+	#$merge_panel.hide()
