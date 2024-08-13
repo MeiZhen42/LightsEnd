@@ -12,4 +12,8 @@ func _process(_delta):
 		player = new_obj
 
 		# Manually emit the scene_changed signal after instantiating the player
-		get_tree().emit_signal("scene_changed", get_tree().current_scene.name)
+	#FootstepSounds.custom_signal.connect(Callable(_method_to_call))
+
+	# Manually emit the scene_changed signal after instantiating the player
+		FootstepSounds.emit_signal("scene_changed", get_tree().current_scene.name)
+		#print("Emitted scene_changed signal from respawn scene") 
