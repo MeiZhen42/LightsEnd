@@ -155,23 +155,26 @@ volume_db = -10.0
 autoplay = true
 script = ExtResource("18_mc8ml")
 
-[node name="EnemySpawn" parent="." instance=ExtResource("21_vlggq")]
-position = Vector2(-198, 213)
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(129, 252)
 
-[node name="EnemySpawn2" parent="." instance=ExtResource("21_vlggq")]
-position = Vector2(-200, 48)
+[node name="EnemySpawn4" parent="Node2D" instance=ExtResource("21_vlggq")]
+position = Vector2(-319, 133)
 
-[node name="EnemySpawn3" parent="." instance=ExtResource("21_vlggq")]
-position = Vector2(360, 2)
+[node name="EnemySpawn" parent="Node2D" instance=ExtResource("21_vlggq")]
+position = Vector2(-327, -39)
 
-[node name="EnemySpawn4" parent="." instance=ExtResource("21_vlggq")]
-position = Vector2(-190, 385)
+[node name="EnemySpawn2" parent="Node2D" instance=ExtResource("21_vlggq")]
+position = Vector2(-329, -204)
 
-[node name="EnemySpawn5" parent="." instance=ExtResource("21_vlggq")]
-position = Vector2(376, 198)
+[node name="EnemySpawn3" parent="Node2D" instance=ExtResource("21_vlggq")]
+position = Vector2(231, -250)
 
-[node name="EnemySpawn6" parent="." instance=ExtResource("21_vlggq")]
-position = Vector2(377, 356)
+[node name="EnemySpawn5" parent="Node2D" instance=ExtResource("21_vlggq")]
+position = Vector2(247, -54)
+
+[node name="EnemySpawn6" parent="Node2D" instance=ExtResource("21_vlggq")]
+position = Vector2(248, 104)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

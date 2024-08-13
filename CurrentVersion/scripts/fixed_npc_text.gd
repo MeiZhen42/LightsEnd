@@ -18,7 +18,7 @@ func _physics_process(_delta):
 				Mind helping me out and 
 				gather ingredients?
 				It will help stave off
-				the darkness. I'm meetcha inside.")
+				the darkness. I'll meetcha inside.")
 		if get_tree().current_scene.name == "empty_inside":
 			$fixedNpcText.type("Are you ready to start?")
 		if get_tree().current_scene.name == "inside":
