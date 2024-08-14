@@ -150,7 +150,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r12a2"]
-size = Vector2(12, 33)
+size = Vector2(94, 129.5)
 
 [sub_resource type="Animation" id="Animation_5wsx2"]
 resource_name = "Show_Level_Up"
@@ -224,7 +224,7 @@ collision_layer = 256
 collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0, 17.5)
+position = Vector2(3, 113.25)
 shape = SubResource("RectangleShape2D_r12a2")
 
 [node name="DamageText" parent="." instance=ExtResource("3_bwj7r")]
@@ -281,21 +281,22 @@ visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -25.0
-offset_top = -20.0
-offset_right = 25.0
-offset_bottom = -16.0
+offset_left = -45.0
+offset_top = -111.0
+offset_right = 5.0
+offset_bottom = -107.0
 grow_horizontal = 2
+scale = Vector2(2.16, 2.28)
 value = 100.0
 show_percentage = false
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 11.0
-offset_top = 13.0
-offset_right = 51.0
-offset_bottom = 17.0
+offset_left = 89.0
+offset_top = 5.00001
+offset_right = 129.0
+offset_bottom = 9.00001
 rotation = -1.5708
-scale = Vector2(0.55039, 1.22835)
+scale = Vector2(2.15039, 2.42835)
 value = 100.0
 show_percentage = false
 
@@ -360,7 +361,7 @@ text = "Damage:"
 z_index = 1
 position = Vector2(0, 7)
 rotation = -5.9667
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("7_vgnlo")
 centered = false
 flip_v = true
