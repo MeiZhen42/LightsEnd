@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1723592022
+::res://::1723593413
 export_presets.cfg::TextFile::-1::1723490587::0::1::::<><>::
 fixedNpcText.gd::GDScript::-1::1723490073::0::1::::<>CanvasLayer<>::
 fixed_npc_text.gd::GDScript::-1::1723490073::0::1::::<>Node2D<>::
@@ -22,47 +22,24 @@ Weeping Dandelion Milk_1.wav::AudioStreamWAV::1381980468172990353::1723490073::1
 Brewing.wav::AudioStreamWAV::3907365448468524726::1723490587::1723490630::1::::<><>::
 Potion Grab_1.wav::AudioStreamWAV::7898615839052081051::1723490587::1723490629::1::::<><>::
 Potion Mix Finished_1.wav::AudioStreamWAV::3702251920655972402::1723490587::1723490629::1::::<><>::
-::res://characters/::1723591650
+::res://characters/::1723592688
 Bar_Owner_Overworld.png::CompressedTexture2D::702850254673145396::1723490073::1723490446::1::::<><>::
 mainPlayer.png::CompressedTexture2D::2976059258064864023::1723490073::1723490446::1::::<><>::
 MinionGoober.png::CompressedTexture2D::1418222650328159042::1723490073::1723490446::1::::<><>::
-player.png::CompressedTexture2D::1889213395907759447::1723490073::1723490446::1::::<><>::
-README.txt::TextFile::-1::1723490073::0::1::::<><>::
-skeleton.png::CompressedTexture2D::9096373733711966868::1723490073::1723490446::1::::<><>::
-skeleton_swordless.png::CompressedTexture2D::2952696070773904166::1723490073::1723490446::1::::<><>::
-slime.png::CompressedTexture2D::3351412724119037000::1723490073::1723490446::1::::<><>::
 SpriteSheet.png::CompressedTexture2D::5676891436201415190::1723490073::1723490446::1::::<><>::
-::res://objects/::1723591651
-chest_01.png::CompressedTexture2D::5209542225825195331::1723490073::1723490446::1::::<><>::
-chest_02.png::CompressedTexture2D::1681224444088208204::1723490073::1723490446::1::::<><>::
+::res://objects/::1723592656
 DarkTree.png::CompressedTexture2D::468612420167670913::1723490073::1723490446::1::::<><>::
 DewTree.png::CompressedTexture2D::3836376365657615995::1723490073::1723490446::1::::<><>::
 Gemstones.png::CompressedTexture2D::4715507083819574353::1723490073::1723490446::1::::<><>::
 Ground_Tileset.png::CompressedTexture2D::7327945407542439609::1723490073::1723490446::1::::<><>::
 HollowTree.png::CompressedTexture2D::8296075564510607568::1723490073::1723490446::1::::<><>::
-icon1.png::CompressedTexture2D::6667015170520610284::1723490073::1723490446::1::::<><>::
-icon2.png::CompressedTexture2D::7798210526766196436::1723490073::1723490446::1::::<><>::
-inventory-background.png::CompressedTexture2D::3145251876359316756::1723490073::1723490446::1::::<><>::
-inventory-slot.png::CompressedTexture2D::6361382296634462552::1723490073::1723490446::1::::<><>::
 InventorySquare2.png::CompressedTexture2D::2819353887462344827::1723579212::1723584262::1::::<><>::
 InventorySquare.png::CompressedTexture2D::353645741581988042::1723579226::1723584262::1::::<><>::
 MurkberryBush.png::CompressedTexture2D::1379347044834261880::1723490073::1723490446::1::::<><>::
 NoxLily.png::CompressedTexture2D::6985497815713181192::1723490073::1723490446::1::::<><>::
-objects.png::CompressedTexture2D::6368524142481459445::1723490073::1723490446::1::::<><>::
-rock_in_water-sheet.png::CompressedTexture2D::5392950670673771523::1723490073::1723490446::1::::<><>::
-rock_in_water_01-sheet.png::CompressedTexture2D::2512037621324039797::1723490073::1723490446::1::::<><>::
-rock_in_water_01.png::CompressedTexture2D::2826174642679964593::1723490073::1723490446::1::::<><>::
-rock_in_water_02.png::CompressedTexture2D::1531842115351075033::1723490073::1723490446::1::::<><>::
-rock_in_water_03.png::CompressedTexture2D::10744918465761346::1723490073::1723490446::1::::<><>::
-rock_in_water_04.png::CompressedTexture2D::2851361641977072169::1723490073::1723490446::1::::<><>::
-rock_in_water_05.png::CompressedTexture2D::6865142712224495004::1723490073::1723490446::1::::<><>::
-rock_in_water_06.png::CompressedTexture2D::6702558586771575835::1723490073::1723490446::1::::<><>::
 Shadow.png::CompressedTexture2D::8589786425522713216::1723490073::1723490446::1::::<><>::
-slime-icon.png::CompressedTexture2D::1345933640476056272::1723490073::1723490446::1::::<><>::
-survivalgame-trees.png::CompressedTexture2D::4578017358014341819::1723490073::1723490446::1::::<><>::
 sword.png::CompressedTexture2D::3067542586739951841::1723490587::1723490629::1::::<><>::
 Tavern2.png::CompressedTexture2D::8416801075665768720::1723490073::1723490446::1::::<><>::
-Tavern.png::CompressedTexture2D::5307365911570359949::1723490073::1723490446::1::::<><>::
 Tree.png::CompressedTexture2D::4109986273917621275::1723490073::1723490446::1::::<><>::
 WeepingDandelion.png::CompressedTexture2D::507696882382196269::1723490073::1723490446::1::::<><>::
 ::res://objects/consumables/::1723591651
@@ -79,34 +56,34 @@ YellowCirclePotion.png::CompressedTexture2D::7405260319031193082::1723490073::17
 YellowCirclePotionAccessible.png::CompressedTexture2D::8460673138861481040::1723490073::1723490446::1::::<><>::
 YellowSquarePotion.png::CompressedTexture2D::6989450109795016530::1723490073::1723490446::1::::<><>::
 YellowTrianglePotion.png::CompressedTexture2D::5123539335806500728::1723490073::1723490446::1::::<><>::
-::res://scenes/::1723591709
+::res://scenes/::1723593392
 areasounds.gd::GDScript::-1::1723490073::0::1::::<>Area2D<>::
 DamageText.tscn::PackedScene::5755205109362175910::1723490587::0::1::::<><>::
 dark_tree.tscn::PackedScene::4218771408828333105::1723490073::0::1::::<><>::uid://gw88ixbun1xd
 dew_tree.tscn::PackedScene::1943473959337488586::1723490073::0::1::::<><>::uid://buwms8ldiq7kh
-empty_inside.tscn::PackedScene::4595298408276273149::1723591708::0::1::::<><>::uid://dcnygp6bhmq7j::::res://objects/Ground_Tileset.png<>uid://c7xbsw6vai2sa::::res://scenes/Player_Spawn.tscn<>res://scripts/insideTavernDoor.gd<>uid://b8d6dkrieo3ww::::res://audio/Tavern (Light's End Official Score).mp3<>uid://c0mexgvswyv5p::::res://scenes/fixed_npc_text.tscn<>res://scenes/loop.gd
+empty_inside.tscn::PackedScene::4595298408276273149::1723593392::0::1::::<><>::uid://dcnygp6bhmq7j::::res://objects/Ground_Tileset.png<>uid://c7xbsw6vai2sa::::res://scenes/Player_Spawn.tscn<>res://scripts/insideTavernDoor.gd<>uid://b8d6dkrieo3ww::::res://audio/Tavern (Light's End Official Score).mp3<>uid://c0mexgvswyv5p::::res://scenes/fixed_npc_text.tscn<>res://scenes/loop.gd
 Enemy.tscn::PackedScene::8721687195866152971::1723490587::0::1::::<><>::res://scripts/Roam_and_Agro.gd<>uid://ug86jlvkhv6y
 Enemy_spawn.tscn::PackedScene::3132315658830819586::1723490587::0::1::::<><>::res://scripts/Enemy_spawn.gd
-fixed_npc_text.tscn::PackedScene::6552619281045806719::1723591709::0::1::::<><>::res://scripts/fixed_npc_text.gd<>res://scripts/fixedNpcText.gd<>uid://kap3ug6ux0lc::::res://characters/Bar_Owner_Overworld.png
+fixed_npc_text.tscn::PackedScene::6552619281045806719::1723593392::0::1::::<><>::res://scripts/fixed_npc_text.gd<>res://scripts/fixedNpcText.gd<>uid://kap3ug6ux0lc::::res://characters/Bar_Owner_Overworld.png
 footsteps_grass.tscn::PackedScene::3772413218286249284::1723490587::0::1::::<><>::uid://rq6jthda5qi7
 Footstep_Sounds.tscn::PackedScene::8011670112400850058::1723589049::0::1::::<><>::res://scripts/Footstep_Sounds.gd<>uid://rq6jthda5qi7::::res://audio/footsteps/Grass_1.wav<>uid://psa12l2wcngb::::res://audio/footsteps/Wood_1.wav
-inside.tscn::PackedScene::8099277144403651621::1723591708::0::1::::<><>::uid://dcnygp6bhmq7j::::res://objects/Ground_Tileset.png<>uid://b5yyaqd5fo0q0::::res://scenes/player.tscn<>res://scripts/insideTavernDoor.gd<>uid://psa12l2wcngb::::res://audio/footsteps/Wood_1.wav<>uid://c6e2iw1166lkf::::res://scenes/randomizedNPCs.tscn<>uid://b8d6dkrieo3ww::::res://audio/Tavern (Light's End Official Score).mp3<>uid://c0mexgvswyv5p::::res://scenes/fixed_npc_text.tscn
-inventory_item.tscn::PackedScene::973931920491581020::1723591709::0::1::::<><>::res://scripts/inventory_item.gd
-inventory_slot.tscn::PackedScene::5342313662130372460::1723591709::0::1::::<><>::res://scripts/inventory_slot.gd<>uid://bgfyl1xkoswm2::::res://objects/InventorySquare2.png<>res://scripts/fixedNpcText.gd<>uid://fbkq1yhfmkxe::::res://objects/InventorySquare.png
-inventory_ui.tscn::PackedScene::7351450631389277376::1723591709::0::1::::<><>::res://scripts/inventory_ui.gd
+inside.tscn::PackedScene::8099277144403651621::1723593392::0::1::::<><>::uid://dcnygp6bhmq7j::::res://objects/Ground_Tileset.png<>uid://b5yyaqd5fo0q0::::res://scenes/player.tscn<>res://scripts/insideTavernDoor.gd<>uid://psa12l2wcngb::::res://audio/footsteps/Wood_1.wav<>uid://c6e2iw1166lkf::::res://scenes/randomizedNPCs.tscn<>uid://b8d6dkrieo3ww::::res://audio/Tavern (Light's End Official Score).mp3<>uid://c0mexgvswyv5p::::res://scenes/fixed_npc_text.tscn
+inventory_item.tscn::PackedScene::973931920491581020::1723593392::0::1::::<><>::res://scripts/inventory_item.gd
+inventory_slot.tscn::PackedScene::5342313662130372460::1723593392::0::1::::<><>::res://scripts/inventory_slot.gd<>uid://bgfyl1xkoswm2::::res://objects/InventorySquare2.png<>res://scripts/fixedNpcText.gd<>uid://fbkq1yhfmkxe::::res://objects/InventorySquare.png
+inventory_ui.tscn::PackedScene::7351450631389277376::1723593392::0::1::::<><>::res://scripts/inventory_ui.gd
 LevelUpText.tscn::PackedScene::4436100209877468872::1723490587::0::1::::<><>::
 loop.gd::GDScript::-1::1723490073::0::1::::<>AudioStreamPlayer<>::
-outside.tscn::PackedScene::7438096765611624529::1723591708::0::1::::<><>::uid://dcnygp6bhmq7j::::res://objects/Ground_Tileset.png<>uid://bys54xyjil068::::res://objects/Tree.png<>uid://buwms8ldiq7kh::::res://objects/DewTree.png<>res://scripts/outsideTavernDoor.gd<>res://scripts/safe_zone.gd<>uid://c0mexgvswyv5p::::res://scenes/fixed_npc_text.tscn<>uid://dr6fqprm5m7ia::::res://objects/Tavern2.png<>uid://c7xbsw6vai2sa::::res://scenes/Player_Spawn.tscn<>res://scenes/loop.gd<>uid://b151tv2g7l8qk::::res://audio/Forest (Light's End Official Score).mp3<>uid://bkvk1te2cqqra::::res://scenes/Enemy_spawn.tscn
-player.tscn::PackedScene::4543089113136242013::1723591709::0::1::::<><>::res://scripts/player.gd<>uid://binvi46ene0s6::::res://characters/mainPlayer.png<>uid://cn84nfyv5huew::::res://scenes/DamageText.tscn<>uid://dc0dk2olfwm6s::::res://scenes/inventory_ui.tscn<>res://scripts/inventory/inventory_ui.gd<>res://scripts/PlayerStatsUI.gd<>uid://bjx68i3maak62::::res://objects/sword.png
+outside.tscn::PackedScene::7438096765611624529::1723593392::0::1::::<><>::uid://dcnygp6bhmq7j::::res://objects/Ground_Tileset.png<>uid://bys54xyjil068::::res://objects/Tree.png<>uid://buwms8ldiq7kh::::res://objects/DewTree.png<>res://scripts/outsideTavernDoor.gd<>res://scripts/safe_zone.gd<>uid://c0mexgvswyv5p::::res://scenes/fixed_npc_text.tscn<>uid://dr6fqprm5m7ia::::res://objects/Tavern2.png<>uid://c7xbsw6vai2sa::::res://scenes/Player_Spawn.tscn<>res://scenes/loop.gd<>uid://b151tv2g7l8qk::::res://audio/Forest (Light's End Official Score).mp3<>uid://bkvk1te2cqqra::::res://scenes/Enemy_spawn.tscn
+player.tscn::PackedScene::4543089113136242013::1723593392::0::1::::<><>::res://scripts/player.gd<>uid://binvi46ene0s6::::res://characters/mainPlayer.png<>uid://cn84nfyv5huew::::res://scenes/DamageText.tscn<>uid://dc0dk2olfwm6s::::res://scenes/inventory_ui.tscn<>res://scripts/inventory/inventory_ui.gd<>res://scripts/PlayerStatsUI.gd<>uid://bjx68i3maak62::::res://objects/sword.png
 playerNpcRange.gd::GDScript::-1::1723490073::0::1::::<>Node2D<>::
 PlayerStatsUI.tscn::PackedScene::6966496607903697495::1723490587::0::1::::<><>::res://scripts/PlayerStatsUI.gd
-Player_Spawn.tscn::PackedScene::7066459117786798064::1723591709::0::1::::<><>::res://scripts/Player_Spawn.gd
+Player_Spawn.tscn::PackedScene::7066459117786798064::1723593392::0::1::::<><>::res://scripts/Player_Spawn.gd
 randomizedNPCs.tscn::PackedScene::6958607873239975725::1723490073::0::1::::<><>::res://scripts/playerNpcRange.gd<>uid://cm46tp4rg36wo
 RoamArea.tscn::PackedScene::1512934763013146597::1723490587::0::1::::<><>::res://scripts/RoamArea.gd
 sword_swing.tscn::PackedScene::1888918743417865017::1723490587::0::1::::<><>::uid://bjx68i3maak62
 sword_swing_animation.tscn::PackedScene::2542001524144622153::1723490587::0::1::::<><>::uid://bjx68i3maak62
 tree.tscn::PackedScene::8632998972262805568::1723490073::0::1::::<><>::uid://bys54xyjil068
-::res://scripts/::1723591877
+::res://scripts/::1723592365
 agro.gd::GDScript::-1::1723490587::0::1::::<>Area2D<>::
 AttackBox.gd::GDScript::-1::1723490587::0::1::::<>Area2D<>::
 attacks.gd::GDScript::-1::1723490587::0::1::::<>Node2D<>::
@@ -114,7 +91,7 @@ Enemy-roam-backup.gd::GDScript::-1::1723490587::0::1::::<>CharacterBody2D<>::
 Enemy.gd::GDScript::-1::1723490587::0::1::::<>CharacterBody2D<>::
 Enemy_spawn.gd::GDScript::-1::1723490587::0::1::::<>Node2D<>::
 fixedNpcText.gd::GDScript::-1::1723490073::0::1::::<>CanvasLayer<>::
-fixed_npc_text.gd::GDScript::-1::1723490073::0::1::::<>Node2D<>::
+fixed_npc_text.gd::GDScript::-1::1723592365::0::1::::<>Node2D<>::
 Footstep_Sounds.gd::GDScript::-1::1723591877::0::1::::<>Node2D<>::
 forest_edge.gd::GDScript::-1::1723490587::0::1::::<>Node2D<>::
 global.gd::GDScript::-1::1723491034::0::1::::global<>Node<>::

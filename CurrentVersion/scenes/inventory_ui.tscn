@@ -9,12 +9,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.5
-offset_top = -30.0
-offset_right = 51.5
-offset_bottom = 30.0
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_6xf4a")
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -24,6 +26,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 150
+theme_override_constants/v_separation = 144
 columns = 3
 
 [node name="merge_panel" type="ColorRect" parent="."]
