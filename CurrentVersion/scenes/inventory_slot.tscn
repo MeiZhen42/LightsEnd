@@ -14,21 +14,22 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 43.0
-offset_top = 24.0
-offset_right = -1058.0
-offset_bottom = -574.0
+offset_top = 21.0
+offset_right = -923.0
+offset_bottom = -448.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 script = ExtResource("1_o3gkr")
 
 [node name="outerBorder" type="Sprite2D" parent="."]
-position = Vector2(26, 26)
-scale = Vector2(0.155, 0.15)
+position = Vector2(92, 88.9032)
+scale = Vector2(0.48, 0.464516)
 texture = ExtResource("2_0v0vs")
 
 [node name="innerBorder" type="Sprite2D" parent="."]
-position = Vector2(26.5, 26)
-scale = Vector2(0.1325, 0.135)
+position = Vector2(92, 89)
+scale = Vector2(0.435, 0.425)
 texture = ExtResource("3_hwi30")
 
 [node name="itemIcon" type="Sprite2D" parent="innerBorder"]
@@ -52,20 +53,20 @@ horizontal_alignment = 2
 z_index = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 51.0
-offset_bottom = 51.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 175.0
+offset_bottom = 173.0
 
 [node name="details_panel" type="ColorRect" parent="."]
 visible = false
 z_index = 2
 y_sort_enabled = true
 layout_mode = 0
-offset_left = 49.0
-offset_top = -11.0
-offset_right = 187.0
-offset_bottom = 54.0
+offset_left = 138.0
+offset_top = -1.0
+offset_right = 521.0
+offset_bottom = 180.0
 color = Color(0.894922, 0.894922, 0.894922, 1)
 
 [node name="itemName" type="Label" parent="details_panel"]
@@ -73,6 +74,7 @@ layout_mode = 1
 offset_right = 47.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
 text = "Name"
 
 [node name="itemType" type="Label" parent="details_panel"]
@@ -85,6 +87,7 @@ offset_right = 40.0
 offset_bottom = 11.5
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
 text = "Type"
 
 [node name="itemEffect" type="Label" parent="details_panel"]
@@ -96,6 +99,7 @@ offset_top = -23.0
 offset_right = 47.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
 text = "Effect"
 
 [node name="usage_panel" type="ColorRect" parent="."]
@@ -103,10 +107,10 @@ visible = false
 z_index = 2
 y_sort_enabled = true
 layout_mode = 0
-offset_left = -43.0
-offset_top = -11.0
-offset_right = 19.0
-offset_bottom = 95.0
+offset_left = -161.0
+offset_top = -46.0
+offset_right = 8.0
+offset_bottom = 243.0
 
 [node name="useButton" type="Button" parent="usage_panel"]
 custom_minimum_size = Vector2(10, 10)
@@ -119,6 +123,7 @@ offset_top = 2.0
 offset_right = 24.0
 offset_bottom = 33.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
 text = "Use"
 
 [node name="dropButton" type="Button" parent="usage_panel"]
@@ -135,6 +140,7 @@ offset_right = 23.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 36
 text = "Drop"
 
 [node name="mergeButton" type="Button" parent="usage_panel"]
@@ -151,6 +157,7 @@ offset_right = 29.0
 offset_bottom = -2.99998
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 36
 text = "Merge"
 
 [node name="text_ui" type="CanvasLayer" parent="."]
