@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const ROAM_SPEED = 30.0
-const AGRO_SPEED = 95.0
+const AGRO_SPEED = 700.0
 const TARGET_REACH_THRESHOLD = 1800.0
 const TARGET_CHANGE_INTERVAL = 4.0  # Time in seconds to wait before changing the target
 const MAX_HEALTH = 150.0

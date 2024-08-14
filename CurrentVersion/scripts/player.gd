@@ -137,8 +137,6 @@ func _physics_process(_delta):
 	# Check for attack input
 	if Input.is_action_just_pressed("attack"):
 		attack()
-<<<<<<< HEAD
-=======
 		
 
 func detect_surface():
@@ -183,7 +181,6 @@ func detect_surface():
 				#FootstepSounds.set_current_surface("wood")
 		#else:
 			#print("Player is on an empty cell") 
->>>>>>> a4d7d682bf9902b39694861963915cbbee8f8b50
 
 func _process(_delta):
 	# Adjust sanity
