@@ -8,6 +8,7 @@ class_name inventory_slot extends Control
 @onready var item_type = $details_panel/itemType
 @onready var item_effect = $details_panel/itemEffect
 @onready var usage_panel = $usage_panel
+@onready var itemButton = $itemButton
 #var merge_panel: ColorRect = null 
 #@onready var text = $text_ui/fixedText
 
@@ -23,12 +24,12 @@ var item = null
 func _on_drop_button_pressed():
 	if item != null:
 		var drop_position = Global.player_node.global_position
-		var drop_offset = Vector2(25, 0)
+		var drop_offset = Vector2(450, 0)
 		drop_offset = drop_offset.rotated(Global.player_node.rotation)
 		Global.drop_item(item, drop_position + drop_offset)
 		Global.remove_item(item["type"], item["name"])
 		usage_panel.visible = false
-		InventoryManager.cancel_merge()
+		#InventoryManager.cancel_merge()
 
 
 func _on_item_button_mouse_entered():
@@ -50,10 +51,13 @@ func _on_merge_button_pressed():
 func _on_item_button_pressed():
 	if item != null:
 		usage_panel.visible = !usage_panel.visible
+		itemButton.disabled = true
+		
 
 
 func _on_item_button_mouse_exited():
 	details_panel.visible = false
+	itemButton.disabled = false
 
 
 func set_empty():
@@ -82,7 +86,7 @@ func set_item(new_item):
 func _on_use_button_pressed():
 	usage_panel.visible = false
 	if item != null and item["effect"] != "":
-		InventoryManager.cancel_merge()
+		#InventoryManager.cancel_merge()
 		#print("test01")
 		# change all lines with Global to pulling from playerNpcRange.gd
 		if Global.player_node:
