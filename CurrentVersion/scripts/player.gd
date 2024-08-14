@@ -16,7 +16,15 @@ var level = 1
 var experience_needed = 100
 var is_playing_footstep = false
 var should_play_footstep = false
-var groun_layer = 0
+var ground_layer = 0
+
+
+
+
+var grass_atlas_coords = [
+	Vector2i(0, 0), 
+	Vector2i(0, 1),  # Add more coordinates as needed
+]
 
 const LEVEL_UP_TEXT_SCENE_PATH = "res://scenes/LevelUpText.tscn"
 const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
@@ -54,7 +62,7 @@ const sword_rotations = {
 @onready var crit_dmg_label = $PlayerStatsUI/VBoxContainer/Crit_dmg  # Assuming Label3 is for Crit Chance
 @onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
 @onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
-@onready var tile_map  = $TileMap
+@onready var tile_map  = null
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -139,27 +147,38 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("attack"):
 		attack()
 		
+func change_scene(new_scene_path):
+	get_tree().change_scene(new_scene_path)
+	get_tree().emit_signal("scene_changed", new_scene_path.get_file().get_basename())
 
 func detect_surface():
-	#var tile_maps = get_tree().get_nodes_in_group("tilemap")
-	#print("Number of TileMaps found:", tile_maps.size()) 
+	var tile_maps = get_tree().get_nodes_in_group("tilemap")
+	print("Number of TileMaps found:", tile_maps.size()) 
 
-	#if tile_maps.size() > 0:
-		#var tile_map = tile_maps[0] 
-		var player_cell_pos = tile_map.to_local(global_position).floor()
-		print("Player Cell Position:", player_cell_pos) 
-
-		var source_id = 0
+	if tile_maps.size() > 0:
+		var tile_map = tile_maps[0] 
+		print("TileMap Found:", tile_map.name)  # Print the TileMap's name
 		
-		var atlas_coord = Vector2i()
-		var tile_data = tile_map.get_cell_tile_data(0, player_cell_pos) 
-		if tile_data:
-			var terrain_type = tile_data.get_custom_data("terrain_type") 
-			if terrain_type:
-				print("Detected Terrain Type:", terrain_type)  # Debug: Print the detected terrain type
-				FootstepSounds.set_current_surface(terrain_type)
+		var tolerance = 0.1  # Adjust this value as needed
+		print("Player Global Position:", global_position)  # Print global position
+		var player_cell_pos = tile_map.to_local(global_position + Vector2(tolerance, tolerance)).floor()
+		print("Player Cell Position (after to_local):", player_cell_pos)  # Print cell position 
+
+		var cell = tile_map.get_cell_source_id(0, player_cell_pos) 
+		print("Cell ID:", cell) 
+
+		if cell != -1: 
+			var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
+			print("Current Tile Atlas Coords:", atlas_coords) 
+			if atlas_coords == Vector2i(0, 0):
+				print("Walking on Grass")
+				FootstepSounds.set_current_surface("grass")
+			elif atlas_coords == Vector2i(50, 0):
+				print("Walking on Wood")
+				FootstepSounds.set_current_surface("wood")
 		else:
 			print("Player is on an empty cell") 
+
 
 
 #func detect_surface():
@@ -187,6 +206,7 @@ func detect_surface():
 			#print("Player is on an empty cell") 
 
 func _process(_delta):
+	detect_surface()
 	# Adjust sanity
 	if safe:
 		sanity_bar.value += sanity_regain * _delta
