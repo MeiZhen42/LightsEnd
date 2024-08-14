@@ -16,6 +16,7 @@ var level = 1
 var experience_needed = 100
 var is_playing_footstep = false
 var should_play_footstep = false
+var groun_layer = 0
 
 const LEVEL_UP_TEXT_SCENE_PATH = "res://scenes/LevelUpText.tscn"
 const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
@@ -53,7 +54,7 @@ const sword_rotations = {
 @onready var crit_dmg_label = $PlayerStatsUI/VBoxContainer/Crit_dmg  # Assuming Label3 is for Crit Chance
 @onready var damage_label = $PlayerStatsUI/VBoxContainer/Damage  # Assuming Label4 is for Damage
 @onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
-
+@onready var tile_map  = $TileMap
 
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
@@ -140,14 +141,17 @@ func _physics_process(_delta):
 		
 
 func detect_surface():
-	var tile_maps = get_tree().get_nodes_in_group("tilemap")
-	print("Number of TileMaps found:", tile_maps.size()) 
+	#var tile_maps = get_tree().get_nodes_in_group("tilemap")
+	#print("Number of TileMaps found:", tile_maps.size()) 
 
-	if tile_maps.size() > 0:
-		var tile_map = tile_maps[0] 
+	#if tile_maps.size() > 0:
+		#var tile_map = tile_maps[0] 
 		var player_cell_pos = tile_map.to_local(global_position).floor()
 		print("Player Cell Position:", player_cell_pos) 
 
+		var source_id = 0
+		
+		var atlas_coord = Vector2i()
 		var tile_data = tile_map.get_cell_tile_data(0, player_cell_pos) 
 		if tile_data:
 			var terrain_type = tile_data.get_custom_data("terrain_type") 
@@ -203,8 +207,27 @@ func _process(_delta):
 	
 func player_movement(_delta):
 	var velocity = Vector2.ZERO
-	
-	if Input.is_action_pressed("ui_right"):
+
+	# Check for diagonal movement first
+	if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
+		current_direction = "up_right"
+		play_animation(1) 
+		velocity = Vector2(SPEED, -SPEED).normalized() * SPEED 
+	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
+		current_direction = "up_left"
+		play_animation(1) 
+		velocity = Vector2(-SPEED, -SPEED).normalized() * SPEED
+	elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
+		current_direction = "down_right"
+		play_animation(1) 
+		velocity = Vector2(SPEED, SPEED).normalized() * SPEED
+	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_down"):
+		current_direction = "down_left"
+		play_animation(1) 
+		velocity = Vector2(-SPEED, SPEED).normalized() * SPEED
+
+	# Then check for cardinal directions (only if no diagonal movement)
+	elif Input.is_action_pressed("ui_right"):
 		current_direction = "right"
 		play_animation(1)
 		velocity.x = SPEED
