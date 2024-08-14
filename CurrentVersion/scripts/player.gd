@@ -137,6 +137,53 @@ func _physics_process(_delta):
 	# Check for attack input
 	if Input.is_action_just_pressed("attack"):
 		attack()
+<<<<<<< HEAD
+=======
+		
+
+func detect_surface():
+	var tile_maps = get_tree().get_nodes_in_group("tilemap")
+	print("Number of TileMaps found:", tile_maps.size()) 
+
+	if tile_maps.size() > 0:
+		var tile_map = tile_maps[0] 
+		var player_cell_pos = tile_map.to_local(global_position).floor()
+		print("Player Cell Position:", player_cell_pos) 
+
+		var tile_data = tile_map.get_cell_tile_data(0, player_cell_pos) 
+		if tile_data:
+			var terrain_type = tile_data.get_custom_data("terrain_type") 
+			if terrain_type:
+				print("Detected Terrain Type:", terrain_type)  # Debug: Print the detected terrain type
+				FootstepSounds.set_current_surface(terrain_type)
+		else:
+			print("Player is on an empty cell") 
+
+
+#func detect_surface():
+	#var tile_maps = get_tree().get_nodes_in_group("tilemap")
+	#print("Number of TileMaps found:", tile_maps.size()) 
+#
+	#if tile_maps.size() > 0:
+		#var tile_map = tile_maps[0] 
+		#var player_cell_pos = tile_map.to_local(global_position).floor()
+		#print("Player Cell Position:", player_cell_pos) 
+#
+		#var cell = tile_map.get_cell_source_id(0, player_cell_pos) 
+		#print("Cell ID:", cell) 
+#
+		#if cell != -1: 
+			#var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
+			#print("Current Tile Atlas Coords:", atlas_coords) 
+			#if atlas_coords == Vector2i(0, 0):
+				#print("Walking on Grass")
+				#FootstepSounds.set_current_surface("grass")
+			#elif atlas_coords == Vector2i(50, 0):
+				#print("Walking on Wood")
+				#FootstepSounds.set_current_surface("wood")
+		#else:
+			#print("Player is on an empty cell") 
+>>>>>>> a4d7d682bf9902b39694861963915cbbee8f8b50
 
 func _process(_delta):
 	# Adjust sanity
