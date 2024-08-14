@@ -139,6 +139,7 @@ func _physics_process(_delta):
 		attack()
 
 func _process(_delta):
+	detect_surface()
 	# Adjust sanity
 	if safe:
 		sanity_bar.value += sanity_regain * _delta
@@ -157,6 +158,32 @@ func _process(_delta):
 		sanity_bar.hide()
 
 	
+func detect_surface():
+	var tile_maps = get_tree().get_nodes_in_group("tilemap")
+	print("Number of TileMaps found:", tile_maps.size()) 
+
+	if tile_maps.size() > 0:
+		var tile_map = tile_maps[0] 
+		var player_cell_pos = tile_map.to_local(global_position).floor()
+		print("Player Cell Position:", player_cell_pos) 
+
+		var cell = tile_map.get_cell_source_id(0, player_cell_pos) 
+		print("Cell ID:", cell) 
+
+		if cell != -1: 
+			var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
+			print("Current Tile Atlas Coords:", atlas_coords) 
+			if atlas_coords == Vector2i(0, 0):
+				print("Walking on Grass")
+				FootstepSounds.set_current_surface("grass")
+			elif atlas_coords == Vector2i(50, 0):
+				print("Walking on Wood")
+				FootstepSounds.set_current_surface("wood")
+		else:
+			print("Player is on an empty cell") 
+
+ 
+
 func player_movement(_delta):
 	var velocity = Vector2.ZERO
 	
