@@ -1,4 +1,5 @@
 res://scenes/outside.tscn
+res://scripts/Enemy_spawn.gd
 res://scenes/empty_inside.tscn
 res://scenes/inside.tscn
 res://scenes/Player_Spawn.tscn
@@ -7,5 +8,6 @@ res://scenes/inventory_item.tscn
 res://scenes/inventory_slot.tscn
 res://scenes/inventory_ui.tscn
 res://scenes/fixed_npc_text.tscn
-res://scripts/inventory_slot.gd
-res://scripts/global.gd
+res://scripts/Footstep_Sounds.gd
+res://scripts/player.gd
+res://scenes/Footstep_Sounds.tscn
