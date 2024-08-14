@@ -118,7 +118,6 @@ func toggle_stats_ui():
 
 func _physics_process(_delta):
 	player_movement(_delta)
-	#detect_surface()
 	
 	if attack_area:
 		# Set the attack area position relative to the player
@@ -138,6 +137,8 @@ func _physics_process(_delta):
 	# Check for attack input
 	if Input.is_action_just_pressed("attack"):
 		attack()
+<<<<<<< HEAD
+=======
 		
 
 func detect_surface():
@@ -182,9 +183,9 @@ func detect_surface():
 				#FootstepSounds.set_current_surface("wood")
 		#else:
 			#print("Player is on an empty cell") 
+>>>>>>> a4d7d682bf9902b39694861963915cbbee8f8b50
 
 func _process(_delta):
-	detect_surface()
 	# Adjust sanity
 	if safe:
 		sanity_bar.value += sanity_regain * _delta
@@ -203,20 +204,6 @@ func _process(_delta):
 		sanity_bar.hide()
 
 	
-
-
-
- 
-
-#func _on_area_entered(area):
-	#if area.is_in_group("surface_grass"):
-		#print("walking on grass")
-		#FootstepSounds.set_current_surface("grass")
-	#if area.is_in_group("surface_wood"):
-		#print("walking on wood")
-		#FootstepSounds.set_current_surface("wood")
-
-
 func player_movement(_delta):
 	var velocity = Vector2.ZERO
 	
@@ -239,7 +226,6 @@ func player_movement(_delta):
 	else:
 		play_animation(0)
 	
-	#detect_surface()
 	should_play_footstep = velocity != Vector2.ZERO
 	
 	if should_play_footstep and not is_playing_footstep:
