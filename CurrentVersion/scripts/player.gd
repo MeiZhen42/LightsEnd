@@ -18,8 +18,28 @@ var is_playing_footstep = false
 var should_play_footstep = false
 var ground_layer = 0
 
-
-
+# Dictionary mapping atlas coordinates to surface types
+var surface_map = {
+	Vector2i(0, 0): "grass",
+	Vector2i(1, 0): "grass",
+	Vector2i(2, 0): "grass",
+	Vector2i(0, 1): "grass",
+	Vector2i(1, 1): "grass",
+	Vector2i(2, 1): "grass",
+	Vector2i(0, 2): "grass",
+	Vector2i(1, 2): "grass",
+	Vector2i(2, 2): "grass",
+	
+	Vector2i(6, 0): "wood",
+	Vector2i(7, 0): "wood",
+	Vector2i(8, 0): "wood",
+	Vector2i(6, 1): "wood",
+	Vector2i(7, 1): "wood",
+	Vector2i(8, 1): "wood",
+	Vector2i(6, 2): "wood",
+	Vector2i(7, 2): "wood",
+	Vector2i(8, 2): "wood"
+}
 
 var grass_atlas_coords = [
 	Vector2i(0, 0), 
@@ -157,27 +177,56 @@ func detect_surface():
 
 	if tile_maps.size() > 0:
 		var tile_map = tile_maps[0] 
-		print("TileMap Found:", tile_map.name)  # Print the TileMap's name
-		
-		var tolerance = 0.1  # Adjust this value as needed
-		print("Player Global Position:", global_position)  # Print global position
-		var player_cell_pos = tile_map.to_local(global_position + Vector2(tolerance, tolerance)).floor()
-		print("Player Cell Position (after to_local):", player_cell_pos)  # Print cell position 
+		print("TileMap Found:", tile_map.name)
 
-		var cell = tile_map.get_cell_source_id(0, player_cell_pos) 
-		print("Cell ID:", cell) 
+		var player_cell_pos = tile_map.local_to_map(global_position)
+		print("Player Cell Position (after local_to_map):", player_cell_pos)
+
+		var cell = tile_map.get_cell_source_id(0, player_cell_pos)
+		print("Cell ID:", cell)
 
 		if cell != -1: 
 			var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
-			print("Current Tile Atlas Coords:", atlas_coords) 
-			if atlas_coords == Vector2i(0, 0):
-				print("Walking on Grass")
-				FootstepSounds.set_current_surface("grass")
-			elif atlas_coords == Vector2i(50, 0):
-				print("Walking on Wood")
-				FootstepSounds.set_current_surface("wood")
+			print("Current Tile Atlas Coords:", atlas_coords)
+			
+			# Check if atlas_coords exist in surface_map dictionary
+			if atlas_coords in surface_map:
+				var surface_type = surface_map[atlas_coords]
+				print("Walking on", surface_type)
+				FootstepSounds.set_current_surface(surface_type)
+			else:
+				print("Unknown surface at this atlas coordinate")
 		else:
-			print("Player is on an empty cell") 
+			print("Player is on an empty cell")
+
+
+#func detect_surface():
+	#var tile_maps = get_tree().get_nodes_in_group("tilemap")
+	#print("Number of TileMaps found:", tile_maps.size()) 
+#
+	#if tile_maps.size() > 0:
+		#var tile_map = tile_maps[0] 
+		#print("TileMap Found:", tile_map.name)  # Print the TileMap's name
+		#
+		#var tolerance = 0.1  # Adjust this value as needed
+		#print("Player Global Position:", global_position)  # Print global position
+		#var player_cell_pos = tile_map.to_local(global_position + Vector2(tolerance, tolerance)).floor()
+		#print("Player Cell Position (after to_local):", player_cell_pos)  # Print cell position 
+#
+		#var cell = tile_map.get_cell_source_id(0, player_cell_pos) 
+		#print("Cell ID:", cell) 
+#
+		#if cell != -1: 
+			#var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
+			#print("Current Tile Atlas Coords:", atlas_coords) 
+			#if atlas_coords == Vector2i(0, 0):
+				#print("Walking on Grass")
+				#FootstepSounds.set_current_surface("grass")
+			#elif atlas_coords == Vector2i(50, 0):
+				#print("Walking on Wood")
+				#FootstepSounds.set_current_surface("wood")
+		#else:
+			#print("Player is on an empty cell") 
 
 
 
@@ -265,16 +314,16 @@ func player_movement(_delta):
 		velocity.y = -SPEED
 	else:
 		play_animation(0)
-	
-	should_play_footstep = velocity != Vector2.ZERO
-	
+
+	should_play_footstep = velocity != Vector2.ZERO  # Update the flag here, after all movement logic
+
 	if should_play_footstep and not is_playing_footstep:
 		FootstepSounds.footstep()
 		is_playing_footstep = true
 	elif not should_play_footstep and is_playing_footstep:
 		FootstepSounds.stop_footstep()
 		is_playing_footstep = false
-	
+
 	self.velocity = velocity
 	move_and_slide()
 
