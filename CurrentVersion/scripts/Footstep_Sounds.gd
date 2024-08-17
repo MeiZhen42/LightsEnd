@@ -5,13 +5,8 @@ extends Node2D
 
 var current_surface = null
 var is_playing_footstep = false
-var tile_map = null 
 
-func _ready():
-	# No need to initialize current_scene or connect to scene_changed signal
-	pass
-
-func footstep(): 
+func footstep():
 	if not is_playing_footstep:
 		if current_surface == "grass":
 			if not footsteps_grass.is_playing():
@@ -23,26 +18,14 @@ func footstep():
 				is_playing_footstep = true
 
 func stop_footstep():
-	print("stop_footstep called")
 	if is_playing_footstep:
-		if current_surface == "grass":
+		if current_surface == "grass" and footsteps_grass.is_playing():
 			footsteps_grass.stop()
-		elif current_surface == "wood":
+		elif current_surface == "wood" and footsteps_wood.is_playing():
 			footsteps_wood.stop()
 		is_playing_footstep = false
 
 func set_current_surface(surface):
-	current_surface = surface
-
-# Existing functions (you can keep them for now or refactor later if desired)
-func footstep_grass():
-	if not footsteps_grass.is_playing():
-		footsteps_grass.play()
-
-func footstep_wood():
-	if not footsteps_wood.is_playing():
-		footsteps_wood.play()
-
-func stop_footstep_grass():
-	if footsteps_grass.is_playing():
-		footsteps_grass.stop()
+	if current_surface != surface:
+		stop_footstep()
+		current_surface = surface

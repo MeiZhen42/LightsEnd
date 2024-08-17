@@ -14,8 +14,6 @@ var is_attacking: bool = false  # Track whether the player is currently attackin
 var experience = 0
 var level = 1
 var experience_needed = 100
-var is_playing_footstep = false
-var should_play_footstep = false
 var ground_layer = 0
 
 # Dictionary mapping atlas coordinates to surface types
@@ -41,10 +39,6 @@ var surface_map = {
 	Vector2i(8, 2): "wood"
 }
 
-var grass_atlas_coords = [
-	Vector2i(0, 0), 
-	Vector2i(0, 1),  # Add more coordinates as needed
-]
 
 const LEVEL_UP_TEXT_SCENE_PATH = "res://scenes/LevelUpText.tscn"
 const DAMAGE_TEXT_SCENE_PATH = "res://scenes/DamageText.tscn"  # Path to the DamageText scene
@@ -84,6 +78,7 @@ const sword_rotations = {
 @onready var player_stats_ui = $PlayerStatsUI  # Adjust path if needed
 @onready var tile_map  = null
 
+
 const sanity_decline: float = 1.5
 const sanity_regain: float = 1
 
@@ -114,6 +109,7 @@ func _ready():
 			sword_animation_player.stop()  # Ensure the animation is stopped initially
 
 	update_ui()
+
 
 func update_ui():
 	# Check each label to ensure it's not null before setting text
@@ -147,6 +143,7 @@ func toggle_stats_ui():
 
 func _physics_process(_delta):
 	player_movement(_delta)
+	detect_surface()
 	
 	if attack_area:
 		# Set the attack area position relative to the player
@@ -171,6 +168,8 @@ func change_scene(new_scene_path):
 	get_tree().change_scene(new_scene_path)
 	get_tree().emit_signal("scene_changed", new_scene_path.get_file().get_basename())
 
+
+
 func detect_surface():
 	var tile_maps = get_tree().get_nodes_in_group("tilemap")
 	print("Number of TileMaps found:", tile_maps.size()) 
@@ -194,68 +193,17 @@ func detect_surface():
 				var surface_type = surface_map[atlas_coords]
 				print("Walking on", surface_type)
 				FootstepSounds.set_current_surface(surface_type)
+				# Check if the player is moving before playing the footstep sound
+				if velocity != Vector2.ZERO:  
+					FootstepSounds.footstep()
 			else:
 				print("Unknown surface at this atlas coordinate")
 		else:
 			print("Player is on an empty cell")
 
 
-#func detect_surface():
-	#var tile_maps = get_tree().get_nodes_in_group("tilemap")
-	#print("Number of TileMaps found:", tile_maps.size()) 
-#
-	#if tile_maps.size() > 0:
-		#var tile_map = tile_maps[0] 
-		#print("TileMap Found:", tile_map.name)  # Print the TileMap's name
-		#
-		#var tolerance = 0.1  # Adjust this value as needed
-		#print("Player Global Position:", global_position)  # Print global position
-		#var player_cell_pos = tile_map.to_local(global_position + Vector2(tolerance, tolerance)).floor()
-		#print("Player Cell Position (after to_local):", player_cell_pos)  # Print cell position 
-#
-		#var cell = tile_map.get_cell_source_id(0, player_cell_pos) 
-		#print("Cell ID:", cell) 
-#
-		#if cell != -1: 
-			#var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
-			#print("Current Tile Atlas Coords:", atlas_coords) 
-			#if atlas_coords == Vector2i(0, 0):
-				#print("Walking on Grass")
-				#FootstepSounds.set_current_surface("grass")
-			#elif atlas_coords == Vector2i(50, 0):
-				#print("Walking on Wood")
-				#FootstepSounds.set_current_surface("wood")
-		#else:
-			#print("Player is on an empty cell") 
-
-
-
-#func detect_surface():
-	#var tile_maps = get_tree().get_nodes_in_group("tilemap")
-	#print("Number of TileMaps found:", tile_maps.size()) 
-#
-	#if tile_maps.size() > 0:
-		#var tile_map = tile_maps[0] 
-		#var player_cell_pos = tile_map.to_local(global_position).floor()
-		#print("Player Cell Position:", player_cell_pos) 
-#
-		#var cell = tile_map.get_cell_source_id(0, player_cell_pos) 
-		#print("Cell ID:", cell) 
-#
-		#if cell != -1: 
-			#var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
-			#print("Current Tile Atlas Coords:", atlas_coords) 
-			#if atlas_coords == Vector2i(0, 0):
-				#print("Walking on Grass")
-				#FootstepSounds.set_current_surface("grass")
-			#elif atlas_coords == Vector2i(50, 0):
-				#print("Walking on Wood")
-				#FootstepSounds.set_current_surface("wood")
-		#else:
-			#print("Player is on an empty cell") 
 
 func _process(_delta):
-	detect_surface()
 	# Adjust sanity
 	if safe:
 		sanity_bar.value += sanity_regain * _delta
@@ -315,14 +263,13 @@ func player_movement(_delta):
 	else:
 		play_animation(0)
 
-	should_play_footstep = velocity != Vector2.ZERO  # Update the flag here, after all movement logic
-
-	if should_play_footstep and not is_playing_footstep:
+	# Check if the player is moving
+	if velocity != Vector2.ZERO:
+	# Trigger the footstep sound when the player is moving
 		FootstepSounds.footstep()
-		is_playing_footstep = true
-	elif not should_play_footstep and is_playing_footstep:
+	else:
+	# Stop the footstep sound when the player stops moving
 		FootstepSounds.stop_footstep()
-		is_playing_footstep = false
 
 	self.velocity = velocity
 	move_and_slide()
