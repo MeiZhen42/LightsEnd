@@ -172,26 +172,26 @@ func change_scene(new_scene_path):
 
 func detect_surface():
 	var tile_maps = get_tree().get_nodes_in_group("tilemap")
-	print("Number of TileMaps found:", tile_maps.size()) 
+	#print("Number of TileMaps found:", tile_maps.size()) 
 
 	if tile_maps.size() > 0:
 		var tile_map = tile_maps[0] 
-		print("TileMap Found:", tile_map.name)
+		#print("TileMap Found:", tile_map.name)
 
 		var player_cell_pos = tile_map.local_to_map(global_position)
-		print("Player Cell Position (after local_to_map):", player_cell_pos)
+		#print("Player Cell Position (after local_to_map):", player_cell_pos)
 
 		var cell = tile_map.get_cell_source_id(0, player_cell_pos)
-		print("Cell ID:", cell)
+		#print("Cell ID:", cell)
 
 		if cell != -1: 
 			var atlas_coords = tile_map.get_cell_atlas_coords(0, player_cell_pos)
-			print("Current Tile Atlas Coords:", atlas_coords)
+			#print("Current Tile Atlas Coords:", atlas_coords)
 			
 			# Check if atlas_coords exist in surface_map dictionary
 			if atlas_coords in surface_map:
 				var surface_type = surface_map[atlas_coords]
-				print("Walking on", surface_type)
+				#print("Walking on", surface_type)
 				FootstepSounds.set_current_surface(surface_type)
 				# Check if the player is moving before playing the footstep sound
 				if velocity != Vector2.ZERO:  
@@ -485,7 +485,3 @@ func display_damage_text(position: Vector2, damage_amount: int, is_player: bool 
 			print("Error: Could not instantiate DamageText scene")
 	else:
 		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)
-
-
-
-
