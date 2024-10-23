@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://djyb5epojrtpw"]
 
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="1_2ik75"]
-[ext_resource type="Script" path="res://scripts/saveMENU.gd" id="4_0o6kp"]
+[ext_resource type="Script" path="res://scripts/PauseLabel.gd" id="3_d52op"]
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="6_q8q75"]
 [ext_resource type="Script" path="res://scripts/Master_Volume.gd" id="7_ugnqb"]
 [ext_resource type="Script" path="res://scripts/FullscreenToggle.gd" id="9_shufg"]
 
 [node name="PauseScreen" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,19 +18,20 @@ grow_vertical = 2
 script = ExtResource("1_2ik75")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_left = 407.0
 offset_top = 197.0
-offset_right = 901.0
-offset_bottom = 566.0
+offset_right = 2375.0
+offset_bottom = 1365.0
 
 [node name="Continue" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 168.0
-offset_top = 99.0
-offset_right = 326.0
-offset_bottom = 130.0
+offset_left = 677.0
+offset_top = 143.0
+offset_right = 1290.0
+offset_bottom = 237.0
 text = "Continue"
 
 [node name="Settings" type="Button" parent="CanvasLayer/Panel"]
@@ -39,10 +41,10 @@ anchor_left = 0.34
 anchor_top = 0.379
 anchor_right = 0.66
 anchor_bottom = 0.463
-offset_left = 0.0399933
-offset_top = 0.149002
-offset_right = -0.039978
-offset_bottom = 0.153
+offset_left = 6.88007
+offset_top = 2.328
+offset_right = -8.88
+offset_bottom = 2.216
 grow_horizontal = 2
 grow_vertical = 2
 text = "Settings"
@@ -52,15 +54,13 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.051
 anchor_bottom = 0.081
-offset_left = 166.0
-offset_top = 179.0
-offset_right = 300.806
-offset_bottom = 180.111
+offset_left = 677.0
+offset_top = 247.0
+offset_right = 1188.63
+offset_bottom = 241.392
 text = "Save"
-script = ExtResource("4_0o6kp")
 
 [node name="SaveConfirmationLabel" type="Label" parent="CanvasLayer/Panel/Save"]
-visible = false
 layout_mode = 0
 offset_left = 17.0
 offset_top = 100.0
@@ -68,26 +68,39 @@ offset_right = 148.0
 offset_bottom = 123.0
 text = "Save Confirmed!!"
 
+[node name="Load" type="Button" parent="CanvasLayer/Panel"]
+offset_left = 676.0
+offset_top = 344.0
+offset_right = 1289.0
+offset_bottom = 438.0
+text = "Load"
+
 [node name="Exit" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.051
 anchor_bottom = 0.081
-offset_left = 167.0
-offset_top = 217.0
-offset_right = 301.806
-offset_bottom = 218.111
+offset_left = 675.0
+offset_top = 550.0
+offset_right = 1191.63
+offset_bottom = 556.392
 text = "Exit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 222.0
-offset_top = 1.0
-offset_right = 272.0
-offset_bottom = 26.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_right = 90.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
 text = "Pause"
 fit_content = true
 scroll_active = false
+script = ExtResource("3_d52op")
 
 [node name="SettingsMenu" type="Control" parent="CanvasLayer"]
 visible = false
@@ -95,6 +108,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = 204.0
+offset_right = 320.0
+offset_bottom = 204.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_q8q75")
@@ -106,10 +123,10 @@ anchor_left = -0.214
 anchor_top = -0.285
 anchor_right = 0.214
 anchor_bottom = 0.284
-offset_left = 0.528015
-offset_top = -0.319977
-offset_right = 1.47198
-offset_bottom = -0.0320129
+offset_left = 1268.53
+offset_top = 548.68
+offset_right = 1963.47
+offset_bottom = 1040.97
 
 [node name="Master_Volume" type="HSlider" parent="CanvasLayer/SettingsMenu/Panel2"]
 layout_mode = 0
@@ -164,8 +181,9 @@ offset_right = -0.242035
 offset_bottom = 0.106995
 text = "Back"
 
-[connection signal="pressed" from="CanvasLayer/Panel/Continue" to="." method="hide_pause_screen"]
+[connection signal="pressed" from="CanvasLayer/Panel/Continue" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/Settings" to="." method="_on_SettingsButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/Save" to="CanvasLayer/Panel/Save" method="save_game"]
+[connection signal="pressed" from="CanvasLayer/Panel/Save" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/Load" to="." method="load_game"]
 [connection signal="value_changed" from="CanvasLayer/SettingsMenu/Panel2/Master_Volume" to="CanvasLayer/SettingsMenu/Panel2/Master_Volume" method="_on_VolumeSlider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/SettingsMenu/Panel2/Back" to="." method="_on_SettingsMenu_BackButton_pressed"]

@@ -16,3 +16,5 @@ res://scripts/player.gd
 res://scenes/Footstep_Sounds.tscn
 res://scenes/footsteps_grass.tscn
 res://scripts/PauseScreen.gd
+res://scripts/PauseLabel.gd
+res://scripts/load_game.gd

@@ -14,8 +14,8 @@ func _on_VolumeSlider_value_changed(value):
 
 func save_settings():
 	var config = ConfigFile.new()
-	config.set_value("Audio", "MasterVolume", $VolumeSlider.value)
-	config.set_value("Video", "Fullscreen", $FullscreenCheckBox.pressed)
+	config.set_value("Audio", "MasterVolume", $CanvasLayer/VolumeSlider.value)  # Update path if inside CanvasLayer
+	config.set_value("Video", "Fullscreen", $CanvasLayer/FullscreenCheckBox.pressed)  # Update path if inside CanvasLayer
 	# Save other settings as needed
 	var err = config.save("user://settings.cfg")
 	if err != OK:
@@ -26,11 +26,11 @@ func load_settings():
 	var err = config.load("user://settings.cfg")
 	if err == OK:
 		var volume = config.get_value("Audio", "MasterVolume", -10.0)
-		$VolumeSlider.value = volume
+		$CanvasLayer/VolumeSlider.value = volume  # Update path if inside CanvasLayer
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume)
 
 		var is_fullscreen = config.get_value("Video", "Fullscreen", false)
-		$FullscreenCheckBox.pressed = is_fullscreen
+		$CanvasLayer/FullscreenCheckBox.pressed = is_fullscreen  # Update path if inside CanvasLayer
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if is_fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
 		# Load other settings as needed
 	else:

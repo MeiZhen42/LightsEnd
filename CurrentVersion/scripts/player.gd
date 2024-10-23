@@ -110,6 +110,20 @@ func _ready():
 
 	update_ui()
 
+# Save the player data directly to PauseScreen save system
+func save_game():
+	var player_data = {
+		"health": health,
+		"max_health": max_health,
+		"level": level,
+		"experience": experience,
+		"position": global_position,
+		# "inventory": inventory  # Add inventory if necessary
+	}
+
+	# Call the autoloaded PauseScreen script's save_game function
+	PauseScreen.save_game(player_data)
+	print("Player data sent to save script.")
 
 func update_ui():
 	# Check each label to ensure it's not null before setting text
