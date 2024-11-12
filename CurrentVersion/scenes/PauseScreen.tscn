@@ -1,109 +1,147 @@
-[gd_scene load_steps=6 format=3 uid="uid://djyb5epojrtpw"]
+[gd_scene load_steps=5 format=3 uid="uid://djyb5epojrtpw"]
 
 [ext_resource type="Script" path="res://scripts/PauseScreen.gd" id="1_2ik75"]
-[ext_resource type="Script" path="res://scripts/PauseLabel.gd" id="3_d52op"]
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="6_q8q75"]
 [ext_resource type="Script" path="res://scripts/Master_Volume.gd" id="7_ugnqb"]
 [ext_resource type="Script" path="res://scripts/FullscreenToggle.gd" id="9_shufg"]
 
 [node name="PauseScreen" type="Control"]
-visible = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -324.0
+offset_right = 798.0
+offset_bottom = 398.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2ik75")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
+follow_viewport_scale = 0.001
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 407.0
-offset_top = 197.0
-offset_right = 2375.0
-offset_bottom = 1365.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="Continue" type="Button" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 677.0
-offset_top = 143.0
-offset_right = 1290.0
-offset_bottom = 237.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1297.0
+offset_top = 200.0
+offset_right = 1897.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
 text = "Continue"
 
 [node name="Settings" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.34
-anchor_top = 0.379
-anchor_right = 0.66
-anchor_bottom = 0.463
-offset_left = 6.88007
-offset_top = 2.328
-offset_right = -8.88
-offset_bottom = 2.216
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1297.0
+offset_top = 520.0
+offset_right = 1897.0
+offset_bottom = 625.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 45
 text = "Settings"
 
 [node name="Save" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.051
-anchor_bottom = 0.081
-offset_left = 677.0
-offset_top = 247.0
-offset_right = 1188.63
-offset_bottom = 241.392
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1297.0
+offset_top = 305.0
+offset_right = 1897.0
+offset_bottom = 405.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
 text = "Save"
 
 [node name="SaveConfirmationLabel" type="Label" parent="CanvasLayer/Panel/Save"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 100.0
-offset_right = 148.0
-offset_bottom = 123.0
-text = "Save Confirmed!!"
+offset_left = 3.0
+offset_top = 423.0
+offset_right = 615.0
+offset_bottom = 525.0
+theme_override_font_sizes/font_size = 45
 
 [node name="Load" type="Button" parent="CanvasLayer/Panel"]
-offset_left = 676.0
-offset_top = 344.0
-offset_right = 1289.0
-offset_bottom = 438.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1297.0
+offset_top = 410.0
+offset_right = 1897.0
+offset_bottom = 515.0
+theme_override_font_sizes/font_size = 45
 text = "Load"
 
 [node name="Exit" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.051
-anchor_bottom = 0.081
-offset_left = 675.0
-offset_top = 550.0
-offset_right = 1191.63
-offset_bottom = 556.392
-text = "Exit"
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1297.0
+offset_top = 630.0
+offset_right = 1897.0
+offset_bottom = 735.0
+theme_override_font_sizes/font_size = 45
+text = "Exit Game"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -38.0
-offset_right = 90.0
-offset_bottom = 23.0
+anchor_bottom = 0.5
+offset_left = 1530.0
+offset_top = 18.0
+offset_right = 1897.0
+offset_bottom = 85.0
 grow_horizontal = 2
-theme_override_font_sizes/mono_font_size = 0
-bbcode_enabled = true
+grow_vertical = 2
+theme_override_font_sizes/bold_italics_font_size = 45
+theme_override_font_sizes/italics_font_size = 45
+theme_override_font_sizes/mono_font_size = 45
+theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/bold_font_size = 45
 text = "Pause"
 fit_content = true
 scroll_active = false
-script = ExtResource("3_d52op")
 
 [node name="SettingsMenu" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,56 +155,65 @@ grow_vertical = 2
 script = ExtResource("6_q8q75")
 
 [node name="Panel2" type="Panel" parent="CanvasLayer/SettingsMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.214
 anchor_top = -0.285
 anchor_right = 0.214
 anchor_bottom = 0.284
-offset_left = 1268.53
-offset_top = 548.68
-offset_right = 1963.47
-offset_bottom = 1040.97
+offset_left = 331.528
+offset_top = 178.68
+offset_right = 1811.47
+offset_bottom = 976.968
 
-[node name="Master_Volume" type="HSlider" parent="CanvasLayer/SettingsMenu/Panel2"]
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/SettingsMenu/Panel2"]
 layout_mode = 0
-offset_left = 140.0
-offset_top = 45.0
-offset_right = 462.0
-offset_bottom = 61.0
+offset_left = 964.0
+offset_top = 142.0
+offset_right = 1286.0
+offset_bottom = 158.0
+min_value = -40.0
+max_value = 0.0
 script = ExtResource("7_ugnqb")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/SettingsMenu/Panel2/Master_Volume"]
+[node name="Master Volume" type="RichTextLabel" parent="CanvasLayer/SettingsMenu/Panel2/VolumeSlider"]
 layout_mode = 0
-offset_left = -133.0
-offset_top = -6.0
-offset_right = -12.0
-offset_bottom = 18.0
+offset_left = -372.0
+offset_top = -28.0
+offset_right = -8.00006
+offset_bottom = 39.0
+theme_override_font_sizes/normal_font_size = 45
 text = "Master Volume"
+
+[node name="VolumePercentageLabel" type="RichTextLabel" parent="CanvasLayer/SettingsMenu/Panel2/VolumeSlider"]
+layout_mode = 0
+offset_left = 335.0
+offset_top = -45.0
+offset_right = 586.0
+offset_bottom = 62.0
+theme_override_font_sizes/normal_font_size = 45
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/SettingsMenu/Panel2"]
 layout_mode = 0
-offset_left = 216.0
-offset_right = 293.0
-offset_bottom = 25.0
+offset_left = 893.0
+offset_top = 1.0
+offset_right = 1087.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 45
 text = "Settings"
 fit_content = true
 scroll_active = false
 
 [node name="Fullscreen_Toggle" type="CheckButton" parent="CanvasLayer/SettingsMenu/Panel2"]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 80.0
-offset_right = 183.0
-offset_bottom = 104.0
-script = ExtResource("9_shufg")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/SettingsMenu/Panel2/Fullscreen_Toggle"]
-layout_mode = 0
-offset_left = -129.0
-offset_right = -13.0
-offset_bottom = 24.0
+offset_left = 591.0
+offset_top = 177.0
+offset_right = 997.0
+offset_bottom = 248.0
+theme_override_font_sizes/font_size = 45
 text = "Fullscreen"
+script = ExtResource("9_shufg")
 
 [node name="Back" type="Button" parent="CanvasLayer/SettingsMenu/Panel2"]
 layout_mode = 1
@@ -179,11 +226,12 @@ offset_left = 0.205978
 offset_top = 0.102997
 offset_right = -0.242035
 offset_bottom = 0.106995
+theme_override_font_sizes/font_size = 45
 text = "Back"
 
 [connection signal="pressed" from="CanvasLayer/Panel/Continue" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/Settings" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/Save" to="." method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/Load" to="." method="load_game"]
-[connection signal="value_changed" from="CanvasLayer/SettingsMenu/Panel2/Master_Volume" to="CanvasLayer/SettingsMenu/Panel2/Master_Volume" method="_on_VolumeSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsMenu/Panel2/VolumeSlider" to="CanvasLayer/SettingsMenu/Panel2/VolumeSlider" method="_on_VolumeSlider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/SettingsMenu/Panel2/Back" to="." method="_on_SettingsMenu_BackButton_pressed"]

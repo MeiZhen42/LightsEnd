@@ -1,6 +1,6 @@
 extends Area2D
 
-signal enemy_collided(other_body)
+#signal enemy_collided(other_body)
 
 var damage_timer: float = 0.0
 const DAMAGE_INTERVAL: float = 1.0  # Time between damage applications

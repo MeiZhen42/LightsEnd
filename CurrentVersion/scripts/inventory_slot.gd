@@ -38,13 +38,13 @@ func _on_item_button_mouse_entered():
 		details_panel.visible = true
 
 
-func _on_merge_button_pressed():
+#func _on_merge_button_pressed():
 	#player = get_parent().get_parent().get_parent().get_parent()
-	# print(get_parent().get_parent().get_parent().get_parent().name)
-	var inv_item = inventory_item.new()
-	inv_item.set_item_data(item)
-	InventoryManager.handle_merge(inv_item, self)
-	usage_panel.hide()
+	 #print(get_parent().get_parent().get_parent().get_parent().name)
+	#var inv_item = inventory_item.new()
+	#inv_item.set_item_data(item)
+	#InventoryManager.handle_merge(inv_item, self)
+	#usage_panel.hide()
 	
 
 
@@ -104,3 +104,9 @@ func _on_use_button_pressed():
 				#Global.npc_node.npc_status(item)
 		else:
 			print("npc could not be found")
+
+
+func _on_delete_button_pressed():
+	if item != null:
+		Global.remove_item(item["type"], item["name"])
+		print("Item deleted from inventory.")

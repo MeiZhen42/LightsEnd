@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b8ghyh582xwhd" path="res://objects/Gemstones.png" id="13_av06i"]
 [ext_resource type="PackedScene" uid="uid://c7xbsw6vai2sa" path="res://scenes/Player_Spawn.tscn" id="13_ikg8m"]
 [ext_resource type="Script" path="res://scenes/loop.gd" id="18_mc8ml"]
-[ext_resource type="AudioStream" uid="uid://b151tv2g7l8qk" path="res://audio/Forest (Light's End Official Score).mp3" id="18_yguyn"]
+[ext_resource type="AudioStream" path="res://audio/Forest (Light_s End Official Score).mp3" id="18_yguyn"]
 [ext_resource type="PackedScene" uid="uid://bkvk1te2cqqra" path="res://scenes/Enemy_spawn.tscn" id="21_vlggq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cggdc"]

@@ -2,6 +2,10 @@
 extends Control
 
 func _ready():
+	center_menu()
+	
+	print_scene_tree(self)  # Prints the entire tree structure starting from this node
+	
 	print("Ready function called for PauseScreen")
 	var root = get_tree().root
 	print_scene_tree(root)
@@ -27,14 +31,29 @@ func _ready():
 	else:
 		settings_menu.visible = false  # Ensure settings menu is hidden at start
 
+#func center_menu():
+	# Access the Panel directly under CanvasLayer
+#	var panel = get_node("CanvasLayer/Panel")
+#	if panel == null:
+#		print("Error: Panel node not found at path 'CanvasLayer/Panel'")
+#	else:
+#		# Cast viewport_size to Vector2 to match the type of panel.size
+#		var viewport_size = Vector2(get_viewport().size)
+#		panel.position = (viewport_size - panel.size) / 2
+
+func center_menu():
+	var panel = get_node("CanvasLayer/Panel")
+	if panel == null:
+		print("Error: Panel node not found at path 'CanvasLayer/Panel'")
+	else:
+		# Position the panel to the center of the screen by setting its position to (0, 0)
+		panel.position = Vector2.ZERO
+
+
 func print_scene_tree(node, indent=0):
-	var indent_str = "\t".repeat(indent)  # Using repeat() for tabbed indents
-	print(indent_str + node.name)  # Print the node name with indentation
-	
-	# Recursively print all children
+	print("    ".repeat(indent) + node.name)  # Replace "\t" * indent with "    ".repeat(indent)
 	for child in node.get_children():
 		print_scene_tree(child, indent + 1)
-
 
 func show_pause_screen():
 	print("PauseScreen: show_pause_screen() called")
@@ -147,6 +166,7 @@ func save_game(player_data):
 		show_save_confirmation()
 	else:
 		print("Error: Unable to save the game.")
+		
 	
 func load_game():
 	# Open the saved file
@@ -205,11 +225,16 @@ func load_game():
 
 # Show a save confirmation message
 func show_save_confirmation():
-	if has_node("SaveConfirmationLabel"):
-		$SaveConfirmationLabel.text = "Game Saved!"
-		$SaveConfirmationLabel.visible = true
+	var label = get_node("CanvasLayer/Panel/Save/SaveConfirmationLabel")
+	if label:
+		label.text = "Game Saved!"
+		label.visible = true
 		await get_tree().create_timer(2.0).timeout  # Wait for 2 seconds
-		$SaveConfirmationLabel.visible = false
+		label.visible = false
+	else:
+		print("Error: SaveConfirmationLabel not found.")
+
+
 
 # Handle Load button press
 func _on_LoadButton_pressed():

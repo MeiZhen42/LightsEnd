@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/insideTavernDoor.gd" id="2_1jndm"]
 [ext_resource type="AudioStream" uid="uid://psa12l2wcngb" path="res://audio/footsteps/Wood_1.wav" id="3_upnk5"]
 [ext_resource type="PackedScene" uid="uid://c6e2iw1166lkf" path="res://scenes/randomizedNPCs.tscn" id="4_rk6yg"]
-[ext_resource type="AudioStream" uid="uid://b8d6dkrieo3ww" path="res://audio/Tavern (Light's End Official Score).mp3" id="7_t4ulr"]
+[ext_resource type="AudioStream" path="res://audio/Tavern (Light_s End Official Score).mp3" id="7_t4ulr"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="7_uig8n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_abb11"]

@@ -14,8 +14,8 @@ func _ready():
 		player = new_obj
 
 		# Manually emit the scene_changed signal after instantiating the player
-		FootstepSounds.emit_signal("scene_changed", get_tree().current_scene.name)
-		print("Emitted scene_changed signal from respawn scene")
+		#FootstepSounds.emit_signal("scene_changed", get_tree().current_scene.name)
+		#print("Emitted scene_changed signal from respawn scene")
 
 		# Manually emit the scene_changed signal after instantiating the player
 	#FootstepSounds.custom_signal.connect(Callable(_method_to_call))

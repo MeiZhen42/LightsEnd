@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b5yyaqd5fo0q0"]
+[gd_scene load_steps=32 format=3 uid="uid://b5yyaqd5fo0q0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_klxhr"]
 [ext_resource type="Texture2D" uid="uid://binvi46ene0s6" path="res://characters/mainPlayer.png" id="2_c8qqv"]
@@ -152,6 +152,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r12a2"]
 size = Vector2(94, 129.5)
 
+[sub_resource type="Animation" id="Animation_htx08"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelUpLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-337, -187)]
+}
+
 [sub_resource type="Animation" id="Animation_5wsx2"]
 resource_name = "Show_Level_Up"
 tracks/0/type = "value"
@@ -161,14 +176,15 @@ tracks/0/path = NodePath("LevelUpLabel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-19, -24), Vector2(-19, -42)]
+"values": [Vector2(-337, -187), Vector2(-3, -312)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n1jw5"]
 _data = {
+"RESET": SubResource("Animation_htx08"),
 "Show_Level_Up": SubResource("Animation_5wsx2")
 }
 
@@ -228,7 +244,7 @@ position = Vector2(3, 113.25)
 shape = SubResource("RectangleShape2D_r12a2")
 
 [node name="DamageText" parent="." instance=ExtResource("3_bwj7r")]
-position = Vector2(0, -17)
+position = Vector2(0, -158)
 
 [node name="interactUI" type="CanvasLayer" parent="."]
 visible = false
@@ -307,12 +323,13 @@ visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -19.0
-offset_top = -42.0
-offset_right = 52.0
-offset_bottom = -19.0
+offset_left = -337.0
+offset_top = -187.0
+offset_right = 302.0
+offset_bottom = 11.0
 grow_vertical = 2
 scale = Vector2(0.6, 0.564)
+theme_override_font_sizes/font_size = 85
 text = "Level Up!"
 horizontal_alignment = 1
 
@@ -331,35 +348,41 @@ script = ExtResource("6_5mij3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerStatsUI"]
 layout_mode = 0
-offset_left = 27.0
-offset_top = -68.0
-offset_right = 96.0
-offset_bottom = 36.0
+offset_left = 184.0
+offset_top = -139.0
+offset_right = 376.0
+offset_bottom = 273.0
 
 [node name="Level" type="Label" parent="PlayerStatsUI/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 45
 text = "Level:"
 
 [node name="HP" type="Label" parent="PlayerStatsUI/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 45
 text = "HP:"
 
 [node name="Crit" type="Label" parent="PlayerStatsUI/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 45
 text = "Crit:"
 
 [node name="Crit_dmg" type="Label" parent="PlayerStatsUI/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Crit_dmg:"
 
 [node name="Damage" type="Label" parent="PlayerStatsUI/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 45
 text = "Damage:"
 
 [node name="SwordSwing2" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SwordSwing2"]
 z_index = 1
-position = Vector2(0, 7)
+position = Vector2(1, 68)
 rotation = -5.9667
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("7_vgnlo")

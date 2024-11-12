@@ -27,18 +27,25 @@ func set_barkeep_reference(barkeep):
 	barkeep_node = barkeep
 	
 func add_item(item):
+	var first_empty_slot = null
 	for i in range(inventory.size()):
+		print(i, inventory.size())
 		#if item already exists in a slot, it will stack it
 		if inventory[i] != null and inventory[i]["type"] == item["type"] and inventory[i]["name"] == item["name"]:
 			inventory[i]["quantity"] += item["quantity"]
 			inventory_updated.emit()
-			print("Item added", inventory)
+			print("Item added to stack", inventory)
 			return true
+		#interate through 
+		elif inventory[i] == null and first_empty_slot == null:
+			first_empty_slot = i
+			print("Slot open")
 		#if slot does not exist for item, will place in empty slot instead
-		elif inventory[i] == null: 
-			inventory[i] = item
+			
+		elif first_empty_slot != null and i+1 == inventory.size(): 
+			inventory[first_empty_slot] = item
 			inventory_updated.emit()
-			print("Item added", inventory)
+			print("Item added")
 			return true
 	return false
 
@@ -50,7 +57,7 @@ func remove_item(item_type, item_name):
 				inventory[i] = null
 			inventory_updated.emit()
 			return true
-	return false
+	return false 
 
 func increase_inventory_size():
 	inventory_updated.emit()

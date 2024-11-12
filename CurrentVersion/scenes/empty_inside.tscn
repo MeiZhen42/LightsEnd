@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dcnygp6bhmq7j" path="res://objects/Ground_Tileset.png" id="1_skepn"]
 [ext_resource type="PackedScene" uid="uid://c7xbsw6vai2sa" path="res://scenes/Player_Spawn.tscn" id="2_o3046"]
 [ext_resource type="Script" path="res://scripts/insideTavernDoor.gd" id="2_q2rum"]
-[ext_resource type="AudioStream" uid="uid://b8d6dkrieo3ww" path="res://audio/Tavern (Light's End Official Score).mp3" id="6_wu24l"]
+[ext_resource type="AudioStream" path="res://audio/Tavern (Light_s End Official Score).mp3" id="6_wu24l"]
 [ext_resource type="PackedScene" uid="uid://c0mexgvswyv5p" path="res://scenes/fixed_npc_text.tscn" id="7_2y7hm"]
 [ext_resource type="Script" path="res://scenes/loop.gd" id="7_p1elx"]
 

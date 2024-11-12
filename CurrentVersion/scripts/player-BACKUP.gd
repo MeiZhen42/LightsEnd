@@ -387,4 +387,3 @@ func display_damage_text(position: Vector2, damage_amount: int):
 			print("Error: Could not instantiate DamageText scene")
 	else:
 		print("Error: DamageText scene not found at", DAMAGE_TEXT_SCENE_PATH)
-

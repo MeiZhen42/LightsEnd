@@ -83,6 +83,9 @@ const sanity_decline: float = 1.5
 const sanity_regain: float = 1
 
 func _ready():
+	# Ensure player only processes when the game is not paused
+	process_mode = Node.PROCESS_MODE_INHERIT
+	
 	Global.set_player_reference(self)
 	sanity_bar.min_value = 0
 	sanity_bar.max_value = 100
@@ -178,11 +181,9 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("attack"):
 		attack()
 		
-func change_scene(new_scene_path):
-	get_tree().change_scene(new_scene_path)
-	get_tree().emit_signal("scene_changed", new_scene_path.get_file().get_basename())
-
-
+#func change_scene(new_scene_path):
+#	get_tree().change_scene(new_scene_path)
+#	get_tree().emit_signal("scene_changed", new_scene_path.get_file().get_basename())
 
 func detect_surface():
 	var tile_maps = get_tree().get_nodes_in_group("tilemap")
@@ -325,7 +326,7 @@ func play_animation(movement):
 func _input(event):
 	if event.is_action_pressed("q"):
 		inventory_ui.visible = !inventory_ui.visible
-		get_tree().paused = !get_tree().paused
+		# pause player movement
 
 	# Check for "ui_toggle_stats" action to toggle stats UI
 	if event.is_action_pressed("ui_toggle_stats"):
