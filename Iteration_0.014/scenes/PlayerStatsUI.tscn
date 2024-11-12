@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ivgfum2iyw2"]
+
+[ext_resource type="Script" path="res://scripts/PlayerStatsUI.gd" id="1_6cm16"]
+
+[node name="PlayerStatsUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6cm16")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Level:"
+
+[node name="HP" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Health:"
+
+[node name="Crit" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Crit:"
+
+[node name="Damage" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Damage:"
