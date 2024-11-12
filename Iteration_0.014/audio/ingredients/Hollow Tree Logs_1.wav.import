@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://lxdrjof6vpxt"
+path="res://.godot/imported/Hollow Tree Logs_1.wav-ed25c50f221192f6c9cee1414d4e6d04.sample"
+
+[deps]
+
+source_file="res://audio/ingredients/Hollow Tree Logs_1.wav"
+dest_files=["res://.godot/imported/Hollow Tree Logs_1.wav-ed25c50f221192f6c9cee1414d4e6d04.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

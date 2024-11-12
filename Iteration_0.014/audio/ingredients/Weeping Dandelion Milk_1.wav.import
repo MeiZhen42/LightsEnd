@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://txpas7vfqeib"
+path="res://.godot/imported/Weeping Dandelion Milk_1.wav-c4cff27680cda5fa11ad19e281d32564.sample"
+
+[deps]
+
+source_file="res://audio/ingredients/Weeping Dandelion Milk_1.wav"
+dest_files=["res://.godot/imported/Weeping Dandelion Milk_1.wav-c4cff27680cda5fa11ad19e281d32564.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

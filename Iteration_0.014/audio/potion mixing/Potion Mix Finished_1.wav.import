@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bs0nsv0sbxaoo"
+path="res://.godot/imported/Potion Mix Finished_1.wav-a7b893a627d06325603f5b775c1198da.sample"
+
+[deps]
+
+source_file="res://audio/potion mixing/Potion Mix Finished_1.wav"
+dest_files=["res://.godot/imported/Potion Mix Finished_1.wav-a7b893a627d06325603f5b775c1198da.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

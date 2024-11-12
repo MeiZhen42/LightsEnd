@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b151tv2g7l8qk"
+path="res://.godot/imported/Forest (Light's End Official Score).mp3-7718bd8591a1f01279945d4aa66f0038.mp3str"
+
+[deps]
+
+source_file="res://audio/Forest (Light's End Official Score).mp3"
+dest_files=["res://.godot/imported/Forest (Light's End Official Score).mp3-7718bd8591a1f01279945d4aa66f0038.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
